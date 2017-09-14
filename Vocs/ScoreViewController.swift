@@ -10,62 +10,67 @@ import UIKit
 
 class ScoreViewController: UIViewController {
 
-    let monScore = VCScore()
-    let buttonQuitter = VCButtonExercice("Quitter", color: UIColor(rgb: 0x1ABC9C))
-    let labelCommentaire = VCLabelMenu(text: "Bien joué !",size: 35)
+    let myScore = VCScore()
+    let buttonLeave = VCButtonExercice("Quitter", color: UIColor(rgb: 0x1ABC9C))
+    let labelCommentOfTheScore = VCLabelMenu(text: "Bien joué !",size: 35)
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        buttonQuitter.addTarget(self, action: #selector(handleQuitter), for: .touchUpInside)
+        buttonLeave.addTarget(self, action: #selector(handleLeave), for: .touchUpInside)
         setupViews()
         self.navigationItem.title = "Traduction"
         self.tabBarController?.tabBar.isHidden = false
         self.navigationItem.hidesBackButton = true
-        
-        if let score = monScore.score.text, let max = monScore.maximum.text {
+        loadScore()
+    }
+    
+    //Gerer l'affichage du score à l'écran
+    
+    func loadScore() {
+        if let score = myScore.score.text, let max = myScore.maximum.text {
             let ratioScore = Double(score)! / Double(max)!
             if ratioScore > 0.5 && ratioScore != 1{
-                labelCommentaire.text = "Bien joué !"
+                labelCommentOfTheScore.text = "Bien joué !"
             } else if ratioScore == 1{
-                labelCommentaire.text = "Parfait !"
+                labelCommentOfTheScore.text = "Parfait !"
             } else if ratioScore <= 0.5 && ratioScore != 0{
-                labelCommentaire.text = "Presque !"
+                labelCommentOfTheScore.text = "Presque !"
             } else {
-                labelCommentaire.text = "Dommage !"
+                labelCommentOfTheScore.text = "Dommage !"
             }
         } else {
-            labelCommentaire.text = ""
+            labelCommentOfTheScore.text = ""
         }
     }
     
-    func handleQuitter() {
+    func handleLeave() {
         let controller = TabBarController()
         controller.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         present(controller, animated: true, completion: nil)
     }
     
     func setupViews() {
-        self.view.addSubview(monScore)
+        self.view.addSubview(myScore)
         
-        monScore.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        monScore.centerYAnchor.constraint(equalTo: self.view.centerYAnchor,constant : -50).isActive = true
-        monScore.widthAnchor.constraint(equalToConstant : 100).isActive = true
-        monScore.heightAnchor.constraint(equalToConstant : 100).isActive = true
+        myScore.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        myScore.centerYAnchor.constraint(equalTo: self.view.centerYAnchor,constant : -50).isActive = true
+        myScore.widthAnchor.constraint(equalToConstant : 100).isActive = true
+        myScore.heightAnchor.constraint(equalToConstant : 100).isActive = true
         
-        self.view.addSubview(labelCommentaire)
+        self.view.addSubview(labelCommentOfTheScore)
         
-        labelCommentaire.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        labelCommentaire.bottomAnchor.constraint(equalTo: monScore.topAnchor,constant : -50).isActive = true
-        labelCommentaire.widthAnchor.constraint(equalTo : self.view.widthAnchor).isActive = true
-        labelCommentaire.heightAnchor.constraint(equalToConstant : 50).isActive = true
+        labelCommentOfTheScore.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        labelCommentOfTheScore.bottomAnchor.constraint(equalTo: myScore.topAnchor,constant : -50).isActive = true
+        labelCommentOfTheScore.widthAnchor.constraint(equalTo : self.view.widthAnchor).isActive = true
+        labelCommentOfTheScore.heightAnchor.constraint(equalToConstant : 50).isActive = true
         
-        self.view.addSubview(buttonQuitter)
-        buttonQuitter.centerYAnchor.constraint(equalTo: view.centerYAnchor,constant : 100).isActive = true
-        buttonQuitter.widthAnchor.constraint(equalToConstant : 200).isActive = true
-        buttonQuitter.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        buttonQuitter.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        self.view.addSubview(buttonLeave)
+        buttonLeave.centerYAnchor.constraint(equalTo: view.centerYAnchor,constant : 100).isActive = true
+        buttonLeave.widthAnchor.constraint(equalToConstant : 200).isActive = true
+        buttonLeave.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        buttonLeave.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
 
 }

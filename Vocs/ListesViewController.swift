@@ -15,7 +15,7 @@ class ListesViewController: UIViewController, UITableViewDataSource,UITableViewD
     var lists : [List] = []
     var labelIndispobible = VCLabelMenu(text: "Vous n'avez aucune liste",size: 20)
     
-    let headerTableView = VCHeaderListe()
+    let headerTableView = VCHeaderListeWithButton(text: "Personelles")
     
     lazy var listesTableView : UITableView = {
         var tv = UITableView()
@@ -37,20 +37,8 @@ class ListesViewController: UIViewController, UITableViewDataSource,UITableViewD
     }
     
     func envoyerListe(texte: String) {
-        do {
-            let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-                .appendingPathComponent("Vocs.sqlite")
-            let db = try Connection("\(fileURL)")
-            let listName = Expression<String>("name")
-            let lists = Table("lists")
-            let insert = lists.insert(listName <- texte)
-            let rowid = try db.run(insert)
-            self.lists.append(List(id_list: Int(rowid),name: texte))
-        }   catch {
-            print(error)
-            return
-        }
-        
+        guard let idList = List.createList(withTitle: texte) else {return}
+        self.lists.append(List(id_list: Int(idList),name: texte))
         self.labelIndispobible.removeFromSuperview()
         
         let indexPath = IndexPath(row: lists.count - 1, section: 0)
@@ -58,20 +46,7 @@ class ListesViewController: UIViewController, UITableViewDataSource,UITableViewD
     }
     
     func chargerLesListes() {
-        do {
-            let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-                .appendingPathComponent("Vocs.sqlite")
-            let db = try Connection("\(fileURL)")
-            let idList = Expression<Int>("id_list")
-            let nameList = Expression<String>("name")
-            let words = Table("lists")
-            for list in try db.prepare(words) {
-                lists.append(List(id_list: list[idList],name: list[nameList]))
-            }
-        }   catch {
-            print(error)
-            return
-        }
+        lists = List.loadLists()
         if (lists.count == 0){
             messageVide()
         }
@@ -144,23 +119,7 @@ class ListesViewController: UIViewController, UITableViewDataSource,UITableViewD
     }
     
     func deleteList(indexPath : IndexPath){
-        do {
-            let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-                .appendingPathComponent("Vocs.sqlite")
-            let db = try Connection("\(fileURL)")
-            let list_id = Expression<Int>("id_list")
-            let lists_table = Table("lists")
-            let words_lists = Table("words_lists")
-            if let id_list = lists[indexPath.row].id_list {
-                let list_filtered = lists_table.filter(list_id == id_list)
-                try db.run(list_filtered.delete())
-                let words_lists_filtered = words_lists.filter(list_id == id_list)
-                try db.run(words_lists_filtered.delete())
-            }
-        }   catch {
-            print(error)
-            return
-        }
+        lists[indexPath.row].deleteList()
         lists.remove(at: indexPath.row)
         if (lists.count == 0){
             messageVide()

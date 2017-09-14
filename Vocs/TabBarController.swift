@@ -13,8 +13,14 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        var arrayViews : [UIViewController] = [createAViewController(controller: ClassesViewController(), image: #imageLiteral(resourceName: "Classe"))]
-        arrayViews.append(createAViewController(controller: ExercicesViewController(), image: #imageLiteral(resourceName: "Manette") ))
+        var arrayViews : [UIViewController] = []
+        //Detect if it's student or teacher
+//        if (true){
+//             arrayViews.append(createAViewController(controller: ClasseTeacherController(collectionViewLayout: UICollectionViewFlowLayout()), image: #imageLiteral(resourceName: "Classe")))
+//        } else {
+            arrayViews.append(createAViewController(controller: ClasseStudentController(collectionViewLayout: UICollectionViewFlowLayout()), image: #imageLiteral(resourceName: "Classe")))
+//        }
+        arrayViews.append(createAViewController(controller: ExercicesViewController(), image: #imageLiteral(resourceName: "Manette")))
         arrayViews.append(createAViewController(controller: ListesViewController(), image: #imageLiteral(resourceName: "Liste")))
         self.view.backgroundColor = .white
         viewControllers = arrayViews

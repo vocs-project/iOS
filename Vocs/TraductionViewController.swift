@@ -19,6 +19,7 @@ class TraductionViewController: UIViewController {
     var nbrReussi = 0
     var mots : [Mot] = []
     var list : List?
+    var motActuelIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,71 +27,81 @@ class TraductionViewController: UIViewController {
         self.view.backgroundColor = .white
         self.tabBarController?.tabBar.isHidden = true
         self.navigationItem.title = "Traduction"
-        self.navigationItem.setLeftBarButton(UIBarButtonItem(title: "Revenir", style: .plain, target: self, action: #selector(handleQuitter)), animated: true)
+        self.navigationItem.setLeftBarButton(UIBarButtonItem(title: "Revenir", style: .plain, target: self, action: #selector(handleLeave)), animated: true)
         validateButton.addTarget(self, action: #selector(handleCheck), for: .touchUpInside)
         setupViews()
-        chargerLesMots()
+        giveAWordPlace()
+        randomBoolForWord()
+        loadWords()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         textField.becomeFirstResponder()
     }
     
-    func chargerLesMots() {
-        do {
-            let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-                .appendingPathComponent("Vocs.sqlite")
-            let db = try Connection("\(fileURL)")
-            let word_id = Expression<Int>("id_word")
-            let list_id = Expression<Int>("id_list")
-            let french = Expression<String>("french")
-            let english = Expression<String>("english")
-            let words_lists = Table("words_lists")
-            let words = Table("words")
-            let join_words = words.join(JoinType.leftOuter, words_lists, on: words[word_id] == words_lists[word_id])
-            let query = join_words.select(words[word_id],french,english)
-                .filter(list_id == (self.list?.id_list)!)
-                .order(french, english)
-            for word in try db.prepare(query) {
-                mots.append(Mot(id: word[word_id], french: word[french], english: word[english]))
-            }
-        } catch {
-            print(error)
-            return
-        }
-        chargerLeMot()
+    func giveAWordPlace() {
+        motActuelIndex = Int(arc4random_uniform(UInt32(self.mots.count)))
+    }
+    
+    func loadWords() {
+        guard let idList = self.list?.id_list else {return}
+        mots = Mot.loadWords(fromListId : idList)
+        loadWordOnScreen()
     }
     
     func handleCheck() {
         if !(self.textField.text?.isEmpty)!{
-            if let mot = mots[compteur].french?.uppercased() {
-                if (mot.contains((self.textField.text?.uppercased())!)){
-                    textField.textColor = UIColor(rgb: 0x1ABC9C)
-                    nbrReussi += 1;
-                } else {
-                    textField.textColor = UIColor(rgb: 0xD83333)
+            if (francaisOuAnglais){
+                if let mot = mots[compteur].french?.uppercased() {
+                    if (mot.contains((self.textField.text?.uppercased())!)){
+                        textField.textColor = UIColor(rgb: 0x1ABC9C)
+                        nbrReussi += 1;
+                    } else {
+                        textField.textColor = UIColor(rgb: 0xD83333)
+                    }
+                }
+            } else {
+                if let mot = mots[compteur].english?.uppercased() {
+                    if (mot.contains((self.textField.text?.uppercased())!)){
+                        textField.textColor = UIColor(rgb: 0x1ABC9C)
+                        nbrReussi += 1;
+                    } else {
+                        textField.textColor = UIColor(rgb: 0xD83333)
+                    }
                 }
             }
         }
         compteur += 1;
-        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(chargerLeMot), userInfo: nil, repeats: false)
+        randomBoolForWord()
+        giveAWordPlace()
+        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(loadWordOnScreen), userInfo: nil, repeats: false)
         textField.isEnabled = false
         validateButton.isEnabled = false
     }
     
+    var francaisOuAnglais = true
+    
+    func randomBoolForWord() {
+        francaisOuAnglais = (arc4random_uniform(2) == 0)
+    }
+    
     func finir() {
         let controller = ScoreViewController()
-        controller.monScore.score.text = String(nbrReussi)
-        controller.monScore.maximum.text = String(compteur)
+        controller.myScore.score.text = String(nbrReussi)
+        controller.myScore.maximum.text = String(compteur)
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
-    func chargerLeMot(){
+    func loadWordOnScreen(){
         if (compteur == NBR_MOTS_MAX){
             finir()
         }
         if (compteur < mots.count){
-            self.labelMot.text = mots[compteur].english
+            if (francaisOuAnglais){
+                self.labelMot.text = mots[compteur].english
+            } else {
+                self.labelMot.text = mots[compteur].french
+            }
             self.textField.textColor = UIColor(rgb: 0x4A4A4A)
             self.textField.text = ""
         } else {
@@ -122,7 +133,7 @@ class TraductionViewController: UIViewController {
         labelMot.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
     }
 
-    func handleQuitter () {
+    func handleLeave () {
         self.dismissKeyboard()
         dismiss(animated: true, completion: nil)
     }

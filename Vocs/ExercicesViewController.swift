@@ -44,8 +44,8 @@ class ExercicesViewController: UIViewController {
     }
     
     func handleParametres() {
-        let reglagesController = ReglagesViewController()
-        let navReglageController = UINavigationController(rootViewController: reglagesController)
+        let profilController = ProfilViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let navReglageController = UINavigationController(rootViewController: profilController)
         present(navReglageController, animated: true, completion: nil)
         
     }

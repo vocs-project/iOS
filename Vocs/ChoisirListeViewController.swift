@@ -15,7 +15,7 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
     var lists : [List] = []
     var dejaCharge = false
     
-    let headerTableView = VCHeaderListeWithoutButton(text: "Choisir une liste")
+    let headerTableView = VCHeaderListe(text: "Choisir une liste")
     var labelIndispobible = VCLabelMenu(text: "Vous n'avez aucune liste",size: 20)
     
     lazy var listesTableView : UITableView = {
@@ -51,22 +51,7 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
     
     func chargerLesListes() {
         lists.removeAll()
-        do {
-            let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-                .appendingPathComponent("Vocs.sqlite")
-            let db = try Connection("\(fileURL)")
-            print(fileURL)
-            print("Connecté")
-            let idList = Expression<Int>("id_list")
-            let nameList = Expression<String>("name")
-            let words = Table("lists")
-            for list in try db.prepare(words) {
-                lists.append(List(id_list: list[idList],name: list[nameList]))
-            }
-        }   catch {
-            print("Erreur")
-            return
-        }
+        lists = List.loadLists()
     }
     
     func setupViews() {
@@ -118,20 +103,11 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
     
     
     func listeEstVide(indexPath : IndexPath) -> Bool {
-        do {
-            let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-                .appendingPathComponent("Vocs.sqlite")
-            let db = try Connection("\(fileURL)")
-            let count = try db.scalar("SELECT count(*) FROM words_lists where id_list = \(lists[indexPath.row].id_list!);" ) as! Int64
-            if (count == 0){
-                return true
-            } else {
-                return false
-            }
-        } catch {
-            print(error)
+        if lists[indexPath.row].estVide() {
+            return true
+        } else {
+            return false
         }
-        return true
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

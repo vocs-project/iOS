@@ -1,15 +1,14 @@
 //
-//  MotsViewController.swift
+//  WordsForClassViewController.swift
 //  Vocs
 //
-//  Created by Mathis Delaunay on 14/05/2017.
+//  Created by Mathis Delaunay on 07/09/2017.
 //  Copyright © 2017 Wathis. All rights reserved.
 //
 
 import UIKit
-import SQLite
 
-class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, AjouterUnMotDelegate {
+class WordsForClassViewController: UIViewController {
 
     
     var mots : [Mot] = []
@@ -26,18 +25,10 @@ class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDat
         return tv
     }()
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Ajouter", style: .plain, target: self, action: #selector(handleAjouter)), animated: true)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setLeftBarButton(UIBarButtonItem(title: "Revenir", style: .plain, target: self, action: #selector(handleRevenir)), animated: true)
+        self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Ajouter", style: .plain, target: self, action: #selector(handleAjouter)), animated: true)
         self.motsTableView.register(VCMotCell.self, forCellReuseIdentifier: reuseIdentifier)
         self.view.backgroundColor = .white
         loadWords()
@@ -47,10 +38,6 @@ class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDat
     func loadWords() {
         guard let idList =  self.list?.id_list else {return}
         self.mots = Mot.loadWords(fromListId: idList)
-    }
-    
-    func handleTrain() {
-        
     }
     
     func handleAjouter() {
@@ -88,6 +75,7 @@ class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDat
         self.navigationController?.popViewController(animated: true)
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.mots.count
     }
@@ -119,4 +107,5 @@ class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDat
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
         }
     }
+
 }
