@@ -11,16 +11,27 @@
 		6A04B3DB1EBBA57A007204B5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A04B3DA1EBBA57A007204B5 /* Extensions.swift */; };
 		6A1EBA001ED9DCF900506F41 /* Mot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1EB9FF1ED9DCF900506F41 /* Mot.swift */; };
 		6A1EBA021ED9F2D400506F41 /* ChoisirListeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1EBA011ED9F2D400506F41 /* ChoisirListeViewController.swift */; };
+		6A2030F01F6AC38000CE6C5E /* VCButtonExercice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2030EF1F6AC38000CE6C5E /* VCButtonExercice.swift */; };
+		6A2030F31F6AC3B700CE6C5E /* VCLabelMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2030F21F6AC3B700CE6C5E /* VCLabelMenu.swift */; };
+		6A2030F51F6AC3BE00CE6C5E /* VCLabelMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2030F41F6AC3BE00CE6C5E /* VCLabelMot.swift */; };
+		6A2030F91F6AC45400CE6C5E /* VCHeaderListe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2030F81F6AC45400CE6C5E /* VCHeaderListe.swift */; };
+		6A2030FB1F6AC45900CE6C5E /* VCScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2030FA1F6AC45900CE6C5E /* VCScore.swift */; };
+		6A2030FD1F6AC45E00CE6C5E /* VCTitreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2030FC1F6AC45E00CE6C5E /* VCTitreLabel.swift */; };
+		6A2030FF1F6AC5F300CE6C5E /* VCViewConnectionWithoutTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2030FE1F6AC5F300CE6C5E /* VCViewConnectionWithoutTextField.swift */; };
+		6A2031031F6AC7B600CE6C5E /* VCButtonLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2031021F6AC7B600CE6C5E /* VCButtonLogin.swift */; };
+		6A2031051F6ACF9500CE6C5E /* VCButtonRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2031041F6ACF9500CE6C5E /* VCButtonRegister.swift */; };
+		6A2031071F6AD2DA00CE6C5E /* VCButtonForgottenPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2031061F6AD2DA00CE6C5E /* VCButtonForgottenPassword.swift */; };
+		6A24AEFA1F67EE1F00207B81 /* VCViewConnectionWithTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A24AEF91F67EE1E00207B81 /* VCViewConnectionWithTextField.swift */; };
 		6A2733591EC74BA000E4830E /* ExercicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733581EC74BA000E4830E /* ExercicesViewController.swift */; };
 		6A27335B1EC74BD500E4830E /* ListesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A27335A1EC74BD500E4830E /* ListesViewController.swift */; };
-		6A27335F1EC75EFD00E4830E /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A27335E1EC75EFD00E4830E /* Button.swift */; };
+		6A27335F1EC75EFD00E4830E /* VCButtonValidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A27335E1EC75EFD00E4830E /* VCButtonValidate.swift */; };
 		6A2733611EC760C200E4830E /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733601EC760C200E4830E /* Error.swift */; };
-		6A2733661EC7680800E4830E /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733651EC7680800E4830E /* Label.swift */; };
+		6A2733661EC7680800E4830E /* VCLabelCopyright.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733651EC7680800E4830E /* VCLabelCopyright.swift */; };
 		6A2733681EC76F2600E4830E /* ProfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733671EC76F2600E4830E /* ProfilViewController.swift */; };
 		6A27336A1EC77F3D00E4830E /* TraductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733691EC77F3D00E4830E /* TraductionViewController.swift */; };
-		6A27336C1EC7821E00E4830E /* TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A27336B1EC7821E00E4830E /* TextFields.swift */; };
+		6A27336C1EC7821E00E4830E /* VCTextFieldLigneBas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A27336B1EC7821E00E4830E /* VCTextFieldLigneBas.swift */; };
 		6A27336E1EC790DE00E4830E /* ListeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A27336D1EC790DE00E4830E /* ListeCell.swift */; };
-		6A2733701EC792B400E4830E /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A27336F1EC792B400E4830E /* Views.swift */; };
+		6A2733701EC792B400E4830E /* VCHeaderListeWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A27336F1EC792B400E4830E /* VCHeaderListeWithButton.swift */; };
 		6A2733721EC87BD800E4830E /* AjouterListeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733711EC87BD800E4830E /* AjouterListeViewController.swift */; };
 		6A2733741EC8956F00E4830E /* MotsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733731EC8956F00E4830E /* MotsViewController.swift */; };
 		6A2733761EC8991900E4830E /* MotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733751EC8991900E4830E /* MotCell.swift */; };
@@ -62,16 +73,27 @@
 		6A04B3DA1EBBA57A007204B5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6A1EB9FF1ED9DCF900506F41 /* Mot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mot.swift; sourceTree = "<group>"; };
 		6A1EBA011ED9F2D400506F41 /* ChoisirListeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoisirListeViewController.swift; sourceTree = "<group>"; };
+		6A2030EF1F6AC38000CE6C5E /* VCButtonExercice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCButtonExercice.swift; sourceTree = "<group>"; };
+		6A2030F21F6AC3B700CE6C5E /* VCLabelMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCLabelMenu.swift; sourceTree = "<group>"; };
+		6A2030F41F6AC3BE00CE6C5E /* VCLabelMot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCLabelMot.swift; sourceTree = "<group>"; };
+		6A2030F81F6AC45400CE6C5E /* VCHeaderListe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCHeaderListe.swift; sourceTree = "<group>"; };
+		6A2030FA1F6AC45900CE6C5E /* VCScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCScore.swift; sourceTree = "<group>"; };
+		6A2030FC1F6AC45E00CE6C5E /* VCTitreLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCTitreLabel.swift; sourceTree = "<group>"; };
+		6A2030FE1F6AC5F300CE6C5E /* VCViewConnectionWithoutTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCViewConnectionWithoutTextField.swift; sourceTree = "<group>"; };
+		6A2031021F6AC7B600CE6C5E /* VCButtonLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCButtonLogin.swift; sourceTree = "<group>"; };
+		6A2031041F6ACF9500CE6C5E /* VCButtonRegister.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCButtonRegister.swift; sourceTree = "<group>"; };
+		6A2031061F6AD2DA00CE6C5E /* VCButtonForgottenPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCButtonForgottenPassword.swift; sourceTree = "<group>"; };
+		6A24AEF91F67EE1E00207B81 /* VCViewConnectionWithTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCViewConnectionWithTextField.swift; sourceTree = "<group>"; };
 		6A2733581EC74BA000E4830E /* ExercicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExercicesViewController.swift; sourceTree = "<group>"; };
 		6A27335A1EC74BD500E4830E /* ListesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListesViewController.swift; sourceTree = "<group>"; };
-		6A27335E1EC75EFD00E4830E /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		6A27335E1EC75EFD00E4830E /* VCButtonValidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCButtonValidate.swift; sourceTree = "<group>"; };
 		6A2733601EC760C200E4830E /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
-		6A2733651EC7680800E4830E /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		6A2733651EC7680800E4830E /* VCLabelCopyright.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCLabelCopyright.swift; sourceTree = "<group>"; };
 		6A2733671EC76F2600E4830E /* ProfilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilViewController.swift; sourceTree = "<group>"; };
 		6A2733691EC77F3D00E4830E /* TraductionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraductionViewController.swift; sourceTree = "<group>"; };
-		6A27336B1EC7821E00E4830E /* TextFields.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
+		6A27336B1EC7821E00E4830E /* VCTextFieldLigneBas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCTextFieldLigneBas.swift; sourceTree = "<group>"; };
 		6A27336D1EC790DE00E4830E /* ListeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListeCell.swift; sourceTree = "<group>"; };
-		6A27336F1EC792B400E4830E /* Views.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
+		6A27336F1EC792B400E4830E /* VCHeaderListeWithButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCHeaderListeWithButton.swift; sourceTree = "<group>"; };
 		6A2733711EC87BD800E4830E /* AjouterListeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AjouterListeViewController.swift; sourceTree = "<group>"; };
 		6A2733731EC8956F00E4830E /* MotsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotsViewController.swift; sourceTree = "<group>"; };
 		6A2733751EC8991900E4830E /* MotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotCell.swift; sourceTree = "<group>"; };
@@ -150,6 +172,49 @@
 				6A5D46C71EC8C28A00854EA1 /* ScoreViewController.swift */,
 			);
 			name = Jeux;
+			sourceTree = "<group>";
+		};
+		6A2030EE1F6AC36C00CE6C5E /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				6A2031021F6AC7B600CE6C5E /* VCButtonLogin.swift */,
+				6A27335E1EC75EFD00E4830E /* VCButtonValidate.swift */,
+				6A2030EF1F6AC38000CE6C5E /* VCButtonExercice.swift */,
+				6A2031041F6ACF9500CE6C5E /* VCButtonRegister.swift */,
+				6A2031061F6AD2DA00CE6C5E /* VCButtonForgottenPassword.swift */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		6A2030F11F6AC3A900CE6C5E /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				6A2733651EC7680800E4830E /* VCLabelCopyright.swift */,
+				6A2030F21F6AC3B700CE6C5E /* VCLabelMenu.swift */,
+				6A2030F41F6AC3BE00CE6C5E /* VCLabelMot.swift */,
+			);
+			name = Labels;
+			sourceTree = "<group>";
+		};
+		6A2030F61F6AC42F00CE6C5E /* Textfields */ = {
+			isa = PBXGroup;
+			children = (
+				6A27336B1EC7821E00E4830E /* VCTextFieldLigneBas.swift */,
+			);
+			name = Textfields;
+			sourceTree = "<group>";
+		};
+		6A2030F71F6AC44600CE6C5E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6A27336F1EC792B400E4830E /* VCHeaderListeWithButton.swift */,
+				6A2030F81F6AC45400CE6C5E /* VCHeaderListe.swift */,
+				6A2030FA1F6AC45900CE6C5E /* VCScore.swift */,
+				6A2030FC1F6AC45E00CE6C5E /* VCTitreLabel.swift */,
+				6A2030FE1F6AC5F300CE6C5E /* VCViewConnectionWithoutTextField.swift */,
+				6A24AEF91F67EE1E00207B81 /* VCViewConnectionWithTextField.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		6A2733621EC760C700E4830E /* Error */ = {
@@ -272,15 +337,13 @@
 		6A59D7781EBB70D000E5D1BA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6A2030F71F6AC44600CE6C5E /* Views */,
+				6A2030F61F6AC42F00CE6C5E /* Textfields */,
+				6A2030F11F6AC3A900CE6C5E /* Labels */,
+				6A2030EE1F6AC36C00CE6C5E /* Buttons */,
 				6AD2BB631F62A668008BFB3D /* Cells */,
 				6AD2BB5E1F62A605008BFB3D /* Footers */,
 				6AD2BB5D1F62A600008BFB3D /* Headers */,
-				6A27335E1EC75EFD00E4830E /* Button.swift */,
-				6A2733651EC7680800E4830E /* Label.swift */,
-				6A27336B1EC7821E00E4830E /* TextFields.swift */,
-				6A27336D1EC790DE00E4830E /* ListeCell.swift */,
-				6A27336F1EC792B400E4830E /* Views.swift */,
-				6A2733751EC8991900E4830E /* MotCell.swift */,
 				6A59D77A1EBB70EB00E5D1BA /* Storyboards */,
 			);
 			name = Views;
@@ -340,6 +403,8 @@
 		6AD2BB631F62A668008BFB3D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				6A27336D1EC790DE00E4830E /* ListeCell.swift */,
+				6A2733751EC8991900E4830E /* MotCell.swift */,
 				6AD2BB5B1F62A462008BFB3D /* VCCollectionViewCell.swift */,
 				6AE6EBB51F61D53000B876D1 /* VCClassesCollectionViewCell.swift */,
 				6AD2BB591F62A41D008BFB3D /* VCProfilCollectionViewCell.swift */,
@@ -482,18 +547,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A2733701EC792B400E4830E /* Views.swift in Sources */,
+				6A2733701EC792B400E4830E /* VCHeaderListeWithButton.swift in Sources */,
 				6A82D5341F61A0D100B6A44E /* Session.swift in Sources */,
 				6A2733591EC74BA000E4830E /* ExercicesViewController.swift in Sources */,
 				6AE52CF91EE1B878003E5EF1 /* SplashScreenViewController.swift in Sources */,
 				6A6F1C891ED77A3C0098D6EE /* List.swift in Sources */,
 				6A27336A1EC77F3D00E4830E /* TraductionViewController.swift in Sources */,
-				6A27336C1EC7821E00E4830E /* TextFields.swift in Sources */,
+				6A27336C1EC7821E00E4830E /* VCTextFieldLigneBas.swift in Sources */,
 				6A76DA771EF97CCC00E151AA /* ConnexionViewController.swift in Sources */,
 				6AD2BB691F62A834008BFB3D /* VCHeaderWithBarCollectionViewCell.swift in Sources */,
+				6A2031071F6AD2DA00CE6C5E /* VCButtonForgottenPassword.swift in Sources */,
 				6A04B3D81EBBA540007204B5 /* TabBarController.swift in Sources */,
 				6AD2BB621F62A644008BFB3D /* VCHeaderClasseStudentCollectionReusableView.swift in Sources */,
 				6A5D46CD1EC8F43900854EA1 /* Protocoles.swift in Sources */,
+				6A2030F51F6AC3BE00CE6C5E /* VCLabelMot.swift in Sources */,
 				6A2733741EC8956F00E4830E /* MotsViewController.swift in Sources */,
 				6AE52CFC1EE1B893003E5EF1 /* SplashViewController.swift in Sources */,
 				6A2733761EC8991900E4830E /* MotCell.swift in Sources */,
@@ -506,19 +573,28 @@
 				6AD2BB651F62A6E6008BFB3D /* VCHeaderWithTitlesCollectionViewCell.swift in Sources */,
 				6AD2BB5A1F62A41D008BFB3D /* VCProfilCollectionViewCell.swift in Sources */,
 				6A82D5381F61AB8100B6A44E /* ClasseStudentViewController.swift in Sources */,
-				6A2733661EC7680800E4830E /* Label.swift in Sources */,
+				6A2031051F6ACF9500CE6C5E /* VCButtonRegister.swift in Sources */,
+				6A2030FD1F6AC45E00CE6C5E /* VCTitreLabel.swift in Sources */,
+				6A2030F91F6AC45400CE6C5E /* VCHeaderListe.swift in Sources */,
+				6A2733661EC7680800E4830E /* VCLabelCopyright.swift in Sources */,
 				6A59D7661EBB701400E5D1BA /* AppDelegate.swift in Sources */,
 				6A41B28E1F618F1C006E500B /* Group.swift in Sources */,
 				6A27336E1EC790DE00E4830E /* ListeCell.swift in Sources */,
-				6A27335F1EC75EFD00E4830E /* Button.swift in Sources */,
+				6A27335F1EC75EFD00E4830E /* VCButtonValidate.swift in Sources */,
 				6A82D5321F619FB200B6A44E /* Student.swift in Sources */,
 				6A1EBA001ED9DCF900506F41 /* Mot.swift in Sources */,
 				6A27335B1EC74BD500E4830E /* ListesViewController.swift in Sources */,
+				6A2030FB1F6AC45900CE6C5E /* VCScore.swift in Sources */,
 				6A2733721EC87BD800E4830E /* AjouterListeViewController.swift in Sources */,
+				6A2030FF1F6AC5F300CE6C5E /* VCViewConnectionWithoutTextField.swift in Sources */,
 				6AD2BB671F62A82C008BFB3D /* VCHeaderWithBarWithButtonCollectionViewCell.swift in Sources */,
 				6A2733611EC760C200E4830E /* Error.swift in Sources */,
+				6A2031031F6AC7B600CE6C5E /* VCButtonLogin.swift in Sources */,
 				6A2733681EC76F2600E4830E /* ProfilViewController.swift in Sources */,
 				6A04B3DB1EBBA57A007204B5 /* Extensions.swift in Sources */,
+				6A2030F31F6AC3B700CE6C5E /* VCLabelMenu.swift in Sources */,
+				6A2030F01F6AC38000CE6C5E /* VCButtonExercice.swift in Sources */,
+				6A24AEFA1F67EE1F00207B81 /* VCViewConnectionWithTextField.swift in Sources */,
 				6A5D46C81EC8C28A00854EA1 /* ScoreViewController.swift in Sources */,
 				6AD2BB5C1F62A462008BFB3D /* VCCollectionViewCell.swift in Sources */,
 				6A5D46CA1EC8F0D300854EA1 /* AjouterMotViewController.swift in Sources */,
