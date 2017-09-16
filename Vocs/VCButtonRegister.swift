@@ -10,8 +10,18 @@ import UIKit
 
 class VCButtonRegister : UIButton {
 
+    var text : String? {
+        didSet {
+            self.setAttributedTitle(NSAttributedString(string: text!, attributes: [NSFontAttributeName : UIFont(name: "HelveticaNeue-Light",size : 20 ) as Any, NSForegroundColorAttributeName : UIColor.white as Any]), for: .normal)
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupButton()
+    }
+    
+    func setupButton() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = .black
         self.layer.cornerRadius = 15

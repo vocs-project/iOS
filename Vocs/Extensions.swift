@@ -33,6 +33,20 @@ extension UIColor {
     }
 }
 
+extension UIView {
+    func addSubviews(_ views : [UIView]) {
+        for view in views {
+            self.addSubview(view)
+        }
+    }
+}
+
+extension String {
+    func isDecimal() -> Bool {
+        return Int(self) == nil ? false : true
+    }
+}
+
 extension UIViewController {
     
     func presentDetail(_ viewControllerToPresent: UIViewController) {

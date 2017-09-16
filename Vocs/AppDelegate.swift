@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Modify KeyBoard color
         UITextField.appearance().keyboardAppearance = .dark
         findIfSqliteDBExists()
-        window?.rootViewController = ConnexionViewController()
+        window?.rootViewController = VCConnectionViewController()
 //        window?.rootViewController = SplashViewController()
         return true
     }
