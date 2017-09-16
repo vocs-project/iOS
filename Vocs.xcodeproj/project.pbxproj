@@ -55,6 +55,8 @@
 		6ACEB5201F6D26A400A2236D /* VCViewConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACEB51F1F6D26A400A2236D /* VCViewConnection.swift */; };
 		6ACEB5241F6D2BD100A2236D /* VCRegisterInformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACEB5231F6D2BD100A2236D /* VCRegisterInformations.swift */; };
 		6ACEB5281F6D7F8D00A2236D /* VCLabelTitleConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACEB5271F6D7F8D00A2236D /* VCLabelTitleConnection.swift */; };
+		6ACEB52A1F6DA06C00A2236D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACEB5291F6DA06C00A2236D /* City.swift */; };
+		6ACEB52C1F6DDD5800A2236D /* VCThanksJoinUs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACEB52B1F6DDD5800A2236D /* VCThanksJoinUs.swift */; };
 		6AD2BB5A1F62A41D008BFB3D /* VCProfilCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD2BB591F62A41D008BFB3D /* VCProfilCollectionViewCell.swift */; };
 		6AD2BB5C1F62A462008BFB3D /* VCCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD2BB5B1F62A462008BFB3D /* VCCollectionViewCell.swift */; };
 		6AD2BB601F62A611008BFB3D /* VCHeaderClasseTeacherCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD2BB5F1F62A611008BFB3D /* VCHeaderClasseTeacherCollectionReusableView.swift */; };
@@ -124,6 +126,8 @@
 		6ACEB51F1F6D26A400A2236D /* VCViewConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCViewConnection.swift; sourceTree = "<group>"; };
 		6ACEB5231F6D2BD100A2236D /* VCRegisterInformations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCRegisterInformations.swift; sourceTree = "<group>"; };
 		6ACEB5271F6D7F8D00A2236D /* VCLabelTitleConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCLabelTitleConnection.swift; sourceTree = "<group>"; };
+		6ACEB5291F6DA06C00A2236D /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		6ACEB52B1F6DDD5800A2236D /* VCThanksJoinUs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCThanksJoinUs.swift; sourceTree = "<group>"; };
 		6AD2BB591F62A41D008BFB3D /* VCProfilCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCProfilCollectionViewCell.swift; sourceTree = "<group>"; };
 		6AD2BB5B1F62A462008BFB3D /* VCCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCCollectionViewCell.swift; sourceTree = "<group>"; };
 		6AD2BB5F1F62A611008BFB3D /* VCHeaderClasseTeacherCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCHeaderClasseTeacherCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -274,6 +278,7 @@
 			children = (
 				6A76DA751EF97CCC00E151AA /* VCConnectionViewController.swift */,
 				6ACEB5231F6D2BD100A2236D /* VCRegisterInformations.swift */,
+				6ACEB52B1F6DDD5800A2236D /* VCThanksJoinUs.swift */,
 			);
 			name = "Login-Register";
 			sourceTree = "<group>";
@@ -345,6 +350,7 @@
 				6A82D5311F619FB200B6A44E /* Student.swift */,
 				6A82D5331F61A0D100B6A44E /* Session.swift */,
 				6A82D5351F61A1E500B6A44E /* School.swift */,
+				6ACEB5291F6DA06C00A2236D /* City.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -566,6 +572,7 @@
 				6A82D5341F61A0D100B6A44E /* Session.swift in Sources */,
 				6A2733591EC74BA000E4830E /* ExercicesViewController.swift in Sources */,
 				6AE52CF91EE1B878003E5EF1 /* SplashScreenViewController.swift in Sources */,
+				6ACEB52A1F6DA06C00A2236D /* City.swift in Sources */,
 				6A6F1C891ED77A3C0098D6EE /* List.swift in Sources */,
 				6ACEB5241F6D2BD100A2236D /* VCRegisterInformations.swift in Sources */,
 				6A27336A1EC77F3D00E4830E /* TraductionViewController.swift in Sources */,
@@ -587,6 +594,7 @@
 				6A1EBA021ED9F2D400506F41 /* ChoisirListeViewController.swift in Sources */,
 				6AE6EBB61F61D53000B876D1 /* VCClassesCollectionViewCell.swift in Sources */,
 				6A41B28B1F618CBF006E500B /* ClassesTeacherViewController.swift in Sources */,
+				6ACEB52C1F6DDD5800A2236D /* VCThanksJoinUs.swift in Sources */,
 				6AD2BB651F62A6E6008BFB3D /* VCHeaderWithTitlesCollectionViewCell.swift in Sources */,
 				6AD2BB5A1F62A41D008BFB3D /* VCProfilCollectionViewCell.swift in Sources */,
 				6A82D5381F61AB8100B6A44E /* ClasseStudentViewController.swift in Sources */,
