@@ -1,26 +1,32 @@
 PODS:
-  - Alamofire (4.5.0)
+  - Alamofire (4.5.1)
   - SQLite.swift (0.11.3):
     - SQLite.swift/standard (= 0.11.3)
   - SQLite.swift/standard (0.11.3)
-  - SwifterSwift (3.1.0):
-    - SwifterSwift/Cocoa (= 3.1.0)
-    - SwifterSwift/Foundation (= 3.1.0)
-    - SwifterSwift/UIKit (= 3.1.0)
-  - SwifterSwift/Cocoa (3.1.0)
-  - SwifterSwift/Foundation (3.1.0)
-  - SwifterSwift/UIKit (3.1.0)
+  - SwifterSwift (3.2.0):
+    - SwifterSwift/AppKit (= 3.2.0)
+    - SwifterSwift/CoreGraphics (= 3.2.0)
+    - SwifterSwift/CoreLocation (= 3.2.0)
+    - SwifterSwift/Foundation (= 3.2.0)
+    - SwifterSwift/SwiftStdlib (= 3.2.0)
+    - SwifterSwift/UIKit (= 3.2.0)
+  - SwifterSwift/AppKit (3.2.0)
+  - SwifterSwift/CoreGraphics (3.2.0)
+  - SwifterSwift/CoreLocation (3.2.0)
+  - SwifterSwift/Foundation (3.2.0)
+  - SwifterSwift/SwiftStdlib (3.2.0)
+  - SwifterSwift/UIKit (3.2.0)
 
 DEPENDENCIES:
   - Alamofire
-  - SQLite.swift (~> 0.11.3)
+  - SQLite.swift
   - SwifterSwift
 
 SPEC CHECKSUMS:
-  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   SQLite.swift: 99b36c22084427f0abbeb957556ce1528cf10bb3
-  SwifterSwift: f84eb7308f7742724b3cbf84283ce00f7c06d7fc
+  SwifterSwift: e009210d995737f54c1fbffc5a3f004c8467ab1d
 
-PODFILE CHECKSUM: 14474dac788157733213fe96352d29ad6e428935
+PODFILE CHECKSUM: 472bb121d560af7733aaf3290770d35428c15486
 
 COCOAPODS: 1.1.1

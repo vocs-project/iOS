@@ -6,7 +6,7 @@ target 'Vocs' do
   use_frameworks!
 
   # Pods for Vocs
-  pod 'SQLite.swift', '~> 0.11.3'
+  pod 'SQLite.swift'
   pod 'SwifterSwift'          
   pod 'Alamofire'
 end
