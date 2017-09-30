@@ -51,6 +51,7 @@
 		6A5D46CD1EC8F43900854EA1 /* Protocoles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5D46CC1EC8F43900854EA1 /* Protocoles.swift */; };
 		6A6F1C891ED77A3C0098D6EE /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F1C881ED77A3C0098D6EE /* List.swift */; };
 		6A76DA771EF97CCC00E151AA /* VCConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A76DA751EF97CCC00E151AA /* VCConnectionViewController.swift */; };
+		6A774FC71F77E81F00A19C7B /* spinner.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A774FC61F77E81C00A19C7B /* spinner.json */; };
 		6A82D5321F619FB200B6A44E /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A82D5311F619FB200B6A44E /* Student.swift */; };
 		6A82D5341F61A0D100B6A44E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A82D5331F61A0D100B6A44E /* Session.swift */; };
 		6A82D5361F61A1E500B6A44E /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A82D5351F61A1E500B6A44E /* School.swift */; };
@@ -60,6 +61,8 @@
 		6ACEB5281F6D7F8D00A2236D /* VCLabelTitleConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACEB5271F6D7F8D00A2236D /* VCLabelTitleConnection.swift */; };
 		6ACEB52A1F6DA06C00A2236D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACEB5291F6DA06C00A2236D /* City.swift */; };
 		6ACEB52C1F6DDD5800A2236D /* VCThanksJoinUs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACEB52B1F6DDD5800A2236D /* VCThanksJoinUs.swift */; };
+		6ACF9D871F7D34E40078490B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACF9D861F7D34E40078490B /* User.swift */; };
+		6ACF9D891F7D353E0078490B /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACF9D881F7D353E0078490B /* Auth.swift */; };
 		6AD2BB5A1F62A41D008BFB3D /* VCProfilCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD2BB591F62A41D008BFB3D /* VCProfilCollectionViewCell.swift */; };
 		6AD2BB5C1F62A462008BFB3D /* VCCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD2BB5B1F62A462008BFB3D /* VCCollectionViewCell.swift */; };
 		6AD2BB601F62A611008BFB3D /* VCHeaderClasseTeacherCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD2BB5F1F62A611008BFB3D /* VCHeaderClasseTeacherCollectionReusableView.swift */; };
@@ -124,6 +127,7 @@
 		6A5D46CC1EC8F43900854EA1 /* Protocoles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocoles.swift; sourceTree = "<group>"; };
 		6A6F1C881ED77A3C0098D6EE /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		6A76DA751EF97CCC00E151AA /* VCConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCConnectionViewController.swift; sourceTree = "<group>"; };
+		6A774FC61F77E81C00A19C7B /* spinner.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = spinner.json; sourceTree = "<group>"; };
 		6A82D5311F619FB200B6A44E /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		6A82D5331F61A0D100B6A44E /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		6A82D5351F61A1E500B6A44E /* School.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = School.swift; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 		6ACEB5271F6D7F8D00A2236D /* VCLabelTitleConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCLabelTitleConnection.swift; sourceTree = "<group>"; };
 		6ACEB5291F6DA06C00A2236D /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		6ACEB52B1F6DDD5800A2236D /* VCThanksJoinUs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCThanksJoinUs.swift; sourceTree = "<group>"; };
+		6ACF9D861F7D34E40078490B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6ACF9D881F7D353E0078490B /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		6AD2BB591F62A41D008BFB3D /* VCProfilCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCProfilCollectionViewCell.swift; sourceTree = "<group>"; };
 		6AD2BB5B1F62A462008BFB3D /* VCCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCCollectionViewCell.swift; sourceTree = "<group>"; };
 		6AD2BB5F1F62A611008BFB3D /* VCHeaderClasseTeacherCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCHeaderClasseTeacherCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -334,6 +340,7 @@
 		6A59D7641EBB701400E5D1BA /* Vocs */ = {
 			isa = PBXGroup;
 			children = (
+				6AEE82051F77CDC900F1D4EE /* Animation */,
 				6A59D7651EBB701400E5D1BA /* AppDelegate.swift */,
 				6A59D7791EBB70D500E5D1BA /* Controllers */,
 				6A59D7781EBB70D000E5D1BA /* Views */,
@@ -357,6 +364,8 @@
 				6A82D5331F61A0D100B6A44E /* Session.swift */,
 				6A82D5351F61A1E500B6A44E /* School.swift */,
 				6ACEB5291F6DA06C00A2236D /* City.swift */,
+				6ACF9D861F7D34E40078490B /* User.swift */,
+				6ACF9D881F7D353E0078490B /* Auth.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -449,6 +458,14 @@
 			name = SplashScreen;
 			sourceTree = "<group>";
 		};
+		6AEE82051F77CDC900F1D4EE /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				6A774FC61F77E81C00A19C7B /* spinner.json */,
+			);
+			name = Animation;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -516,6 +533,7 @@
 				6A59D7701EBB701400E5D1BA /* LaunchScreen.storyboard in Resources */,
 				6AE52CFD1EE1B893003E5EF1 /* SplashViewController.xib in Resources */,
 				6A59D76D1EBB701400E5D1BA /* Assets.xcassets in Resources */,
+				6A774FC71F77E81F00A19C7B /* spinner.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,12 +550,14 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/SwifterSwift/SwifterSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwifterSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -588,6 +608,8 @@
 				6A466AA61F72C10100AB6FA8 /* VCQCMViewController.swift in Sources */,
 				6A2733701EC792B400E4830E /* VCHeaderListeWithButton.swift in Sources */,
 				6A82D5341F61A0D100B6A44E /* Session.swift in Sources */,
+				6ACF9D891F7D353E0078490B /* Auth.swift in Sources */,
+				6ACF9D871F7D34E40078490B /* User.swift in Sources */,
 				6A2733591EC74BA000E4830E /* ExercicesViewController.swift in Sources */,
 				6A466AAA1F72D1B900AB6FA8 /* VCGameViewController.swift in Sources */,
 				6ACEB52A1F6DA06C00A2236D /* City.swift in Sources */,
@@ -775,12 +797,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = R4Q4T5UMG8;
 				INFOPLIST_FILE = Vocs/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wathis.Vocs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -792,12 +817,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = R4Q4T5UMG8;
 				INFOPLIST_FILE = Vocs/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wathis.Vocs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
