@@ -39,6 +39,7 @@
 		6A2733761EC8991900E4830E /* MotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733751EC8991900E4830E /* MotCell.swift */; };
 		6A41B28B1F618CBF006E500B /* ClassesTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A41B2891F618CBF006E500B /* ClassesTeacherViewController.swift */; };
 		6A41B28E1F618F1C006E500B /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A41B28D1F618F1C006E500B /* Group.swift */; };
+		6A44E7151F8662F2003C449C /* ListMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A44E7141F8662F2003C449C /* ListMot.swift */; };
 		6A46513C1F6C7573003C84B2 /* VCTextfieldRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A46513B1F6C7573003C84B2 /* VCTextfieldRegister.swift */; };
 		6A466AA61F72C10100AB6FA8 /* VCQCMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A466AA51F72C10100AB6FA8 /* VCQCMViewController.swift */; };
 		6A466AA81F72C46500AB6FA8 /* VCRowQCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A466AA71F72C46500AB6FA8 /* VCRowQCM.swift */; };
@@ -113,6 +114,7 @@
 		6A2733751EC8991900E4830E /* MotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotCell.swift; sourceTree = "<group>"; };
 		6A41B2891F618CBF006E500B /* ClassesTeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassesTeacherViewController.swift; sourceTree = "<group>"; };
 		6A41B28D1F618F1C006E500B /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		6A44E7141F8662F2003C449C /* ListMot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMot.swift; sourceTree = "<group>"; };
 		6A46513B1F6C7573003C84B2 /* VCTextfieldRegister.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCTextfieldRegister.swift; sourceTree = "<group>"; };
 		6A466AA51F72C10100AB6FA8 /* VCQCMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCQCMViewController.swift; sourceTree = "<group>"; };
 		6A466AA71F72C46500AB6FA8 /* VCRowQCM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCRowQCM.swift; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				6ACEB5291F6DA06C00A2236D /* City.swift */,
 				6ACF9D861F7D34E40078490B /* User.swift */,
 				6ACF9D881F7D353E0078490B /* Auth.swift */,
+				6A44E7141F8662F2003C449C /* ListMot.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				6ACF9D871F7D34E40078490B /* User.swift in Sources */,
 				6A2733591EC74BA000E4830E /* ExercicesViewController.swift in Sources */,
 				6A466AAA1F72D1B900AB6FA8 /* VCGameViewController.swift in Sources */,
+				6A44E7151F8662F2003C449C /* ListMot.swift in Sources */,
 				6ACEB52A1F6DA06C00A2236D /* City.swift in Sources */,
 				6A6F1C891ED77A3C0098D6EE /* List.swift in Sources */,
 				6ACEB5241F6D2BD100A2236D /* VCRegisterInformations.swift in Sources */,
