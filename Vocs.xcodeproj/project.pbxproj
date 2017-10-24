@@ -14,7 +14,7 @@
 		6A2030F01F6AC38000CE6C5E /* VCButtonExercice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2030EF1F6AC38000CE6C5E /* VCButtonExercice.swift */; };
 		6A2030F31F6AC3B700CE6C5E /* VCLabelMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2030F21F6AC3B700CE6C5E /* VCLabelMenu.swift */; };
 		6A2030F51F6AC3BE00CE6C5E /* VCLabelMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2030F41F6AC3BE00CE6C5E /* VCLabelMot.swift */; };
-		6A2030F91F6AC45400CE6C5E /* VCHeaderListe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2030F81F6AC45400CE6C5E /* VCHeaderListe.swift */; };
+		6A2030F91F6AC45400CE6C5E /* VCHeaderListeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2030F81F6AC45400CE6C5E /* VCHeaderListeCell.swift */; };
 		6A2030FB1F6AC45900CE6C5E /* VCScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2030FA1F6AC45900CE6C5E /* VCScore.swift */; };
 		6A2030FD1F6AC45E00CE6C5E /* VCTitreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2030FC1F6AC45E00CE6C5E /* VCTitreLabel.swift */; };
 		6A2030FF1F6AC5F300CE6C5E /* VCViewConnectionWithoutTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2030FE1F6AC5F300CE6C5E /* VCViewConnectionWithoutTextField.swift */; };
@@ -32,11 +32,13 @@
 		6A2733681EC76F2600E4830E /* ProfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733671EC76F2600E4830E /* ProfilViewController.swift */; };
 		6A27336A1EC77F3D00E4830E /* TraductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733691EC77F3D00E4830E /* TraductionViewController.swift */; };
 		6A27336C1EC7821E00E4830E /* VCTextFieldLigneBas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A27336B1EC7821E00E4830E /* VCTextFieldLigneBas.swift */; };
-		6A27336E1EC790DE00E4830E /* ListeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A27336D1EC790DE00E4830E /* ListeCell.swift */; };
-		6A2733701EC792B400E4830E /* VCHeaderListeWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A27336F1EC792B400E4830E /* VCHeaderListeWithButton.swift */; };
+		6A27336E1EC790DE00E4830E /* VCListeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A27336D1EC790DE00E4830E /* VCListeCell.swift */; };
+		6A2733701EC792B400E4830E /* VCHeaderListeWithButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A27336F1EC792B400E4830E /* VCHeaderListeWithButtonCell.swift */; };
 		6A2733721EC87BD800E4830E /* AjouterListeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733711EC87BD800E4830E /* AjouterListeViewController.swift */; };
 		6A2733741EC8956F00E4830E /* MotsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733731EC8956F00E4830E /* MotsViewController.swift */; };
-		6A2733761EC8991900E4830E /* MotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733751EC8991900E4830E /* MotCell.swift */; };
+		6A2733761EC8991900E4830E /* VCMotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733751EC8991900E4830E /* VCMotCell.swift */; };
+		6A336BEC1F9514E90097264E /* VCHeaderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A336BEB1F9514E90097264E /* VCHeaderList.swift */; };
+		6A336BEE1F9514F70097264E /* VCHeaderListWithButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A336BED1F9514F70097264E /* VCHeaderListWithButtons.swift */; };
 		6A41B28B1F618CBF006E500B /* ClassesTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A41B2891F618CBF006E500B /* ClassesTeacherViewController.swift */; };
 		6A41B28E1F618F1C006E500B /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A41B28D1F618F1C006E500B /* Group.swift */; };
 		6A44E7151F8662F2003C449C /* ListMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A44E7141F8662F2003C449C /* ListMot.swift */; };
@@ -89,7 +91,7 @@
 		6A2030EF1F6AC38000CE6C5E /* VCButtonExercice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCButtonExercice.swift; sourceTree = "<group>"; };
 		6A2030F21F6AC3B700CE6C5E /* VCLabelMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCLabelMenu.swift; sourceTree = "<group>"; };
 		6A2030F41F6AC3BE00CE6C5E /* VCLabelMot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCLabelMot.swift; sourceTree = "<group>"; };
-		6A2030F81F6AC45400CE6C5E /* VCHeaderListe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCHeaderListe.swift; sourceTree = "<group>"; };
+		6A2030F81F6AC45400CE6C5E /* VCHeaderListeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCHeaderListeCell.swift; sourceTree = "<group>"; };
 		6A2030FA1F6AC45900CE6C5E /* VCScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCScore.swift; sourceTree = "<group>"; };
 		6A2030FC1F6AC45E00CE6C5E /* VCTitreLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCTitreLabel.swift; sourceTree = "<group>"; };
 		6A2030FE1F6AC5F300CE6C5E /* VCViewConnectionWithoutTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCViewConnectionWithoutTextField.swift; sourceTree = "<group>"; };
@@ -107,11 +109,13 @@
 		6A2733671EC76F2600E4830E /* ProfilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilViewController.swift; sourceTree = "<group>"; };
 		6A2733691EC77F3D00E4830E /* TraductionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraductionViewController.swift; sourceTree = "<group>"; };
 		6A27336B1EC7821E00E4830E /* VCTextFieldLigneBas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCTextFieldLigneBas.swift; sourceTree = "<group>"; };
-		6A27336D1EC790DE00E4830E /* ListeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListeCell.swift; sourceTree = "<group>"; };
-		6A27336F1EC792B400E4830E /* VCHeaderListeWithButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCHeaderListeWithButton.swift; sourceTree = "<group>"; };
+		6A27336D1EC790DE00E4830E /* VCListeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCListeCell.swift; sourceTree = "<group>"; };
+		6A27336F1EC792B400E4830E /* VCHeaderListeWithButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCHeaderListeWithButtonCell.swift; sourceTree = "<group>"; };
 		6A2733711EC87BD800E4830E /* AjouterListeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AjouterListeViewController.swift; sourceTree = "<group>"; };
 		6A2733731EC8956F00E4830E /* MotsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotsViewController.swift; sourceTree = "<group>"; };
-		6A2733751EC8991900E4830E /* MotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotCell.swift; sourceTree = "<group>"; };
+		6A2733751EC8991900E4830E /* VCMotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCMotCell.swift; sourceTree = "<group>"; };
+		6A336BEB1F9514E90097264E /* VCHeaderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCHeaderList.swift; sourceTree = "<group>"; };
+		6A336BED1F9514F70097264E /* VCHeaderListWithButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCHeaderListWithButtons.swift; sourceTree = "<group>"; };
 		6A41B2891F618CBF006E500B /* ClassesTeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassesTeacherViewController.swift; sourceTree = "<group>"; };
 		6A41B28D1F618F1C006E500B /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		6A44E7141F8662F2003C449C /* ListMot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMot.swift; sourceTree = "<group>"; };
@@ -239,14 +243,14 @@
 		6A2030F71F6AC44600CE6C5E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6A27336F1EC792B400E4830E /* VCHeaderListeWithButton.swift */,
-				6A2030F81F6AC45400CE6C5E /* VCHeaderListe.swift */,
 				6A2030FA1F6AC45900CE6C5E /* VCScore.swift */,
 				6A2030FC1F6AC45E00CE6C5E /* VCTitreLabel.swift */,
 				6A2030FE1F6AC5F300CE6C5E /* VCViewConnectionWithoutTextField.swift */,
 				6A24AEF91F67EE1E00207B81 /* VCViewConnectionWithTextField.swift */,
 				6ACEB51F1F6D26A400A2236D /* VCViewConnection.swift */,
 				6A466AA71F72C46500AB6FA8 /* VCRowQCM.swift */,
+				6A336BEB1F9514E90097264E /* VCHeaderList.swift */,
+				6A336BED1F9514F70097264E /* VCHeaderListWithButtons.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -422,6 +426,8 @@
 		6AD2BB5D1F62A600008BFB3D /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				6A27336F1EC792B400E4830E /* VCHeaderListeWithButtonCell.swift */,
+				6A2030F81F6AC45400CE6C5E /* VCHeaderListeCell.swift */,
 				6AD2BB5F1F62A611008BFB3D /* VCHeaderClasseTeacherCollectionReusableView.swift */,
 				6AD2BB611F62A644008BFB3D /* VCHeaderClasseStudentCollectionReusableView.swift */,
 				6AD2BB641F62A6E6008BFB3D /* VCHeaderWithTitlesCollectionViewCell.swift */,
@@ -442,8 +448,8 @@
 		6AD2BB631F62A668008BFB3D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				6A27336D1EC790DE00E4830E /* ListeCell.swift */,
-				6A2733751EC8991900E4830E /* MotCell.swift */,
+				6A27336D1EC790DE00E4830E /* VCListeCell.swift */,
+				6A2733751EC8991900E4830E /* VCMotCell.swift */,
 				6AD2BB5B1F62A462008BFB3D /* VCCollectionViewCell.swift */,
 				6AE6EBB51F61D53000B876D1 /* VCClassesCollectionViewCell.swift */,
 				6AD2BB591F62A41D008BFB3D /* VCProfilCollectionViewCell.swift */,
@@ -608,8 +614,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6ACEB5201F6D26A400A2236D /* VCViewConnection.swift in Sources */,
+				6A336BEC1F9514E90097264E /* VCHeaderList.swift in Sources */,
 				6A466AA61F72C10100AB6FA8 /* VCQCMViewController.swift in Sources */,
-				6A2733701EC792B400E4830E /* VCHeaderListeWithButton.swift in Sources */,
+				6A2733701EC792B400E4830E /* VCHeaderListeWithButtonCell.swift in Sources */,
 				6A82D5341F61A0D100B6A44E /* Session.swift in Sources */,
 				6ACF9D891F7D353E0078490B /* Auth.swift in Sources */,
 				6ACF9D871F7D34E40078490B /* User.swift in Sources */,
@@ -632,7 +639,7 @@
 				6A2030F51F6AC3BE00CE6C5E /* VCLabelMot.swift in Sources */,
 				6A2733741EC8956F00E4830E /* MotsViewController.swift in Sources */,
 				6AE52CFC1EE1B893003E5EF1 /* SplashViewController.swift in Sources */,
-				6A2733761EC8991900E4830E /* MotCell.swift in Sources */,
+				6A2733761EC8991900E4830E /* VCMotCell.swift in Sources */,
 				6AD2BB601F62A611008BFB3D /* VCHeaderClasseTeacherCollectionReusableView.swift in Sources */,
 				6A82D5361F61A1E500B6A44E /* School.swift in Sources */,
 				6AE6EBB81F61DAE900B876D1 /* VCFooterClasseStudentCollectionReusableView.swift in Sources */,
@@ -645,11 +652,12 @@
 				6A82D5381F61AB8100B6A44E /* ClasseStudentViewController.swift in Sources */,
 				6A2031051F6ACF9500CE6C5E /* VCButtonRegister.swift in Sources */,
 				6A2030FD1F6AC45E00CE6C5E /* VCTitreLabel.swift in Sources */,
-				6A2030F91F6AC45400CE6C5E /* VCHeaderListe.swift in Sources */,
+				6A2030F91F6AC45400CE6C5E /* VCHeaderListeCell.swift in Sources */,
 				6A2733661EC7680800E4830E /* VCLabelCopyright.swift in Sources */,
 				6A59D7661EBB701400E5D1BA /* AppDelegate.swift in Sources */,
 				6A41B28E1F618F1C006E500B /* Group.swift in Sources */,
-				6A27336E1EC790DE00E4830E /* ListeCell.swift in Sources */,
+				6A336BEE1F9514F70097264E /* VCHeaderListWithButtons.swift in Sources */,
+				6A27336E1EC790DE00E4830E /* VCListeCell.swift in Sources */,
 				6A27335F1EC75EFD00E4830E /* VCButtonValidate.swift in Sources */,
 				6A82D5321F619FB200B6A44E /* Student.swift in Sources */,
 				6A1EBA001ED9DCF900506F41 /* Mot.swift in Sources */,
