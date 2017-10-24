@@ -12,8 +12,20 @@ import SQLite
 class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
     
     let reuseIdentifier = "listeCell"
-    var lists : [List] = []
+    var user : User? {
+        didSet {
+            self.chargerLesListes()
+        }
+    }
+    
+    var lists : [List] = [] {
+        didSet {
+            self.checkVide()
+            self.listesTableView.reloadData()
+        }
+    }
     var dejaCharge = false
+    var gameMode : VCGameMode?
     
     let headerTableView = VCHeaderListe(text: "Choisir une liste")
     var labelIndispobible = VCLabelMenu(text: "Vous n'avez aucune liste",size: 20)
@@ -35,23 +47,53 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Traduction"
+        self.navigationItem.title = ""
         self.view.backgroundColor = .white
+        loadTitle()
         chargerLesListes()
         listesTableView.register(VCListeCell.self, forCellReuseIdentifier: reuseIdentifier)
         setupViews()
         checkVide()
     }
     
+    func loadTitle() {
+        guard let gameMode = self.gameMode else {return}
+        var title = ""
+        switch gameMode {
+            case .traduction:
+                title = "Traduction"
+            case .qcm:
+                title = "QCM"
+        }
+        self.navigationItem.title = title
+    }
+    
     func checkVide() {
         if (self.lists.isEmpty){
             messageVide()
+        } else {
+            labelIndispobible.removeFromSuperview()
         }
     }
     
+    //Charge les listes depuis l'API
     func chargerLesListes() {
-        lists.removeAll()
-        lists = List.loadLists()
+        guard let user = user, let userId = user.id else {return}
+        List.loadLists(forUserId: userId, completion: { (lists) in
+            self.lists = lists
+            self.loadWordsForLists()
+        })
+    }
+    
+    func loadWordsForLists() {
+        guard let user = user, let userId = user.id else {return}
+        for list in lists {
+            if let idList = list.id_list {
+                List.loadWords(fromUserId: userId,fromListId: idList, completion: { (mots) in
+                    list.words = mots
+                })
+            }
+        }
     }
     
     func setupViews() {
@@ -97,10 +139,6 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
         return cell
         
     }
-    func insertRow(timer : Timer) {
-        listesTableView.insertRows(at: [timer.userInfo as! IndexPath], with: .automatic)
-    }
-    
     
     func listeEstVide(indexPath : IndexPath) -> Bool {
         if lists[indexPath.row].estVide() {
@@ -110,10 +148,38 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
         }
     }
     
+    //Il faut que le nombre de mots soit superieur a 4 pour faire un qcm
+    func verifierNombreMotsPourQCM(indexPath : IndexPath) -> Bool {
+        guard let words = lists[indexPath.row].words else {
+            return false
+        }
+        return words.count > 4 ? true : false
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (gameMode == .qcm) {
+            if !(verifierNombreMotsPourQCM(indexPath: indexPath)) {
+                let alertController = UIAlertController(title: "Problème de liste", message:
+                    "\(lists[indexPath.row].name!) doit contenir au moins 4 mots pour faire le QCM", preferredStyle: UIAlertControllerStyle.alert)
+                let cancelAction = UIAlertAction(title: "Retour", style: UIAlertActionStyle.cancel)
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true, completion: nil)
+                return
+            }
+        }
+        
         if (!listeEstVide(indexPath: indexPath)){
-            let controller = TraductionViewController()
-            controller.list =  lists[indexPath.row]
+            var controller : VCGameViewController!
+            guard let gameMode = gameMode else {return}
+            switch gameMode {
+                case .traduction :
+                    controller = TraductionViewController()
+                case .qcm :
+                    controller = VCQCMViewController()
+            }
+            if lists[indexPath.row].words != nil {
+                controller.mots =  lists[indexPath.row].words!
+            }
             controller.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
             let navController = UINavigationController(rootViewController: controller)
             present(navController, animated: true, completion: nil)
@@ -122,7 +188,6 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
                 "\(lists[indexPath.row].name!) est vide", preferredStyle: UIAlertControllerStyle.alert)
             let cancelAction = UIAlertAction(title: "Retour", style: UIAlertActionStyle.cancel) {
                 UIAlertAction in
-                print("Appuyé sur retour")
             }
             alertController.addAction(cancelAction)
             self.present(alertController, animated: true, completion: nil)

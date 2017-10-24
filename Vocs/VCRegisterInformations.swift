@@ -20,6 +20,8 @@ class VCRegisterInformations: UIViewController, UIPickerViewDataSource, UIPicker
     let buttonNext = VCButtonRegister()
     
     var selectedTextfield = UITextField()
+    var email : String?
+    var password : String?
     
     let status = ["Étudiant","Professeur","Libre"]
     let levels = ["Bac","DUT","BTS","Prépa"]
@@ -35,7 +37,7 @@ class VCRegisterInformations: UIViewController, UIPickerViewDataSource, UIPicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "BackgroundConnexion"))
+        setBackgroundImage()
         self.hideKeyboardWhenTappedAround()
         setupTextFields()
         buttonNext.text = "Terminer"
@@ -78,7 +80,12 @@ class VCRegisterInformations: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
     func handleNext() {
-        self.present(VCThanksJoinUs(), animated: true, completion: nil)
+        guard let prenom = self.prenomTextfield.textField.text, let nom = self.nomTextfield.textField.text, let email = self.email, let password = self.password else {return}
+        Auth().registerUser(firstname: prenom, surname: nom, email: email, password: password) { (created) in
+            if created {
+                 self.present(VCThanksJoinUs(), animated: true, completion: nil)
+            }
+        }
     }
     
     func setupTextFields() {
@@ -87,7 +94,7 @@ class VCRegisterInformations: UIViewController, UIPickerViewDataSource, UIPicker
         self.view.addSubviews([prenomTextfield,nomTextfield,statusTextfield,levelTextfield,codeTextfield,cityTextfield,schoolNameTextfield,buttonNext])
         
         NSLayoutConstraint.activate([
-            prenomTextfield.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20),
+            prenomTextfield.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 45),
             prenomTextfield.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             prenomTextfield.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 8/10),
             prenomTextfield.heightAnchor.constraint(equalToConstant: heightOfTextField),

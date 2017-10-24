@@ -17,12 +17,13 @@ class VCThanksJoinUs : UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "BackgroundConnexion"))
         buttonNext.text =  "Suivant"
+        setBackgroundImage()
         buttonNext.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
         setupViews()
     }
     
     func handleNext() {
-        self.present(TabBarController(), animated: true, completion: nil)
+        present(TabBarController(), animated: true, completion: nil)
     }
     
     func setupViews() {

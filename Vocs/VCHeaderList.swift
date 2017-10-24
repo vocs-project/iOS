@@ -1,10 +1,11 @@
 //
-//  File.swift
+//  VCHeaderList.swift
 //  Vocs
 //
-//  Created by Mathis Delaunay on 14/09/2017.
+//  Created by Mathis Delaunay on 16/10/2017.
 //  Copyright © 2017 Wathis. All rights reserved.
 //
+
 
 import UIKit
 
@@ -12,9 +13,16 @@ class VCHeaderListe : UIView {
     let separatorLine : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(rgb: 0x95989A)
+        view.backgroundColor = UIColor(r: 149, g: 152, b: 154)
         return view
     }()
+    
+    var titleText :  String? {
+        didSet {
+            self.labelListe.text = titleText
+            self.updateSize()
+        }
+    }
     
     let labelListe : UILabel = {
         let label = UILabel()
@@ -25,17 +33,28 @@ class VCHeaderListe : UIView {
         label.textColor = UIColor(rgb: 0x4A4A4A)
         label.textAlignment = .center
         return label
-    }()
+    }() 
     
-    init (text : String) {
+    init(text : String ){
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        labelListe.text = text
+        self.labelListe.text = text
         self.translatesAutoresizingMaskIntoConstraints = false
         setupViews()
     }
     
+    
+    func updateSize() {
+        let numberOfCharacters = (self.labelListe.text?.characters.count)! * 10
+        widthConstraint?.isActive = false
+        widthConstraint?.constant = CGFloat(numberOfCharacters)
+        widthConstraint?.isActive = true
+        self.updateConstraintsIfNeeded()
+    }
+    
+    var widthConstraint : NSLayoutConstraint?
+    
     func setupViews() {
-        
+        self.backgroundColor = .white
         self.addSubview(separatorLine)
         
         separatorLine.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -47,8 +66,9 @@ class VCHeaderListe : UIView {
         
         labelListe.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         labelListe.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-        let numberOfCharacters = (self.labelListe.text?.characters.count)! * 10
-        labelListe.widthAnchor.constraint(equalToConstant : CGFloat(numberOfCharacters) ).isActive = true
+        let numberOfCharacters = (self.labelListe.text?.characters.count)! * 11
+        widthConstraint = labelListe.widthAnchor.constraint(equalToConstant : CGFloat(numberOfCharacters) )
+        widthConstraint?.isActive = true
         labelListe.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     }
     
@@ -57,3 +77,4 @@ class VCHeaderListe : UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+

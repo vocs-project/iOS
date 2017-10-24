@@ -30,7 +30,7 @@ class ClasseStudentController: UICollectionViewController {
     }
     
     func loadListFromMyClasse() {
-        self.lists = List.loadLists()
+        self.lists.append(List(id_list: 1, name: "Example temporaire"))
     }
     
     func setupCollectionViewLayout() {
@@ -74,7 +74,7 @@ class ClasseStudentController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierClassesCell, for: indexPath) as! VCClassesCollectionViewCell
-        cell.labelClasse.text = lists[indexPath.row].name
+        cell.label.text = lists[indexPath.row].name
         return cell
     }
     

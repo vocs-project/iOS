@@ -28,7 +28,7 @@ class AjouterMotViewController: UIViewController {
     func handleAjouter() {
         if let mot = textFieldMot.text, let traduction = textFieldTraductionMot.text {
             if (!(mot.isEmpty || traduction.isEmpty)){
-                delegateMot.envoyerMot(mot : Mot(french: mot, english: traduction))
+                delegateMot.envoyerMot(french: mot, english: traduction)
             }
         }
         dismiss(animated: true, completion: nil)

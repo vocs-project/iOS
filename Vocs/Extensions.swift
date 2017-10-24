@@ -8,10 +8,36 @@
 
 import Foundation
 import UIKit
+import Security
 
 extension UIColor {
     convenience init(r : CGFloat, g : CGFloat,b :CGFloat){
         self.init(red: r / 255, green:  g / 255, blue: b / 255, alpha: 1)
+    }
+}
+
+extension UIViewController {
+    func setBackgroundImage() {
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        #imageLiteral(resourceName: "BackgroundConnexion").draw(in: self.view.bounds)
+        
+        if let image: UIImage = UIGraphicsGetImageFromCurrentImageContext(){
+            UIGraphicsEndImageContext()
+            self.view.backgroundColor = UIColor(patternImage: image)
+        }else{
+            UIGraphicsEndImageContext()
+            debugPrint("Image non disponible")
+        }
+    }
+}
+
+extension UIViewController {
+    func presentError(title : String, message : String) {
+        let alertController = UIAlertController(title: title, message:
+            message, preferredStyle: UIAlertControllerStyle.alert)
+        let cancelAction = UIAlertAction(title: "Retour", style: UIAlertActionStyle.cancel)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 

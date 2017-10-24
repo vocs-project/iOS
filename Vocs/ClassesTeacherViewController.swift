@@ -58,7 +58,7 @@ class ClasseTeacherController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierClassesCell, for: indexPath) as! VCClassesCollectionViewCell
-        cell.labelClasse.text = classes[indexPath.row]
+        cell.label.text = classes[indexPath.row]
         return cell
     }
 

@@ -27,6 +27,17 @@ class VCTextfieldLoginRegister : UITextField {
         }
     }
     
+    func checkIfValidEmail() -> Bool {
+        guard let text = self.text else {return false}
+        if (checkIfNotEmpty() && text.isEmail) {
+            return true
+        } else {
+            //Use extension SwifterSwift
+            self.shake()
+            return false
+        }
+    }
+    
     func setupTextField() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.font = UIFont(name: "HelveticaNeue-Light", size: 20)

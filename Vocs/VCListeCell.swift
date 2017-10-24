@@ -22,7 +22,7 @@ class VCListeCell: UITableViewCell {
     let separatorLine : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(rgb: 0x95989A)
+        view.backgroundColor = UIColor(red: 149/255, green: 152/255, blue: 154/255, alpha: 0.5)
         view.alpha = 0.5
         return view
     }()

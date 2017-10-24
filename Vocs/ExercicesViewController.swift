@@ -12,15 +12,24 @@ class ExercicesViewController: UIViewController {
     
     var labelBienvenue = VCLabelMenu(text: "Bienvenue sur Vocs",size: 25)
     var boutonTraduction = VCButtonExercice("Traduction",color : UIColor(rgb: 0x1C7FBD))
-
+    var buttonQCM = VCButtonExercice("QCM",color : UIColor(rgb: 0x1C7FBD))
+    var user : User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         self.view.backgroundColor = .white
         self.navigationItem.title = "Exercices"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Parametres"), style: .plain, target: self, action: #selector(handleParametres))
+        buttonQCM.addTarget(self, action: #selector(handleQCM), for: .touchUpInside)
         boutonTraduction.addTarget(self, action: #selector(handleTraduction), for: .touchUpInside)
         setupViews()
+//        List.loadWords(fromUserId: 1, fromListId: 1) { (list) in
+//            print(list)
+//        }
+        Auth().loadUserConnected { (user) in
+            self.user = user
+        }
     }
     
     func setupViews() {
@@ -31,20 +40,36 @@ class ExercicesViewController: UIViewController {
         labelBienvenue.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         self.view.addSubview(boutonTraduction)
-        boutonTraduction.centerYAnchor.constraint(equalTo: view.centerYAnchor,constant : -20).isActive = true
+        boutonTraduction.centerYAnchor.constraint(equalTo: view.centerYAnchor,constant : -40).isActive = true
         boutonTraduction.widthAnchor.constraint(equalToConstant : 200).isActive = true
         boutonTraduction.heightAnchor.constraint(equalToConstant: 60).isActive = true
         boutonTraduction.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
+        self.view.addSubview(buttonQCM)
+        buttonQCM.centerYAnchor.constraint(equalTo: view.centerYAnchor,constant : 30).isActive = true
+        buttonQCM.widthAnchor.constraint(equalToConstant : 200).isActive = true
+        buttonQCM.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        buttonQCM.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
     }
     
     func handleTraduction() {
-        let traduction = ChoisirListeViewController()
-        self.navigationController?.pushViewController(traduction, animated: true)
+        let controller = ChoisirListeViewController()
+        controller.gameMode = .traduction
+        controller.user = self.user
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func handleQCM() {
+        let controller = ChoisirListeViewController()
+        controller.gameMode = .qcm
+         controller.user = self.user
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func handleParametres() {
         let profilController = ProfilViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        profilController.currentUser = user
         let navReglageController = UINavigationController(rootViewController: profilController)
         present(navReglageController, animated: true, completion: nil)
         

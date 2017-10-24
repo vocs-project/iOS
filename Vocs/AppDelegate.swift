@@ -32,10 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Modify KeyBoard color
         UITextField.appearance().keyboardAppearance = .dark
         findIfSqliteDBExists()
-        window?.rootViewController = VCConnectionViewController()
-//        window?.rootViewController = SplashViewController()
+        window?.rootViewController = SplashViewController()
         return true
     }
+    
     
     func findIfSqliteDBExists(){
         let docsDir     : URL       = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!

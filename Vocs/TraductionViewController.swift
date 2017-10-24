@@ -9,17 +9,11 @@
 import UIKit
 import SQLite
 
-class TraductionViewController: UIViewController {
+class TraductionViewController: VCGameViewController {
 
     var textField = VCTextFieldLigneBas(placeholder :"",alignement : .center)
     var validateButton = VCButtonValidate()
     var labelMot = VCLabelMot(text : "")
-    var compteur = 0
-    let NBR_MOTS_MAX = 10
-    var nbrReussi = 0
-    var mots : [Mot] = []
-    var list : List?
-    var motActuelIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,29 +25,22 @@ class TraductionViewController: UIViewController {
         validateButton.addTarget(self, action: #selector(handleCheck), for: .touchUpInside)
         setupViews()
         giveAWordPlace()
-        randomBoolForWord()
-        loadWords()
+        randomLanguage()
+        loadWordOnScreen()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         textField.becomeFirstResponder()
     }
     
-    func giveAWordPlace() {
-        motActuelIndex = Int(arc4random_uniform(UInt32(self.mots.count)))
-    }
-    
-    func loadWords() {
-        guard let idList = self.list?.id_list else {return}
-        mots = Mot.loadWords(fromListId : idList)
-        loadWordOnScreen()
-    }
-    
     func handleCheck() {
-        if !(self.textField.text?.isEmpty)!{
+        guard let text = self.textField.text else {
+            return
+        }
+        if !text.isEmpty {
             if (francaisOuAnglais){
-                if let mot = mots[compteur].french?.uppercased() {
-                    if (mot.contains((self.textField.text?.uppercased())!)){
+                if let mot = mots[motActuelIndex].word?.content?.uppercased() {
+                    if (mot == text.uppercased()) {
                         textField.textColor = UIColor(rgb: 0x1ABC9C)
                         nbrReussi += 1;
                     } else {
@@ -61,8 +48,8 @@ class TraductionViewController: UIViewController {
                     }
                 }
             } else {
-                if let mot = mots[compteur].english?.uppercased() {
-                    if (mot.contains((self.textField.text?.uppercased())!)){
+                if let mot = mots[motActuelIndex].trad?.content?.uppercased() {
+                    if (mot == text.uppercased()){
                         textField.textColor = UIColor(rgb: 0x1ABC9C)
                         nbrReussi += 1;
                     } else {
@@ -72,24 +59,11 @@ class TraductionViewController: UIViewController {
             }
         }
         compteur += 1;
-        randomBoolForWord()
+        randomLanguage()
         giveAWordPlace()
         _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(loadWordOnScreen), userInfo: nil, repeats: false)
         textField.isEnabled = false
         validateButton.isEnabled = false
-    }
-    
-    var francaisOuAnglais = true
-    
-    func randomBoolForWord() {
-        francaisOuAnglais = (arc4random_uniform(2) == 0)
-    }
-    
-    func finir() {
-        let controller = ScoreViewController()
-        controller.myScore.score.text = String(nbrReussi)
-        controller.myScore.maximum.text = String(compteur)
-        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func loadWordOnScreen(){
@@ -97,10 +71,12 @@ class TraductionViewController: UIViewController {
             finir()
         }
         if (compteur < mots.count){
+            giveAWordPlace()
+            randomLanguage()
             if (francaisOuAnglais){
-                self.labelMot.text = mots[compteur].english
+                self.labelMot.text = mots[motActuelIndex].trad?.content
             } else {
-                self.labelMot.text = mots[compteur].french
+                self.labelMot.text = mots[motActuelIndex].word?.content
             }
             self.textField.textColor = UIColor(rgb: 0x4A4A4A)
             self.textField.text = ""

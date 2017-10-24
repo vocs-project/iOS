@@ -31,21 +31,36 @@ class VCConnectionViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         self.hideKeyboardWhenTappedAround()
-        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "BackgroundConnexion"))
+        setBackgroundImage()
+        self.textFieldPassword.isSecureTextEntry = true
         buttonForgottenPassword.addTarget(self, action: #selector(handleForgot), for: .touchUpInside)
         buttonRegister.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
         buttonLogin.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
     }
     
     func handleLogin() {
+        guard let email = textFieldEmail.text, let password = textFieldPassword.text else {
+            return
+        }
         if (textFieldEmail.checkIfNotEmpty() && textFieldPassword.checkIfNotEmpty()){
-            self.present(TabBarController(), animated: true, completion: nil)
+            Auth().loginUser(email: email, password: password, completion: { (user) in
+                guard let _ = user else {
+                    self.textFieldPassword.shake()
+                    self.textFieldEmail.shake()
+                    return
+                }
+                self.present(TabBarController(), animated: true, completion: nil)
+            })
         }
     }
     
     func handleRegister() {
-        if (textFieldEmail.checkIfNotEmpty() && textFieldPassword.checkIfNotEmpty()){
-            self.present(VCRegisterInformations(), animated: true, completion: nil)
+        if (textFieldEmail.checkIfValidEmail() && textFieldPassword.checkIfNotEmpty()){
+            let controller = VCRegisterInformations()
+            guard let email = textFieldEmail.text, let password = textFieldPassword.text else {return}
+            controller.email = email
+            controller.password = password
+            self.present(controller, animated: true, completion: nil)
         }
     }
     

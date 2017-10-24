@@ -12,7 +12,11 @@ import SQLite
 class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, AjouterUnMotDelegate {
 
     
-    var mots : [Mot] = []
+    var mots : [ListMot] = [] {
+        didSet {
+            self.motsTableView.reloadData()
+        }
+    }
     let reuseIdentifier = "motCell"
     var list : List?
     
@@ -45,8 +49,10 @@ class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDat
     }
     
     func loadWords() {
-        guard let idList =  self.list?.id_list else {return}
-        self.mots = Mot.loadWords(fromListId: idList)
+        guard let idList =  self.list?.id_list, let userId = Auth().loadUserId() else {return}
+        List.loadWords(fromUserId: userId,fromListId: idList, completion: { (mots) in
+            self.mots = mots
+        })
     }
     
     func handleTrain() {
@@ -62,17 +68,29 @@ class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDat
         present(navController, animated: true, completion: nil)
     }
     
-    func envoyerMot(mot: Mot) {
-        guard let idList = self.list?.id_list else {return}
-        Mot.createWord(word: mot,inList: idList)
-        self.mots.append(mot)
-        let indexPath = IndexPath(row: mots.count - 1, section: 0)
-        _ = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(insertRow), userInfo: indexPath, repeats: false)
+    //Ajouter un nouveau mot dans le table view
+    func addNewWordToTableView(listMot : ListMot) {
+        self.mots.append(listMot)
+        self.motsTableView.reloadData()
+//        let indexPath = IndexPath(row: self.mots.count, section: 0)
+//        _ = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(insertRow), userInfo: indexPath, repeats: false)
+    }
+    
+    func envoyerMot(french: String, english: String) {
+        guard let currentList = self.list else {return}
+        currentList.addNewWord(french: french, english: english) { (added) in
+            if (added) {
+                self.addNewWordToTableView(listMot: ListMot(word: Mot(content: french, lang: "FR"), trad: Mot(content: english, lang: "EN")))
+            } else {
+                self.presentError(title: "Problème de connexion", message: "Le mot n'a pas été ajouté suite à un problème de connexion")
+            }
+        }
     }
     
     func deleteMot(indexPath : IndexPath) {
-        Mot.deleteWord(word: mots[indexPath.row])
-        mots.remove(at: indexPath.row)
+        self.presentError(title: "Non disponible", message: "Cette fonction n'est pas encore disponible")
+//        Mot.deleteWord(word: mots[indexPath.row])
+//        mots.remove(at: indexPath.row)
     }
     
     func setupViews(){
@@ -101,12 +119,16 @@ class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell:VCMotCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier)! as! VCMotCell
-        cell.setText(text: mots[indexPath.row].french! + " - " + mots[indexPath.row].english! )
-        
+        var text = "Erreur chargement"
+        let listMot = self.mots[indexPath.row]
+        guard let word = listMot.word?.content, let trad = listMot.trad?.content else {
+            cell.labelListe.text = text
+            return cell
+        }
+        text = "\(word) - \(trad)"
+        cell.labelListe.text = text
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
@@ -115,8 +137,9 @@ class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
-            deleteMot(indexPath: indexPath)
-            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+//            deleteMot(indexPath: indexPath)
+//            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+            self.presentError(title: "Non disponible", message: "Cette fonction n'est pas encore disponible")
         }
     }
 }

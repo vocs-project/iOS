@@ -29,7 +29,7 @@ class VCHeaderWithBarWithButtonCollectionViewCell: VCHeaderWithTitlesCollectionV
     }
     
     func setupView() {
-        self.addSubview(bar)
+       self.addSubview(bar)
         NSLayoutConstraint.activate([
             bar.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
             bar.heightAnchor.constraint(equalToConstant: 20),

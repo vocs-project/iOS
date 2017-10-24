@@ -9,19 +9,24 @@
 import UIKit
 
 class ProfilViewController: UICollectionViewController {
-
+    
     let reuseIdentifierClassesCell = "classCells"
     let headerReuseIdentifier = "headerCell"
     let footerReuseIdentifier = "footerCell"
     
-    var account  : [List] = []
+    var currentUser : User? {
+        didSet {
+            self.collectionView?.reloadData()
+        }
+    }
+    
+    var accoutInformations  : [VCProfilCategory] = [.email,.school,.city]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Profil"
         setupCollectionViewLayout()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Retour", style: .plain, target: self, action: #selector(handleQuit))
-        loadListFromMyClasse()
         self.collectionView?.backgroundColor = .white
         self.collectionView?.showsVerticalScrollIndicator = false
         self.collectionView?.register(VCProfilCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifierClassesCell)
@@ -31,10 +36,6 @@ class ProfilViewController: UICollectionViewController {
     
     func handleQuit() {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    func loadListFromMyClasse() {
-        self.account = List.loadLists()
     }
     
     func setupCollectionViewLayout() {
@@ -59,7 +60,7 @@ class ProfilViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.account.count
+        return self.accoutInformations.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -67,12 +68,15 @@ class ProfilViewController: UICollectionViewController {
         case UICollectionElementKindSectionHeader:
             let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath) as! VCHeaderClasseStudentCollectionReusableView
             cell.headerTitleClasse.labelListe.text = "Mon compte"
-            cell.labelTitle.text = "Mathis Delaunay"
-            cell.labelSubtitle.text = "Inscrit depuis le 10/02/2016"
+            if currentUser?.firstName != nil && currentUser?.name != nil {
+                cell.labelTitle.text = "\(currentUser!.firstName!) \(currentUser!.name!)"
+            }
+            cell.labelSubtitle.text = "Inscrit depuis le TO DO"
             return cell
         case UICollectionElementKindSectionFooter:
             let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerReuseIdentifier, for: indexPath) as! VCFooterClasseStudentCollectionReusableView
             cell.titleButton = "Déconnexion"
+            cell.quitButton.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
             cell.quitButton.addTarget(self, action: #selector(handleSignOut), for: .touchUpInside)
             return cell
         default:
@@ -81,15 +85,41 @@ class ProfilViewController: UICollectionViewController {
         }
     }
     
+    func handleLogout() {
+        Auth().logout()
+        self.present(VCConnectionViewController(), animated: true, completion: nil)
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierClassesCell, for: indexPath) as! VCProfilCollectionViewCell
-        cell.labelClasse.text = account[indexPath.row].name
+        switch accoutInformations[indexPath.row] {
+        case .email:
+            cell.label.text = self.currentUser?.email
+            break
+        case .city:
+            //                cell.label.text = self.currentUser.city
+            cell.label.text = "TO DO Ville"
+            break
+        case .school:
+            //                cell.label.text = self.currentUser.schoolName
+            cell.label.text = "TO DO School"
+            break
+        }
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
-    
-
 }
+
+enum VCProfilCategory {
+    case email
+    case city
+    case school
+}
+
+
+
+
+

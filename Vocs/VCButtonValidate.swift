@@ -21,12 +21,23 @@ class VCButtonValidate : UIButton {
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         self.translatesAutoresizingMaskIntoConstraints = false
         self.layer.shadowColor = UIColor.black.cgColor
-        self.backgroundColor = UIColor(rgb: 0x1E7FBD)
         self.layer.shadowOffset = CGSize(width: -1, height: 1)
         self.layer.shadowRadius = 1
         self.layer.shadowOpacity = 0.5
         self.layer.cornerRadius = 10
+        self.setSelected()
         setupViews()
+    }
+    
+    func setUnselected() {
+        self.backgroundColor = .white
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor(rgb: 0x696969).cgColor
+    }
+    
+    func setSelected() {
+        self.backgroundColor = UIColor(rgb: 0x1E7FBD)
+        self.layer.borderWidth = 0
     }
     
     func setupViews() {

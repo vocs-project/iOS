@@ -9,7 +9,8 @@
 
 import UIKit
 
-class VCHeaderListeWithButton: VCHeaderListe {
+class VCHeaderListeWithButtonCell : VCHeaderListeCell {
+    
     let buttonAjouter : UIButton = {
         let button = UIButton()
         button.setBackgroundImage(#imageLiteral(resourceName: "Ajouter"), for: .normal)
@@ -18,13 +19,11 @@ class VCHeaderListeWithButton: VCHeaderListe {
         return button
     }()
     
-    override init (text : String) {
-        super.init(text : text)
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.labelListe.text = text
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         setupButton()
     }
-    
+
     func setupButton() {
         self.addSubview(buttonAjouter)
         

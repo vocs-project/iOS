@@ -10,18 +10,20 @@ import UIKit
 import SQLite
 
 class TabBarController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         var arrayViews : [UIViewController] = []
+        let listController = ListesViewController()
+        let exerciceController = ExercicesViewController()
         //Detect if it's student or teacher
 //        if (true){
 //             arrayViews.append(createAViewController(controller: ClasseTeacherController(collectionViewLayout: UICollectionViewFlowLayout()), image: #imageLiteral(resourceName: "Classe")))
 //        } else {
             arrayViews.append(createAViewController(controller: ClasseStudentController(collectionViewLayout: UICollectionViewFlowLayout()), image: #imageLiteral(resourceName: "Classe")))
 //        }
-        arrayViews.append(createAViewController(controller: ExercicesViewController(), image: #imageLiteral(resourceName: "Manette")))
-        arrayViews.append(createAViewController(controller: ListesViewController(), image: #imageLiteral(resourceName: "Liste")))
+        arrayViews.append(createAViewController(controller: exerciceController, image: #imageLiteral(resourceName: "Manette")))
+        arrayViews.append(createAViewController(controller: listController, image: #imageLiteral(resourceName: "Liste")))
         self.view.backgroundColor = .white
         viewControllers = arrayViews
         self.selectedIndex = 1

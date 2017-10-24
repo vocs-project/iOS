@@ -10,9 +10,9 @@ import UIKit
 
 class VCCollectionViewCell: UICollectionViewCell {
     
-    var labelClasse : UILabel = {
+    var label : UILabel = {
         let label = UILabel()
-        label.text = "Overflow"
+        label.text = "label"
         label.font = UIFont(name: "Helvetica-Light", size: 15)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
@@ -35,17 +35,17 @@ class VCCollectionViewCell: UICollectionViewCell {
     }
     
     func setText(text : String) {
-        labelClasse.text = text
+        label.text = text
     }
     
     func setupViews() {
         
-        self.addSubview(labelClasse)
+        self.addSubview(label)
         
-        labelClasse.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        labelClasse.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        labelClasse.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-        labelClasse.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        label.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        label.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+        label.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         
         self.addSubview(separatorLine)
         
