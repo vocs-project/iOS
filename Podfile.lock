@@ -1,35 +1,35 @@
 PODS:
   - Alamofire (4.5.1)
   - lottie-ios (2.1.3)
-  - SQLite.swift (0.11.3):
-    - SQLite.swift/standard (= 0.11.3)
-  - SQLite.swift/standard (0.11.3)
-  - SwifterSwift (3.2.0):
-    - SwifterSwift/AppKit (= 3.2.0)
-    - SwifterSwift/CoreGraphics (= 3.2.0)
-    - SwifterSwift/CoreLocation (= 3.2.0)
-    - SwifterSwift/Foundation (= 3.2.0)
-    - SwifterSwift/SwiftStdlib (= 3.2.0)
-    - SwifterSwift/UIKit (= 3.2.0)
-  - SwifterSwift/AppKit (3.2.0)
-  - SwifterSwift/CoreGraphics (3.2.0)
-  - SwifterSwift/CoreLocation (3.2.0)
-  - SwifterSwift/Foundation (3.2.0)
-  - SwifterSwift/SwiftStdlib (3.2.0)
-  - SwifterSwift/UIKit (3.2.0)
+  - SQLite.swift (0.11.4):
+    - SQLite.swift/standard (= 0.11.4)
+  - SQLite.swift/standard (0.11.4)
+  - SwifterSwift (4.0.1):
+    - SwifterSwift/AppKit (= 4.0.1)
+    - SwifterSwift/CoreGraphics (= 4.0.1)
+    - SwifterSwift/CoreLocation (= 4.0.1)
+    - SwifterSwift/Foundation (= 4.0.1)
+    - SwifterSwift/SwiftStdlib (= 4.0.1)
+    - SwifterSwift/UIKit (= 4.0.1)
+  - SwifterSwift/AppKit (4.0.1)
+  - SwifterSwift/CoreGraphics (4.0.1)
+  - SwifterSwift/CoreLocation (4.0.1)
+  - SwifterSwift/Foundation (4.0.1)
+  - SwifterSwift/SwiftStdlib (4.0.1)
+  - SwifterSwift/UIKit (4.0.1)
 
 DEPENDENCIES:
   - Alamofire
   - lottie-ios
   - SQLite.swift
-  - SwifterSwift (~> 3.2)
+  - SwifterSwift
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   lottie-ios: 8c150606598931621e927377f1426d2d3e99282d
-  SQLite.swift: 99b36c22084427f0abbeb957556ce1528cf10bb3
-  SwifterSwift: e009210d995737f54c1fbffc5a3f004c8467ab1d
+  SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
+  SwifterSwift: 5f406a5f831343312d6d5b34282b57ef3f52c40b
 
-PODFILE CHECKSUM: 035952564d070ffdb51e6ed5166cedec88608b2b
+PODFILE CHECKSUM: 589897dd4aab553e67e271bcbd388daf58ba7b75
 
 COCOAPODS: 1.3.1

@@ -7,7 +7,7 @@ target 'Vocs' do
 
   # Pods for Vocs
   pod 'SQLite.swift'
-  pod 'SwifterSwift', '~> 3.2'          
+  pod 'SwifterSwift'          
   pod 'Alamofire'
   pod 'lottie-ios'
 end
