@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Vocs/ListesViewController.swift"
-            timestampString = "530893576.087634"
+            filePath = "Vocs/ClasseStudentViewController.swift"
+            timestampString = "531004985.517023"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "chargerLesListes()"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "loadClasse()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
