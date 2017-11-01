@@ -52,6 +52,7 @@
 		6A5D46C81EC8C28A00854EA1 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5D46C71EC8C28A00854EA1 /* ScoreViewController.swift */; };
 		6A5D46CA1EC8F0D300854EA1 /* AjouterMotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5D46C91EC8F0D300854EA1 /* AjouterMotViewController.swift */; };
 		6A5D46CD1EC8F43900854EA1 /* Protocoles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5D46CC1EC8F43900854EA1 /* Protocoles.swift */; };
+		6A6060701FAA2D9B0059B1B7 /* VCManageStudentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A60606F1FAA2D9B0059B1B7 /* VCManageStudentsController.swift */; };
 		6A6F1C891ED77A3C0098D6EE /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F1C881ED77A3C0098D6EE /* List.swift */; };
 		6A76DA771EF97CCC00E151AA /* VCConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A76DA751EF97CCC00E151AA /* VCConnectionViewController.swift */; };
 		6A774FC71F77E81F00A19C7B /* spinner.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A774FC61F77E81C00A19C7B /* spinner.json */; };
@@ -139,6 +140,7 @@
 		6A5D46C71EC8C28A00854EA1 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		6A5D46C91EC8F0D300854EA1 /* AjouterMotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AjouterMotViewController.swift; sourceTree = "<group>"; };
 		6A5D46CC1EC8F43900854EA1 /* Protocoles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocoles.swift; sourceTree = "<group>"; };
+		6A60606F1FAA2D9B0059B1B7 /* VCManageStudentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCManageStudentsController.swift; sourceTree = "<group>"; };
 		6A6F1C881ED77A3C0098D6EE /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		6A76DA751EF97CCC00E151AA /* VCConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCConnectionViewController.swift; sourceTree = "<group>"; };
 		6A774FC61F77E81C00A19C7B /* spinner.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = spinner.json; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				6AE8E57E1FA4A8D9003B988A /* VCMessagesController.swift */,
 				6A333DB41FA89E83003A1FFC /* VCTeacherClasseController.swift */,
 				6A9A2AFA1FA8E2DD007EABD6 /* VCSelectClasseListController.swift */,
+				6A60606F1FAA2D9B0059B1B7 /* VCManageStudentsController.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -663,6 +666,7 @@
 				6A04B3D81EBBA540007204B5 /* TabBarController.swift in Sources */,
 				6AD2BB621F62A644008BFB3D /* VCHeaderClasseStudentCollectionReusableView.swift in Sources */,
 				6A5D46CD1EC8F43900854EA1 /* Protocoles.swift in Sources */,
+				6A6060701FAA2D9B0059B1B7 /* VCManageStudentsController.swift in Sources */,
 				6A2030F51F6AC3BE00CE6C5E /* VCLabelMot.swift in Sources */,
 				6A2733741EC8956F00E4830E /* MotsViewController.swift in Sources */,
 				6AE52CFC1EE1B893003E5EF1 /* SplashViewController.swift in Sources */,
