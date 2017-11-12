@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6A04B3D81EBBA540007204B5 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A04B3D71EBBA540007204B5 /* TabBarController.swift */; };
 		6A04B3DB1EBBA57A007204B5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A04B3DA1EBBA57A007204B5 /* Extensions.swift */; };
+		6A07BB1E1FB7C024008BD38C /* VCMatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A07BB1D1FB7C024008BD38C /* VCMatchingViewController.swift */; };
 		6A1EBA001ED9DCF900506F41 /* Mot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1EB9FF1ED9DCF900506F41 /* Mot.swift */; };
 		6A1EBA021ED9F2D400506F41 /* ChoisirListeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1EBA011ED9F2D400506F41 /* ChoisirListeViewController.swift */; };
 		6A2030F01F6AC38000CE6C5E /* VCButtonExercice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2030EF1F6AC38000CE6C5E /* VCButtonExercice.swift */; };
@@ -29,7 +30,7 @@
 		6A27335F1EC75EFD00E4830E /* VCButtonValidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A27335E1EC75EFD00E4830E /* VCButtonValidate.swift */; };
 		6A2733661EC7680800E4830E /* VCLabelCopyright.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733651EC7680800E4830E /* VCLabelCopyright.swift */; };
 		6A2733681EC76F2600E4830E /* ProfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733671EC76F2600E4830E /* ProfilViewController.swift */; };
-		6A27336A1EC77F3D00E4830E /* TraductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733691EC77F3D00E4830E /* TraductionViewController.swift */; };
+		6A27336A1EC77F3D00E4830E /* VCTraductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2733691EC77F3D00E4830E /* VCTraductionViewController.swift */; };
 		6A27336C1EC7821E00E4830E /* VCTextFieldLigneBas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A27336B1EC7821E00E4830E /* VCTextFieldLigneBas.swift */; };
 		6A27336E1EC790DE00E4830E /* VCListeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A27336D1EC790DE00E4830E /* VCListeCell.swift */; };
 		6A2733701EC792B400E4830E /* VCHeaderListeWithButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A27336F1EC792B400E4830E /* VCHeaderListeWithButtonCell.swift */; };
@@ -49,7 +50,7 @@
 		6A59D7661EBB701400E5D1BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A59D7651EBB701400E5D1BA /* AppDelegate.swift */; };
 		6A59D76D1EBB701400E5D1BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A59D76C1EBB701400E5D1BA /* Assets.xcassets */; };
 		6A59D7701EBB701400E5D1BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A59D76E1EBB701400E5D1BA /* LaunchScreen.storyboard */; };
-		6A5D46C81EC8C28A00854EA1 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5D46C71EC8C28A00854EA1 /* ScoreViewController.swift */; };
+		6A5D46C81EC8C28A00854EA1 /* VCScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5D46C71EC8C28A00854EA1 /* VCScoreViewController.swift */; };
 		6A5D46CA1EC8F0D300854EA1 /* AjouterMotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5D46C91EC8F0D300854EA1 /* AjouterMotViewController.swift */; };
 		6A5D46CD1EC8F43900854EA1 /* Protocoles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5D46CC1EC8F43900854EA1 /* Protocoles.swift */; };
 		6A6060701FAA2D9B0059B1B7 /* VCManageStudentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A60606F1FAA2D9B0059B1B7 /* VCManageStudentsController.swift */; };
@@ -99,6 +100,7 @@
 		533121DFB591D53EDE6233FF /* Pods-Vocs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vocs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Vocs/Pods-Vocs.debug.xcconfig"; sourceTree = "<group>"; };
 		6A04B3D71EBBA540007204B5 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		6A04B3DA1EBBA57A007204B5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		6A07BB1D1FB7C024008BD38C /* VCMatchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCMatchingViewController.swift; sourceTree = "<group>"; };
 		6A1EB9FF1ED9DCF900506F41 /* Mot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mot.swift; sourceTree = "<group>"; };
 		6A1EBA011ED9F2D400506F41 /* ChoisirListeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoisirListeViewController.swift; sourceTree = "<group>"; };
 		6A2030EF1F6AC38000CE6C5E /* VCButtonExercice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCButtonExercice.swift; sourceTree = "<group>"; };
@@ -119,7 +121,7 @@
 		6A27335E1EC75EFD00E4830E /* VCButtonValidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCButtonValidate.swift; sourceTree = "<group>"; };
 		6A2733651EC7680800E4830E /* VCLabelCopyright.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCLabelCopyright.swift; sourceTree = "<group>"; };
 		6A2733671EC76F2600E4830E /* ProfilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilViewController.swift; sourceTree = "<group>"; };
-		6A2733691EC77F3D00E4830E /* TraductionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraductionViewController.swift; sourceTree = "<group>"; };
+		6A2733691EC77F3D00E4830E /* VCTraductionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCTraductionViewController.swift; sourceTree = "<group>"; };
 		6A27336B1EC7821E00E4830E /* VCTextFieldLigneBas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCTextFieldLigneBas.swift; sourceTree = "<group>"; };
 		6A27336D1EC790DE00E4830E /* VCListeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCListeCell.swift; sourceTree = "<group>"; };
 		6A27336F1EC792B400E4830E /* VCHeaderListeWithButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCHeaderListeWithButtonCell.swift; sourceTree = "<group>"; };
@@ -141,7 +143,7 @@
 		6A59D76C1EBB701400E5D1BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6A59D76F1EBB701400E5D1BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6A59D7711EBB701400E5D1BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6A5D46C71EC8C28A00854EA1 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
+		6A5D46C71EC8C28A00854EA1 /* VCScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCScoreViewController.swift; sourceTree = "<group>"; };
 		6A5D46C91EC8F0D300854EA1 /* AjouterMotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AjouterMotViewController.swift; sourceTree = "<group>"; };
 		6A5D46CC1EC8F43900854EA1 /* Protocoles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocoles.swift; sourceTree = "<group>"; };
 		6A60606F1FAA2D9B0059B1B7 /* VCManageStudentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCManageStudentsController.swift; sourceTree = "<group>"; };
@@ -224,10 +226,11 @@
 		6A1EBA031EDA1E0F00506F41 /* Jeux */ = {
 			isa = PBXGroup;
 			children = (
-				6A2733691EC77F3D00E4830E /* TraductionViewController.swift */,
+				6A2733691EC77F3D00E4830E /* VCTraductionViewController.swift */,
 				6A466AA51F72C10100AB6FA8 /* VCQCMViewController.swift */,
-				6A5D46C71EC8C28A00854EA1 /* ScoreViewController.swift */,
+				6A5D46C71EC8C28A00854EA1 /* VCScoreViewController.swift */,
 				6A466AA91F72D1B800AB6FA8 /* VCGameViewController.swift */,
+				6A07BB1D1FB7C024008BD38C /* VCMatchingViewController.swift */,
 			);
 			name = Jeux;
 			sourceTree = "<group>";
@@ -667,7 +670,7 @@
 				6ACEB52A1F6DA06C00A2236D /* City.swift in Sources */,
 				6A6F1C891ED77A3C0098D6EE /* List.swift in Sources */,
 				6ACEB5241F6D2BD100A2236D /* VCRegisterInformations.swift in Sources */,
-				6A27336A1EC77F3D00E4830E /* TraductionViewController.swift in Sources */,
+				6A27336A1EC77F3D00E4830E /* VCTraductionViewController.swift in Sources */,
 				6A466AA81F72C46500AB6FA8 /* VCRowQCM.swift in Sources */,
 				6AFF2BFD1FA3C2A8003E397F /* VCLoadingController.swift in Sources */,
 				6ACEB5281F6D7F8D00A2236D /* VCLabelTitleConnection.swift in Sources */,
@@ -681,6 +684,7 @@
 				6AD2BB621F62A644008BFB3D /* VCHeaderClasseStudentCollectionReusableView.swift in Sources */,
 				6A5D46CD1EC8F43900854EA1 /* Protocoles.swift in Sources */,
 				6A6060701FAA2D9B0059B1B7 /* VCManageStudentsController.swift in Sources */,
+				6A07BB1E1FB7C024008BD38C /* VCMatchingViewController.swift in Sources */,
 				6AD302241FABEE6400A0D682 /* VCConsultInvitationController.swift in Sources */,
 				6A2030F51F6AC3BE00CE6C5E /* VCLabelMot.swift in Sources */,
 				6A2733741EC8956F00E4830E /* MotsViewController.swift in Sources */,
@@ -726,7 +730,7 @@
 				6A2030F01F6AC38000CE6C5E /* VCButtonExercice.swift in Sources */,
 				6A9A2AF91FA8E09F007EABD6 /* VCSelectListCell.swift in Sources */,
 				6A24AEFA1F67EE1F00207B81 /* VCViewConnectionWithTextField.swift in Sources */,
-				6A5D46C81EC8C28A00854EA1 /* ScoreViewController.swift in Sources */,
+				6A5D46C81EC8C28A00854EA1 /* VCScoreViewController.swift in Sources */,
 				6A9A2AFD1FA8EE1E007EABD6 /* VCSwitch.swift in Sources */,
 				6AD2BB5C1F62A462008BFB3D /* VCCollectionViewCell.swift in Sources */,
 				6A20310B1F6B03E600CE6C5E /* VCLabelConnection.swift in Sources */,
