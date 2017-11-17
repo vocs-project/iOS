@@ -202,7 +202,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vocs/VCMatchingViewController.swift"
-            timestampString = "532518826.926066"
+            timestampString = "532610629.273263"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -218,7 +218,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vocs/VCMatchCard.swift"
-            timestampString = "532518826.926643"
+            timestampString = "532610629.274093"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vocs/VCMatchCard.swift"
-            timestampString = "532518826.926724"
+            timestampString = "532610629.274209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "updateCard(type:wordBottom:wordTop:wordDefault:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vocs/VCMatchCard.swift"
-            timestampString = "532518826.926793"
+            timestampString = "532610629.274319"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "updateCard(type:wordBottom:wordTop:wordDefault:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vocs/VCMatchCard.swift"
-            timestampString = "532518826.926858"
+            timestampString = "532610629.274427"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "setupCard(typeOfCard:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -282,7 +282,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vocs/VCMatchingViewController.swift"
-            timestampString = "532518826.926926"
+            timestampString = "532610629.274526"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "69"
@@ -298,7 +298,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vocs/VCMatchingViewController.swift"
-            timestampString = "532518826.927274"
+            timestampString = "532610629.275079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "151"
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vocs/VCMatchingViewController.swift"
-            timestampString = "532518826.927594"
+            timestampString = "532610629.275603"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "cardWasTouched(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vocs/VCMatchingViewController.swift"
-            timestampString = "532518826.927903"
+            timestampString = "532610629.276105"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "piocheWasDragged(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -346,13 +346,109 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vocs/VCMatchingViewController.swift"
-            timestampString = "532518826.928217"
+            timestampString = "532610629.276586"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "cardWasTouched(_:)"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
+            landmarkName = "piocheWasDragged(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vocs/VCMatchingViewController.swift"
+            timestampString = "532610629.277049"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "piocheWasDragged(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vocs/VCMatchingViewController.swift"
+            timestampString = "532610629.277511"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
+            landmarkName = "cardWasDragged(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vocs/VCMatchingViewController.swift"
+            timestampString = "532610629.277956"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
+            landmarkName = "cardWasDragged(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vocs/VCMatchingViewController.swift"
+            timestampString = "532610629.278395"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
+            landmarkName = "cardWasDragged(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vocs.VCMatchingViewController.cardWasDragged(__ObjC.UIPanGestureRecognizer) -&gt; ()"
+                  moduleName = "Vocs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mathisdelaunay/Documents/Programmation/ApplicationsIOS/Applications%20/Vocs/Vocs/VCMatchingViewController.swift"
+                  timestampString = "532610424.7012"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "297"
+                  endingLineNumber = "297"
+                  offsetFromSymbolStart = "10772">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 () -&gt; () in Vocs.VCMatchingViewController.cardWasDragged(__ObjC.UIPanGestureRecognizer) -&gt; ()"
+                  moduleName = "Vocs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mathisdelaunay/Documents/Programmation/ApplicationsIOS/Applications%20/Vocs/Vocs/VCMatchingViewController.swift"
+                  timestampString = "532610424.704137"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "298"
+                  endingLineNumber = "298"
+                  offsetFromSymbolStart = "15">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
