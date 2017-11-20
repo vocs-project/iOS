@@ -63,6 +63,7 @@
 		6A9A2AFB1FA8E2DD007EABD6 /* VCSelectClasseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9A2AFA1FA8E2DD007EABD6 /* VCSelectClasseListController.swift */; };
 		6A9A2AFD1FA8EE1E007EABD6 /* VCSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9A2AFC1FA8EE1E007EABD6 /* VCSwitch.swift */; };
 		6A9A2AFF1FA910A0007EABD6 /* VCHeaderClasseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9A2AFE1FA910A0007EABD6 /* VCHeaderClasseView.swift */; };
+		6A9AD38B1FC36CC900DFC3F5 /* VCSelectNumberWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9AD38A1FC36CC900DFC3F5 /* VCSelectNumberWords.swift */; };
 		6AC57BFC1FBC86640005CD97 /* VCRechercherProf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC57BFB1FBC86640005CD97 /* VCRechercherProf.swift */; };
 		6ACEB5201F6D26A400A2236D /* VCViewConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACEB51F1F6D26A400A2236D /* VCViewConnection.swift */; };
 		6ACEB5241F6D2BD100A2236D /* VCRegisterInformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACEB5231F6D2BD100A2236D /* VCRegisterInformations.swift */; };
@@ -158,6 +159,7 @@
 		6A9A2AFA1FA8E2DD007EABD6 /* VCSelectClasseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCSelectClasseListController.swift; sourceTree = "<group>"; };
 		6A9A2AFC1FA8EE1E007EABD6 /* VCSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCSwitch.swift; sourceTree = "<group>"; };
 		6A9A2AFE1FA910A0007EABD6 /* VCHeaderClasseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCHeaderClasseView.swift; sourceTree = "<group>"; };
+		6A9AD38A1FC36CC900DFC3F5 /* VCSelectNumberWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCSelectNumberWords.swift; sourceTree = "<group>"; };
 		6AC57BFB1FBC86640005CD97 /* VCRechercherProf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCRechercherProf.swift; sourceTree = "<group>"; };
 		6ACEB51F1F6D26A400A2236D /* VCViewConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCViewConnection.swift; sourceTree = "<group>"; };
 		6ACEB5231F6D2BD100A2236D /* VCRegisterInformations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCRegisterInformations.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				6A5D46C71EC8C28A00854EA1 /* VCScoreViewController.swift */,
 				6A466AA91F72D1B800AB6FA8 /* VCGameViewController.swift */,
 				6A07BB1D1FB7C024008BD38C /* VCMatchingViewController.swift */,
+				6A9AD38A1FC36CC900DFC3F5 /* VCSelectNumberWords.swift */,
 			);
 			name = Jeux;
 			sourceTree = "<group>";
@@ -720,6 +723,7 @@
 				6A336BEE1F9514F70097264E /* VCHeaderListWithButtons.swift in Sources */,
 				6AEB685D1FA66D6700920E18 /* VCHeaderNoClasseCollectionReusableView.swift in Sources */,
 				6A27336E1EC790DE00E4830E /* VCListeCell.swift in Sources */,
+				6A9AD38B1FC36CC900DFC3F5 /* VCSelectNumberWords.swift in Sources */,
 				6A27335F1EC75EFD00E4830E /* VCButtonValidate.swift in Sources */,
 				6A1EBA001ED9DCF900506F41 /* Mot.swift in Sources */,
 				6A9A2AFB1FA8E2DD007EABD6 /* VCSelectClasseListController.swift in Sources */,
