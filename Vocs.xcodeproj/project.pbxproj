@@ -72,6 +72,7 @@
 		6ACEB52C1F6DDD5800A2236D /* VCThanksJoinUs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACEB52B1F6DDD5800A2236D /* VCThanksJoinUs.swift */; };
 		6ACF9D871F7D34E40078490B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACF9D861F7D34E40078490B /* User.swift */; };
 		6ACF9D891F7D353E0078490B /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACF9D881F7D353E0078490B /* Auth.swift */; };
+		6ACFE2421FC599EE002F4721 /* VCChangeProfilController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACFE2411FC599EE002F4721 /* VCChangeProfilController.swift */; };
 		6AD16C0B1FA1EB9D0088F6CC /* VCRechercherClasseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD16C0A1FA1EB9D0088F6CC /* VCRechercherClasseController.swift */; };
 		6AD2BB5A1F62A41D008BFB3D /* VCProfilCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD2BB591F62A41D008BFB3D /* VCProfilCollectionViewCell.swift */; };
 		6AD2BB5C1F62A462008BFB3D /* VCCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD2BB5B1F62A462008BFB3D /* VCCollectionViewCell.swift */; };
@@ -168,6 +169,7 @@
 		6ACEB52B1F6DDD5800A2236D /* VCThanksJoinUs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCThanksJoinUs.swift; sourceTree = "<group>"; };
 		6ACF9D861F7D34E40078490B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6ACF9D881F7D353E0078490B /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		6ACFE2411FC599EE002F4721 /* VCChangeProfilController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCChangeProfilController.swift; sourceTree = "<group>"; };
 		6AD16C0A1FA1EB9D0088F6CC /* VCRechercherClasseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCRechercherClasseController.swift; sourceTree = "<group>"; };
 		6AD2BB591F62A41D008BFB3D /* VCProfilCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCProfilCollectionViewCell.swift; sourceTree = "<group>"; };
 		6AD2BB5B1F62A462008BFB3D /* VCCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				6A2733671EC76F2600E4830E /* ProfilViewController.swift */,
+				6ACFE2411FC599EE002F4721 /* VCChangeProfilController.swift */,
 			);
 			name = Profil;
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 				6A466AA81F72C46500AB6FA8 /* VCRowQCM.swift in Sources */,
 				6AFF2BFD1FA3C2A8003E397F /* VCLoadingController.swift in Sources */,
 				6ACEB5281F6D7F8D00A2236D /* VCLabelTitleConnection.swift in Sources */,
+				6ACFE2421FC599EE002F4721 /* VCChangeProfilController.swift in Sources */,
 				6AD3021E1FAB73F700A0D682 /* School.swift in Sources */,
 				6A27336C1EC7821E00E4830E /* VCTextFieldLigneBas.swift in Sources */,
 				6A76DA771EF97CCC00E151AA /* VCConnectionViewController.swift in Sources */,
