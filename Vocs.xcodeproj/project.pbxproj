@@ -64,6 +64,9 @@
 		6A9A2AFD1FA8EE1E007EABD6 /* VCSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9A2AFC1FA8EE1E007EABD6 /* VCSwitch.swift */; };
 		6A9A2AFF1FA910A0007EABD6 /* VCHeaderClasseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9A2AFE1FA910A0007EABD6 /* VCHeaderClasseView.swift */; };
 		6A9AD38B1FC36CC900DFC3F5 /* VCSelectNumberWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9AD38A1FC36CC900DFC3F5 /* VCSelectNumberWords.swift */; };
+		6AAA31131FD89B9700C6BA2D /* DemandClasse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA31121FD89B9700C6BA2D /* DemandClasse.swift */; };
+		6AAA31151FD89BA400C6BA2D /* DemandList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA31141FD89BA400C6BA2D /* DemandList.swift */; };
+		6AAA31171FD89BB600C6BA2D /* DemandWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA31161FD89BB600C6BA2D /* DemandWord.swift */; };
 		6AC57BFC1FBC86640005CD97 /* VCRechercherProf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC57BFB1FBC86640005CD97 /* VCRechercherProf.swift */; };
 		6ACEB5201F6D26A400A2236D /* VCViewConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACEB51F1F6D26A400A2236D /* VCViewConnection.swift */; };
 		6ACEB5241F6D2BD100A2236D /* VCRegisterInformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACEB5231F6D2BD100A2236D /* VCRegisterInformations.swift */; };
@@ -161,6 +164,9 @@
 		6A9A2AFC1FA8EE1E007EABD6 /* VCSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCSwitch.swift; sourceTree = "<group>"; };
 		6A9A2AFE1FA910A0007EABD6 /* VCHeaderClasseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCHeaderClasseView.swift; sourceTree = "<group>"; };
 		6A9AD38A1FC36CC900DFC3F5 /* VCSelectNumberWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCSelectNumberWords.swift; sourceTree = "<group>"; };
+		6AAA31121FD89B9700C6BA2D /* DemandClasse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemandClasse.swift; sourceTree = "<group>"; };
+		6AAA31141FD89BA400C6BA2D /* DemandList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemandList.swift; sourceTree = "<group>"; };
+		6AAA31161FD89BB600C6BA2D /* DemandWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemandWord.swift; sourceTree = "<group>"; };
 		6AC57BFB1FBC86640005CD97 /* VCRechercherProf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCRechercherProf.swift; sourceTree = "<group>"; };
 		6ACEB51F1F6D26A400A2236D /* VCViewConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCViewConnection.swift; sourceTree = "<group>"; };
 		6ACEB5231F6D2BD100A2236D /* VCRegisterInformations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCRegisterInformations.swift; sourceTree = "<group>"; };
@@ -414,6 +420,9 @@
 				6AE8E5821FA4AB91003B988A /* Message.swift */,
 				6AD3021D1FAB73F700A0D682 /* School.swift */,
 				6AD3021F1FABD3DB00A0D682 /* Demand.swift */,
+				6AAA31121FD89B9700C6BA2D /* DemandClasse.swift */,
+				6AAA31141FD89BA400C6BA2D /* DemandList.swift */,
+				6AAA31161FD89BB600C6BA2D /* DemandWord.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -711,6 +720,7 @@
 				6A41B28B1F618CBF006E500B /* ClassesTeacherViewController.swift in Sources */,
 				6ACEB52C1F6DDD5800A2236D /* VCThanksJoinUs.swift in Sources */,
 				6AD2BB651F62A6E6008BFB3D /* VCHeaderWithTitlesCollectionViewCell.swift in Sources */,
+				6AAA31171FD89BB600C6BA2D /* DemandWord.swift in Sources */,
 				6AD2BB5A1F62A41D008BFB3D /* VCProfilCollectionViewCell.swift in Sources */,
 				6A82D5381F61AB8100B6A44E /* ClasseStudentViewController.swift in Sources */,
 				6AE8E5831FA4AB91003B988A /* Message.swift in Sources */,
@@ -719,6 +729,7 @@
 				6AD302221FABE0D400A0D682 /* VCRechercherStudentController.swift in Sources */,
 				6AE8E57F1FA4A8D9003B988A /* VCMessagesController.swift in Sources */,
 				6AFF2BF41FA3541C003E397F /* VCNewCassController.swift in Sources */,
+				6AAA31151FD89BA400C6BA2D /* DemandList.swift in Sources */,
 				6A2030F91F6AC45400CE6C5E /* VCHeaderListeCell.swift in Sources */,
 				6A2733661EC7680800E4830E /* VCLabelCopyright.swift in Sources */,
 				6A59D7661EBB701400E5D1BA /* AppDelegate.swift in Sources */,
@@ -736,6 +747,7 @@
 				6A2733721EC87BD800E4830E /* AjouterListeViewController.swift in Sources */,
 				6A2030FF1F6AC5F300CE6C5E /* VCViewConnectionWithoutTextField.swift in Sources */,
 				6AD2BB671F62A82C008BFB3D /* VCHeaderWithBarWithButtonCollectionViewCell.swift in Sources */,
+				6AAA31131FD89B9700C6BA2D /* DemandClasse.swift in Sources */,
 				6A2031031F6AC7B600CE6C5E /* VCButtonLogin.swift in Sources */,
 				6A46513C1F6C7573003C84B2 /* VCTextfieldRegister.swift in Sources */,
 				6A2733681EC76F2600E4830E /* ProfilViewController.swift in Sources */,
