@@ -9,13 +9,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Vocs/VCQCMViewController.swift"
-            timestampString = "533167649.176177"
+            filePath = "Vocs/VCAlertViewController.swift"
+            timestampString = "536110326.346767"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "handleVerifier()"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "handleValidate()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vocs/VCAlertViewController.swift"
+            timestampString = "536110326.348012"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "handleValidate()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
