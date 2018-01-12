@@ -11,6 +11,8 @@
 		6A04B3DB1EBBA57A007204B5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A04B3DA1EBBA57A007204B5 /* Extensions.swift */; };
 		6A07BB1E1FB7C024008BD38C /* VCMatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A07BB1D1FB7C024008BD38C /* VCMatchingViewController.swift */; };
 		6A11DA851FBC9D6700EEBA0C /* VCMatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A11DA841FBC9D6700EEBA0C /* VCMatchCard.swift */; };
+		6A1AA6A22009699E0070595E /* PrononciationMots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1AA6A12009699E0070595E /* PrononciationMots.swift */; };
+		6A1AA6A4200972790070595E /* VCChangeLangueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1AA6A3200972790070595E /* VCChangeLangueController.swift */; };
 		6A1EBA001ED9DCF900506F41 /* Mot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1EB9FF1ED9DCF900506F41 /* Mot.swift */; };
 		6A1EBA021ED9F2D400506F41 /* ChoisirListeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1EBA011ED9F2D400506F41 /* ChoisirListeViewController.swift */; };
 		6A2030F01F6AC38000CE6C5E /* VCButtonExercice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2030EF1F6AC38000CE6C5E /* VCButtonExercice.swift */; };
@@ -51,6 +53,7 @@
 		6A59D7661EBB701400E5D1BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A59D7651EBB701400E5D1BA /* AppDelegate.swift */; };
 		6A59D76D1EBB701400E5D1BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A59D76C1EBB701400E5D1BA /* Assets.xcassets */; };
 		6A59D7701EBB701400E5D1BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A59D76E1EBB701400E5D1BA /* LaunchScreen.storyboard */; };
+		6A5AA87B2003FFA30075E0D9 /* VCMotViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5AA87A2003FFA30075E0D9 /* VCMotViewerController.swift */; };
 		6A5D46C81EC8C28A00854EA1 /* VCScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5D46C71EC8C28A00854EA1 /* VCScoreViewController.swift */; };
 		6A5D46CA1EC8F0D300854EA1 /* AjouterMotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5D46C91EC8F0D300854EA1 /* AjouterMotViewController.swift */; };
 		6A5D46CD1EC8F43900854EA1 /* Protocoles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5D46CC1EC8F43900854EA1 /* Protocoles.swift */; };
@@ -60,6 +63,7 @@
 		6A774FC71F77E81F00A19C7B /* spinner.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A774FC61F77E81C00A19C7B /* spinner.json */; };
 		6A797F481FE2B33200FD1295 /* VCAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A797F471FE2B33200FD1295 /* VCAlertViewController.swift */; };
 		6A82D5381F61AB8100B6A44E /* ClasseStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A82D5371F61AB8100B6A44E /* ClasseStudentViewController.swift */; };
+		6A8873462007C31D0068996A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A8873452007C31D0068996A /* AVFoundation.framework */; };
 		6A9A2AF91FA8E09F007EABD6 /* VCSelectListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9A2AF81FA8E09F007EABD6 /* VCSelectListCell.swift */; };
 		6A9A2AFB1FA8E2DD007EABD6 /* VCSelectClasseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9A2AFA1FA8E2DD007EABD6 /* VCSelectClasseListController.swift */; };
 		6A9A2AFD1FA8EE1E007EABD6 /* VCSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9A2AFC1FA8EE1E007EABD6 /* VCSwitch.swift */; };
@@ -110,6 +114,8 @@
 		6A04B3DA1EBBA57A007204B5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6A07BB1D1FB7C024008BD38C /* VCMatchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCMatchingViewController.swift; sourceTree = "<group>"; };
 		6A11DA841FBC9D6700EEBA0C /* VCMatchCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCMatchCard.swift; sourceTree = "<group>"; };
+		6A1AA6A12009699E0070595E /* PrononciationMots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrononciationMots.swift; sourceTree = "<group>"; };
+		6A1AA6A3200972790070595E /* VCChangeLangueController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCChangeLangueController.swift; sourceTree = "<group>"; };
 		6A1EB9FF1ED9DCF900506F41 /* Mot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mot.swift; sourceTree = "<group>"; };
 		6A1EBA011ED9F2D400506F41 /* ChoisirListeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoisirListeViewController.swift; sourceTree = "<group>"; };
 		6A2030EF1F6AC38000CE6C5E /* VCButtonExercice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCButtonExercice.swift; sourceTree = "<group>"; };
@@ -152,6 +158,7 @@
 		6A59D76C1EBB701400E5D1BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6A59D76F1EBB701400E5D1BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6A59D7711EBB701400E5D1BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A5AA87A2003FFA30075E0D9 /* VCMotViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCMotViewerController.swift; sourceTree = "<group>"; };
 		6A5D46C71EC8C28A00854EA1 /* VCScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCScoreViewController.swift; sourceTree = "<group>"; };
 		6A5D46C91EC8F0D300854EA1 /* AjouterMotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AjouterMotViewController.swift; sourceTree = "<group>"; };
 		6A5D46CC1EC8F43900854EA1 /* Protocoles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocoles.swift; sourceTree = "<group>"; };
@@ -161,6 +168,7 @@
 		6A774FC61F77E81C00A19C7B /* spinner.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = spinner.json; sourceTree = "<group>"; };
 		6A797F471FE2B33200FD1295 /* VCAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCAlertViewController.swift; sourceTree = "<group>"; };
 		6A82D5371F61AB8100B6A44E /* ClasseStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClasseStudentViewController.swift; sourceTree = "<group>"; };
+		6A8873452007C31D0068996A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6A9A2AF81FA8E09F007EABD6 /* VCSelectListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCSelectListCell.swift; sourceTree = "<group>"; };
 		6A9A2AFA1FA8E2DD007EABD6 /* VCSelectClasseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCSelectClasseListController.swift; sourceTree = "<group>"; };
 		6A9A2AFC1FA8EE1E007EABD6 /* VCSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCSwitch.swift; sourceTree = "<group>"; };
@@ -207,6 +215,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A8873462007C31D0068996A /* AVFoundation.framework in Frameworks */,
 				E3C390AF04A1589C045CFC3B /* Pods_Vocs.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,6 +226,7 @@
 		2CC0DB277984D775B49D82CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A8873452007C31D0068996A /* AVFoundation.framework */,
 				44FA4FAA1318AAB86B1747FE /* Pods_Vocs.framework */,
 			);
 			name = Frameworks;
@@ -338,6 +348,7 @@
 				6A2733731EC8956F00E4830E /* MotsViewController.swift */,
 				6A27335A1EC74BD500E4830E /* ListesViewController.swift */,
 				6A2733711EC87BD800E4830E /* AjouterListeViewController.swift */,
+				6A5AA87A2003FFA30075E0D9 /* VCMotViewerController.swift */,
 			);
 			name = Lists;
 			sourceTree = "<group>";
@@ -357,6 +368,7 @@
 			children = (
 				6A2733671EC76F2600E4830E /* ProfilViewController.swift */,
 				6ACFE2411FC599EE002F4721 /* VCChangeProfilController.swift */,
+				6A1AA6A3200972790070595E /* VCChangeLangueController.swift */,
 			);
 			name = Profil;
 			sourceTree = "<group>";
@@ -426,6 +438,7 @@
 				6AAA31121FD89B9700C6BA2D /* DemandClasse.swift */,
 				6AAA31141FD89BA400C6BA2D /* DemandList.swift */,
 				6AAA31161FD89BB600C6BA2D /* DemandWord.swift */,
+				6A1AA6A12009699E0070595E /* PrononciationMots.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -741,6 +754,8 @@
 				6A41B28E1F618F1C006E500B /* Group.swift in Sources */,
 				6A336BEE1F9514F70097264E /* VCHeaderListWithButtons.swift in Sources */,
 				6AEB685D1FA66D6700920E18 /* VCHeaderNoClasseCollectionReusableView.swift in Sources */,
+				6A1AA6A22009699E0070595E /* PrononciationMots.swift in Sources */,
+				6A5AA87B2003FFA30075E0D9 /* VCMotViewerController.swift in Sources */,
 				6A27336E1EC790DE00E4830E /* VCListeCell.swift in Sources */,
 				6A9AD38B1FC36CC900DFC3F5 /* VCSelectNumberWords.swift in Sources */,
 				6A27335F1EC75EFD00E4830E /* VCButtonValidate.swift in Sources */,
@@ -754,6 +769,7 @@
 				6AAA31131FD89B9700C6BA2D /* DemandClasse.swift in Sources */,
 				6A2031031F6AC7B600CE6C5E /* VCButtonLogin.swift in Sources */,
 				6A46513C1F6C7573003C84B2 /* VCTextfieldRegister.swift in Sources */,
+				6A1AA6A4200972790070595E /* VCChangeLangueController.swift in Sources */,
 				6A2733681EC76F2600E4830E /* ProfilViewController.swift in Sources */,
 				6AC57BFC1FBC86640005CD97 /* VCRechercherProf.swift in Sources */,
 				6A04B3DB1EBBA57A007204B5 /* Extensions.swift in Sources */,
