@@ -22,7 +22,7 @@ class VCThanksJoinUs : UIViewController {
         setupViews()
     }
     
-    func handleNext() {
+    @objc func handleNext() {
         present(TabBarController(), animated: true, completion: nil)
     }
     

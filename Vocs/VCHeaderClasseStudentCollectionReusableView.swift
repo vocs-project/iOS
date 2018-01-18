@@ -46,12 +46,12 @@ class VCHeaderClasseStudentCollectionReusableView: UICollectionReusableView {
         NSLayoutConstraint.activate([
             labelTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
             labelTitle.widthAnchor.constraint(equalTo: self.widthAnchor, constant: 0),
-            labelTitle.heightAnchor.constraint(equalToConstant: 30),
+            labelTitle.heightAnchor.constraint(equalToConstant: 40),
             labelTitle.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -30),
             
             labelSubtitle.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
             labelSubtitle.widthAnchor.constraint(equalTo: self.widthAnchor, constant: 0),
-            labelSubtitle.heightAnchor.constraint(equalToConstant: 15),
+            labelSubtitle.heightAnchor.constraint(equalToConstant: 20),
             labelSubtitle.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 10),
             
             headerTitleClasse.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),

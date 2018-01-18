@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VCConnectionViewController: UIViewController {
+class VCConnectionViewController: UIViewController, UITextFieldDelegate {
     
     let viewSeparator : UIView = {
         let view = UIView()
@@ -33,28 +33,38 @@ class VCConnectionViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
         setBackgroundImage()
         self.textFieldPassword.isSecureTextEntry = true
+        self.textFieldEmail.autocorrectionType = .no
+        self.textFieldEmail.autocapitalizationType = .none
+        self.textFieldEmail.spellCheckingType = .no
+        self.textFieldEmail.delegate = self
+        self.textFieldPassword.delegate = self
         buttonForgottenPassword.addTarget(self, action: #selector(handleForgot), for: .touchUpInside)
         buttonRegister.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
         buttonLogin.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
     }
     
-    func handleLogin() {
+    let loading = VCLoadingController()
+    
+    @objc func handleLogin() {
         guard let email = textFieldEmail.text, let password = textFieldPassword.text else {
             return
         }
         if (textFieldEmail.checkIfNotEmpty() && textFieldPassword.checkIfNotEmpty()){
-            Auth().loginUser(email: email, password: password, completion: { (user) in
-                guard let _ = user else {
-                    self.textFieldPassword.shake()
-                    self.textFieldEmail.shake()
-                    return
-                }
-                self.present(TabBarController(), animated: true, completion: nil)
+            self.present(loading, animated: false, completion: {
+                Auth().loginUser(email: email, password: password, completion: { (user) in
+                    self.loading.dismiss(animated: false, completion: nil)
+                    guard let _ = user else {
+                        self.textFieldPassword.shake()
+                        self.textFieldEmail.shake()
+                        return
+                    }
+                    self.present(TabBarController(), animated: true, completion: nil)
+                })
             })
         }
     }
     
-    func handleRegister() {
+    @objc func handleRegister() {
         if (textFieldEmail.checkIfValidEmail() && textFieldPassword.checkIfNotEmpty()){
             let controller = VCRegisterInformations()
             guard let email = textFieldEmail.text, let password = textFieldPassword.text else {return}
@@ -64,12 +74,11 @@ class VCConnectionViewController: UIViewController {
         }
     }
     
-    func handleForgot() {
+    @objc func handleForgot() {
         
     }
     
     //Setup different views with constraints
-    
     func setupViews() {
         
         //Using my extension
@@ -122,6 +131,17 @@ class VCConnectionViewController: UIViewController {
             labelLoginRegister.centerXAnchor.constraint(equalTo: self.viewContainer.centerXAnchor),
             labelLoginRegister.bottomAnchor.constraint(equalTo: self.viewContainer.topAnchor)
         ])
+        buttonForgottenPassword.isHidden = true
+    }
+
+    //Gerer la touche return
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textFieldPassword == textField {
+            textFieldPassword.becomeFirstResponder()
+        } else {
+            textFieldPassword.resignFirstResponder()
+        }
+        return true
     }
 
     override func didReceiveMemoryWarning() {

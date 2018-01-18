@@ -47,7 +47,7 @@ class VCTitreLabel: UIView {
         
         labelListe.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         labelListe.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-        labelListe.widthAnchor.constraint(equalToConstant : 150).isActive = true
+        labelListe.widthAnchor.constraint(equalToConstant : 200).isActive = true
         labelListe.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     }
     

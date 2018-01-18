@@ -13,19 +13,34 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Auth().loadUserConnected { (user) in
+            if user != nil {
+                if (user!.isProfessor()) {
+                    self.loadViewController(isProfessor: true)
+                } else {
+                    self.loadViewController(isProfessor: false)
+                }
+            } else {
+                self.loadViewController(isProfessor: false)
+            }
+        }
+    }
+    func loadViewController(isProfessor : Bool) {
         var arrayViews : [UIViewController] = []
         let listController = ListesViewController()
         let exerciceController = ExercicesViewController()
-        //Detect if it's student or teacher
-//        if (true){
-//             arrayViews.append(createAViewController(controller: ClasseTeacherController(collectionViewLayout: UICollectionViewFlowLayout()), image: #imageLiteral(resourceName: "Classe")))
-//        } else {
-            arrayViews.append(createAViewController(controller: ClasseStudentController(collectionViewLayout: UICollectionViewFlowLayout()), image: #imageLiteral(resourceName: "Classe")))
-//        }
-        arrayViews.append(createAViewController(controller: exerciceController, image: #imageLiteral(resourceName: "Manette")))
-        arrayViews.append(createAViewController(controller: listController, image: #imageLiteral(resourceName: "Liste")))
+        let controllerStudent : ClasseStudentController!
+        if (isProfessor){
+            arrayViews.append(self.createAViewController(controller: ClasseTeacherController(collectionViewLayout: UICollectionViewFlowLayout()), image: #imageLiteral(resourceName: "Classe")))
+        } else {
+            controllerStudent = ClasseStudentController(collectionViewLayout: UICollectionViewFlowLayout())
+            controllerStudent.delegateUserChangeClass = listController
+            arrayViews.append(self.createAViewController(controller: controllerStudent, image: #imageLiteral(resourceName: "Classe")))
+        }
+        arrayViews.append(self.createAViewController(controller: exerciceController, image: #imageLiteral(resourceName: "Manette")))
+        arrayViews.append(self.createAViewController(controller: listController, image: #imageLiteral(resourceName: "Liste")))
         self.view.backgroundColor = .white
-        viewControllers = arrayViews
+        self.viewControllers = arrayViews
         self.selectedIndex = 1
     }
     

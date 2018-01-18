@@ -11,71 +11,47 @@ import UIKit
 class VCQCMViewController: VCGameViewController {
 
     let labelMot = VCLabelMot(text : "Word")
-    let nextButton = VCButtonExercice("Suivant", color: UIColor(rgb: 0x696969))
+    let nextButton = VCButtonExercice("Vérifier", color: UIColor(rgb: 0x696969))
     var wordChoices = [VCRowQCM(),VCRowQCM(),VCRowQCM(),VCRowQCM()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.navigationItem.title = "QCM"
-        nextButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(handleVerifier), for: .touchUpInside)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Retour", style: .plain, target: self, action: #selector(handleBack))
         setupViews()
         unSelectAll()
         giveAWordPlace()
         randomLanguage()
         loadWordToTranslate()
-        loadRandomsWords()
+        self.loadRandomsWordsQCM()
+    }
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        self.navigationItem.title = "QCM"
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     //Afficher le mot a traduire et reset les couleurs et les select
-    func loadWordToTranslate() {
+    @objc func loadWordToTranslate() {
         self.nextButton.backgroundColor = UIColor(rgb: 0x696969)
         unSelectAll()
-        if (francaisOuAnglais) {
-            self.labelMot.text = self.mots[self.motActuelIndex].trad?.content
-            
+        self.loadRandomsWordsQCM()
+        if (isFrenchToEnglish) {
+            self.labelMot.text = self.mots[self.motActuelIndex].trad?.content?.capitalizingFirstLetter()
         } else {
-            self.labelMot.text = self.mots[self.motActuelIndex].word?.content
+            self.labelMot.text = self.mots[self.motActuelIndex].word?.content?.capitalizingFirstLetter()
         }
-    }
-    
-    //Donne un mot non present dans le tableau des mots
-    func giveDifferentWord(of words : [String], isLanguageFrench : Bool) -> String {
-        var index = 0
-        var contains : Bool
-        var wordTest : String?
-        repeat {
-            index = Int(arc4random_uniform(UInt32(self.mots.count)))
-            if isLanguageFrench {
-                wordTest = self.mots[index].word?.content
-            } else {
-                wordTest = self.mots[index].trad?.content
-            }
-            guard let word = wordTest else {return ""}
-            contains = words.contains(word)
-        } while (contains)
-        guard let word = wordTest else {return "nil"}
-        return word
     }
     
     //Charge differents mots au hasard
-    func loadRandomsWords() {
-        var answers : [String] = []
-        if (francaisOuAnglais) {
-            guard let word = self.mots[self.motActuelIndex].word?.content else {return}
-            answers.append(word)
-            for _ in 1...3 {
-                answers.append(giveDifferentWord(of: answers,isLanguageFrench: true))
-            }
-        } else {
-            guard let trad = self.mots[self.motActuelIndex].trad?.content else {return}
-            answers.append(trad)
-            for _ in 1...3 {
-                answers.append(giveDifferentWord(of: answers,isLanguageFrench: false))
-            }
-        }
-        answers.shuffle()
+    @objc func loadRandomsWordsQCM() {
+        let answers = super.loadRandomsWords()
         var index = 0
         for wordChoice in wordChoices {
             wordChoice.word = answers[index]
@@ -95,20 +71,34 @@ class VCQCMViewController: VCGameViewController {
         return -1
     }
     
+    @objc func nextMot() {
+        nextButton.removeTarget(self, action: #selector(nextMot), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(handleVerifier), for: .touchUpInside)
+        self.nextButton.setTitle("Vérifier", for: .normal)
+        loadWordToTranslate()
+        _  = loadRandomWords()
+    }
+    
     //Passe au prochain mot
-    func prochainMot() {
-        if compteur >= NBR_MOTS_MAX || compteur + 1 >= self.mots.count {
-            _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(finir), userInfo: nil, repeats: false)
+    func prochainMot(gagne : Bool) {
+        if compteur + 1 >= NBR_MOTS_MAX || compteur + 1 >= self.mots.count {
+            _ = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(finir), userInfo: nil, repeats: false)
+            return
         }
         compteur += 1;
         giveAWordPlace()
         randomLanguage()
-        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(loadWordToTranslate), userInfo: nil, repeats: false)
-        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(loadRandomsWords), userInfo: nil, repeats: false)
+        if (gagne) {
+            _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(nextMot), userInfo: nil, repeats: false)
+        } else {
+            self.nextButton.setTitle("Suivant", for: .normal)
+            nextButton.removeTarget(self, action: #selector(handleVerifier), for: .touchUpInside)
+            nextButton.addTarget(self, action: #selector(nextMot), for: .touchUpInside)
+        }
     }
     
     //Quand l'utilisateur appuie sur suivant
-    func handleNext() {
+    @objc func handleVerifier() {
         let index = giveSelectedIndex()
         if index == -1 {
             let alertController = UIAlertController(title: "Attention", message:
@@ -118,24 +108,38 @@ class VCQCMViewController: VCGameViewController {
             self.present(alertController, animated: true, completion: nil)
         } else {
             let wordChoosen = wordChoices[index].word
-            if francaisOuAnglais {
+            if isFrenchToEnglish {
                 guard let word = self.mots[motActuelIndex].word?.content else {return}
                 if word == wordChoosen {
                     nbrReussi += 1
-                    self.nextButton.backgroundColor = UIColor(rgb: 0x1ABC9C)
+                    colorerMots(perdu: false, word: word)
+                    prochainMot(gagne: true)
                 }else {
-                    self.nextButton.backgroundColor = UIColor(rgb: 0xF27171)
+                    colorerMots(perdu: false, word: word)
+                    colorerMots(perdu: true, word: wordChoosen)
+                    prochainMot(gagne: false)
                 }
             } else {
                 guard let trad = self.mots[motActuelIndex].trad?.content else {return}
                 if trad == wordChoosen {
                     nbrReussi += 1
-                    self.nextButton.backgroundColor = UIColor(rgb: 0x1ABC9C)
+                    colorerMots(perdu: false, word: trad)
+                    prochainMot(gagne: true)
                 } else {
-                    self.nextButton.backgroundColor = UIColor(rgb: 0xF27171)
+                    colorerMots(perdu: false, word: trad)
+                    colorerMots(perdu: true, word: wordChoosen)
+                    prochainMot(gagne: false)
                 }
             }
-            prochainMot()
+        }
+    }
+    
+    //Colorer le bon mot ( et mettre en rouge si il a perdu )
+    func colorerMots(perdu : Bool, word : String) {
+        for wordChoice in wordChoices {
+            if ( wordChoice.word == word) {
+                wordChoice.wordLabel.textColor = perdu ? UIColor(hex: 0xF27171) : UIColor(hex : 0x1ABC9C)
+            }
         }
     }
     
@@ -166,19 +170,16 @@ class VCQCMViewController: VCGameViewController {
         return nil
     }
     
-    func handleCheck(_ sender : VCButtonValidate) {
+    @objc func handleCheck(_ sender : VCButtonValidate) {
         unSelectAll()
         guard let wordChoice = findWordChoiceWithButton(button : sender) else {return}
         wordChoice.isSelected = true
     }
     
-    func handleBack() {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     //Enlever la selection de tous les mots
     func unSelectAll() {
         for wordChoice in wordChoices {
+            wordChoice.wordLabel.textColor = UIColor(rgb: 0x696969)
             wordChoice.isSelected = false
         }
     }

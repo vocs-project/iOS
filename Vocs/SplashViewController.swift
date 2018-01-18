@@ -22,10 +22,28 @@ class SplashViewController: UIViewController {
         animatonView.heightAnchor.constraint(equalToConstant: 70).isActive = true
         animatonView.loopAnimation = true
         animatonView.play()
-        _ = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(goToVocs), userInfo: nil, repeats: false)
     }
     
-    func goToVocs() {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadFirstScreen()
+    }
+    
+    func loadFirstScreen() {
+        Auth().loadUserConnected { (user) in
+            if user != nil {
+                if (user!.isProfessor()){
+                    self.goToVocs(isProfessor: true)
+                } else {
+                    self.goToVocs(isProfessor: false)
+                }
+            } else {
+                self.goToVocs(isProfessor: false)
+            }
+        }
+    }
+    
+    func goToVocs(isProfessor: Bool) {
         if Auth().userIsConnected()  {
             let controller = TabBarController()
             controller.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal

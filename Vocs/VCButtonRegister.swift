@@ -12,7 +12,7 @@ class VCButtonRegister : UIButton {
 
     var text : String? {
         didSet {
-            self.setAttributedTitle(NSAttributedString(string: text!, attributes: [NSFontAttributeName : UIFont(name: "HelveticaNeue-Light",size : 20 ) as Any, NSForegroundColorAttributeName : UIColor.white as Any]), for: .normal)
+            self.setAttributedTitle(NSAttributedString(string: text!, attributes: [NSAttributedStringKey.font : UIFont(name: "HelveticaNeue-Light",size : 20 ) as Any, NSAttributedStringKey.foregroundColor : UIColor.white as Any]), for: .normal)
         }
     }
     
@@ -26,7 +26,7 @@ class VCButtonRegister : UIButton {
         self.backgroundColor = .black
         self.layer.cornerRadius = 15
         self.layer.opacity = 0.50
-        self.setAttributedTitle(NSAttributedString(string: "Register", attributes: [NSFontAttributeName : UIFont(name: "HelveticaNeue-Light",size : 20 ) as Any, NSForegroundColorAttributeName : UIColor.white as Any]), for: .normal)
+        self.setAttributedTitle(NSAttributedString(string: "Register", attributes: [NSAttributedStringKey.font : UIFont(name: "HelveticaNeue-Light",size : 20 ) as Any, NSAttributedStringKey.foregroundColor : UIColor.white as Any]), for: .normal)
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 3)
         self.layer.shadowOpacity = 0.2

@@ -35,7 +35,7 @@ class VCHeaderWithBarCollectionViewCell: VCHeaderWithTitlesCollectionViewCell {
             bar.heightAnchor.constraint(equalToConstant: 20),
             bar.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier : 90/100),
             bar.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0)
-            ])
+        ])
     }
     
 }

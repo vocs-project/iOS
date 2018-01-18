@@ -10,6 +10,8 @@ import Foundation
 import SQLite
 import Alamofire
 
+// List est la classe qui permet de respresenter une liste et de communiquer avec l'API
+
 class List {
     var id_list : Int?
     var name : String?
@@ -52,49 +54,91 @@ class List {
                 "language" : "EN"
             ]
         ]
-        Alamofire.request("http://vocs.lebarillier.fr/rest/users/\(userId)/lists/\(listId)/words", method: .post, parameters: parameters).responseJSON { (response) in
-            guard let _ = response.result.value as? [String : Any] else {
+        Alamofire.request("\(Auth.URL_API)/users/\(userId)/lists/\(listId)/wordTrad", method: .post, parameters: parameters).responseJSON { (response) in
+            guard let json = response.result.value as? [String : Any], let _ = json["id"] as? Int else {
                 completion(false)
+                print(response.result.value ?? "Erreur")
                 return
             }
             completion(true)
         }
     }
     
+    //Supprimer un mot d'une liste
+    func deleteWordFromList(listMot : ListMot, completion : @escaping (Bool,ListMot) -> Void) {
+        guard let idMyList = self.id_list, let wordMyId = listMot.id else {
+            completion(false,listMot)
+            return
+        }
+        Alamofire.request("\(Auth.URL_API)/lists/\(idMyList)/wordTrad/\(wordMyId)",method: .delete).responseJSON { (response) in
+            guard let json = response.result.value as? [String : Any] else {
+                completion(false,listMot)
+                print(response.result.value ?? "Erreur")
+                return
+            }
+            guard let error = json["error"] as? [String : Any] else {
+                completion(true,listMot)
+                return
+            }
+            print(error)
+            completion(false,listMot)
+        }
+    }
+    
     //Chargement des mots d'une liste donné en parametre
-    static func loadWords(fromUserId userId : Int,fromListId idList : Int, completion : @escaping ([ListMot]) -> Void) {
-        Alamofire.request("http://vocs.lebarillier.fr/rest/users/\(userId)/lists/\(idList)", method: .get).responseJSON { (response) in
+    static func loadWords(fromListId idList : Int, completion : @escaping ([ListMot]) -> Void) {
+        Alamofire.request("\(Auth.URL_API)/lists/\(idList)", method: .get).responseJSON { (response) in
             guard let json = response.result.value as? [String : Any] else {
                 completion([])
                 return
             }
-            guard let wordsList = json["words"] as? [[String : Any]] else {
+            guard let wordsList = json["wordTrads"] as? [[String : Any]] else {
+                completion([])
                 return
             }
             var wordsOfList : [ListMot] = []
             for wordList in wordsList {
                 //Chargement du mot et de sa traduction
-                guard let word = wordList["word"] as? [String : Any], let trad = wordList["trad"] as? [String : Any] else {return}
+                guard let word = wordList["word"] as? [String : Any], let trad = wordList["trad"] as? [String : Any], let idMot = wordList["id"] as? Int else {
+                    completion(wordsOfList)
+                    return
+                }
                 //Chargement des informations du mot
-                guard let contentWord = word["content"] as? String, let langWord = word["lang"] as? String, let tradsOfWord = word["trads"] as? [[String : String]] else {return}
+                guard let contentWord = word["content"] as? String, let langWordArray = word["language"] as? [String : String], let langWord = langWordArray["code"] , let tradsOfWord = word["trads"] as? [[String : Any]] else {
+                    completion(wordsOfList)
+                    return
+                }
                 //Chargement des informations sur la traduction
-                guard let contentTrad = trad["content"] as? String, let langTrad = trad["lang"] as? String, let tradsOfTrad = trad["trads"] as? [[String : String]] else {return}
+                guard let contentTrad = trad["content"] as? String, let langTradArray = trad["language"] as? [String : String], let langTrad = langTradArray["code"], let tradsOfTrad = trad["trads"] as? [[String : Any]] else {
+                    completion(wordsOfList)
+                    return
+                }
                 //Extraction des traductions de la trad
                 var tradsForWord : [Mot] = []
                 for trad in tradsOfWord {
-                    guard let content = trad["content"], let lang = trad["lang"] else {return}
-                    tradsForWord.append(Mot(content: content, lang: lang))
+                    guard let content = trad["content"] as? String, let lang = trad["language"] as? [String: String], let code = lang["code"] else {
+                        completion(wordsOfList)
+                        return
+                    }
+                    tradsForWord.append(Mot(content: content, lang: code))
                 }
                 //Extraction des traduction de la trad
                 var tradsForTrad : [Mot] = []
                 for trad in tradsOfTrad {
-                    guard let content = trad["content"] , let lang = trad["lang"] else {return}
-                    tradsForTrad.append(Mot(content: content, lang: lang))
+                    guard let content = trad["content"] as? String , let lang = trad["language"] as? [String: String], let code = lang["code"]  else {
+                        completion(wordsOfList)
+                        return
+                    }
+                    tradsForTrad.append(Mot(content: content, lang: code))
                 }
                 //Ajoute a la liste
                 let finalWord = Mot(content: contentWord, trads: tradsForWord, lang: langWord)
                 let finalTrad = Mot(content: contentTrad, trads: tradsForTrad,lang: langTrad)
-                wordsOfList.append(ListMot(word: finalWord, trad: finalTrad))
+                if langWord == "FR" {
+                    wordsOfList.append(ListMot(id: idMot,word: finalWord, trad: finalTrad))
+                } else {
+                    wordsOfList.append(ListMot(id: idMot,word: finalTrad, trad: finalWord))
+                }
             }
             completion(wordsOfList)
         }
@@ -103,13 +147,61 @@ class List {
     //Charger les listes depuis l'API d'un user
     static func loadLists(forUserId : Int,completion : @escaping ([List]) -> Void ){
         var lists : [List] = []
-        Alamofire.request("http://vocs.lebarillier.fr/rest/users/\(forUserId)/lists", method : .get).responseJSON { (response) in
+        Alamofire.request("\(Auth.URL_API)/users/\(forUserId)/lists", method : .get).responseJSON { (response) in
             guard let json = response.result.value as? [[String : Any]] else {
                 return
             }
             for jsonData in json {
                 guard let id = jsonData["id"] as? Int, let name = jsonData["name"] as? String else { return }
-                lists.append(List(id_list: id, name: name))
+                guard let wordsList = jsonData["wordTrads"] as? [[String : Any]] else {
+                    completion(lists)
+                    return
+                }
+                var wordsOfList : [ListMot] = []
+                for wordList in wordsList {
+                    //Chargement du mot et de sa traduction
+                    guard let word = wordList["word"] as? [String : Any], let trad = wordList["trad"] as? [String : Any], let idMot = wordList["id"] as? Int else {
+                        completion(lists)
+                        return
+                    }
+                    //Chargement des informations du mot
+                    guard let contentWord = word["content"] as? String, let langWordArray = word["language"] as? [String : String], let langWord = langWordArray["code"] , let tradsOfWord = word["trads"] as? [[String : Any]] else {
+                        completion(lists)
+                        return
+                    }
+                    //Chargement des informations sur la traduction
+                    guard let contentTrad = trad["content"] as? String, let langTradArray = trad["language"] as? [String : String], let langTrad = langTradArray["code"], let tradsOfTrad = trad["trads"] as? [[String : Any]] else {
+                        completion(lists)
+                        return
+                    }
+                    //Extraction des traductions de la trad
+                    var tradsForWord : [Mot] = []
+                    for trad in tradsOfWord {
+                        guard let content = trad["content"] as? String, let lang = trad["language"] as? [String: String], let code = lang["code"] else {
+                            completion(lists)
+                            return
+                        }
+                        tradsForWord.append(Mot(content: content, lang: code))
+                    }
+                    //Extraction des traduction de la trad
+                    var tradsForTrad : [Mot] = []
+                    for trad in tradsOfTrad {
+                        guard let content = trad["content"] as? String , let lang = trad["language"] as? [String: String], let code = lang["code"]  else {
+                            completion(lists)
+                            return
+                        }
+                        tradsForTrad.append(Mot(content: content, lang: code))
+                    }
+                    //Ajoute a la liste
+                    let finalWord = Mot(content: contentWord, trads: tradsForWord, lang: langWord)
+                    let finalTrad = Mot(content: contentTrad, trads: tradsForTrad,lang: langTrad)
+                    if langWord == "FR" {
+                        wordsOfList.append(ListMot(id: idMot,word: finalWord, trad: finalTrad))
+                    } else {
+                        wordsOfList.append(ListMot(id: idMot,word: finalTrad, trad: finalWord))
+                    }
+                }
+                lists.append(List(id_list: id, name: name, words: wordsOfList))
             }
             completion(lists)
         }
@@ -120,7 +212,7 @@ class List {
         let parameters = [
             "name" : name
         ]
-        Alamofire.request("http://vocs.lebarillier.fr/rest/users/\(id)/lists", method: .post, parameters: parameters).responseJSON { (response) in
+        Alamofire.request("\(Auth.URL_API)/users/\(id)/lists", method: .post, parameters: parameters).responseJSON { (response) in
             guard let json = response.result.value as? [String : Any] else {
                 completion(nil)
                 return
@@ -131,9 +223,28 @@ class List {
         }
     }
     
+    //Ajouter une nouvelle liste avec son nom et ses mots
+    static func addList(withName name : String,forUser id : Int, mots : [Int],completion : @escaping (Int?) -> Void) {
+        let parameters = [
+            "name" : name,
+            "wordTrads" : mots
+            ] as [String : Any]
+        Alamofire.request("\(Auth.URL_API)/users/\(id)/lists", method: .post, parameters: parameters).responseJSON { (response) in
+            guard let json = response.result.value as? [String : Any] else {
+                completion(nil)
+                return
+            }
+            if let idList = json["id"] as? Int {
+                completion(idList)
+            }
+            print(json)
+            completion(nil)
+        }
+    }
+    
     //Supprimer une liste d'un utilisateur depuis son id
     static func deleteList(withId idList : Int,forUser userId : Int,completion : @escaping (Bool) -> Void){
-        Alamofire.request("http://vocs.lebarillier.fr/rest/users/\(userId)/lists/\(idList)", method: .delete).responseJSON { (response) in
+        Alamofire.request("\(Auth.URL_API)/users/\(userId)/lists/\(idList)", method: .delete).responseJSON { (response) in
             guard let _ = response.result.value as? [String : Any] else {
                 completion(false)
                 return

@@ -14,7 +14,7 @@ class VCButtonForgottenPassword : UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.setAttributedTitle(NSAttributedString(string: "Mot de passe oublié ?", attributes: [NSFontAttributeName : UIFont(name: "HelveticaNeue-Light", size: 15) as Any, NSForegroundColorAttributeName : UIColor.white as Any]), for: .normal)
+        self.setAttributedTitle(NSAttributedString(string: "Mot de passe oublié ?", attributes: [NSAttributedStringKey.font : UIFont(name: "HelveticaNeue-Light", size: 15) as Any, NSAttributedStringKey.foregroundColor : UIColor.white as Any]), for: .normal)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -9,6 +9,8 @@
 import Foundation
 import Alamofire
 
+//City est la class pour reprenter une ville
+
 class City {
     
     var cityName : String?
@@ -18,6 +20,8 @@ class City {
         self.cityName = cityName
         self.codePostale = codePostale
     }
+    
+    //Permet de recuperer toutes les villes grace à l'API https://vicopo.selfbuild.fr
     
     static func loadCityFrom(code : String,completionHandler: @escaping ([String]) -> Void)  {
         if !code.isNumeric {

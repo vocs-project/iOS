@@ -12,7 +12,7 @@ class VCFooterClasseStudentCollectionReusableView : UICollectionReusableView {
     
     var titleButton : String! {
         didSet {
-            self.quitButton.setAttributedTitle(NSAttributedString(string: titleButton, attributes: [NSFontAttributeName : UIFont(name: "HelveticaNeue-Light", size: 18) as Any, NSForegroundColorAttributeName : UIColor.white]), for: .normal)
+            self.quitButton.setAttributedTitle(NSAttributedString(string: titleButton, attributes: [NSAttributedStringKey.font : UIFont(name: "HelveticaNeue-Light", size: 18) as Any, NSAttributedStringKey.foregroundColor : UIColor.white]), for: .normal)
         }
     }
     
@@ -24,7 +24,7 @@ class VCFooterClasseStudentCollectionReusableView : UICollectionReusableView {
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 3)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setAttributedTitle(NSAttributedString(string: "Titre", attributes: [NSFontAttributeName : UIFont(name: "HelveticaNeue-Light", size: 18) as Any, NSForegroundColorAttributeName : UIColor.white]), for: .normal)
+        button.setAttributedTitle(NSAttributedString(string: "Titre", attributes: [NSAttributedStringKey.font : UIFont(name: "HelveticaNeue-Light", size: 18) as Any, NSAttributedStringKey.foregroundColor : UIColor.white]), for: .normal)
         return button
     }()
     

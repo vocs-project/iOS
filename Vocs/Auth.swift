@@ -9,7 +9,14 @@
 import Foundation
 import Alamofire
 
+/*Auth est une classe importante qui permet de laisser un utilisateur authentifier avec sa session sur l'application.
+La session est sauvegardée en local pour éviter qu'il ne se reconnecte à chaque fois*/
+
 class Auth {
+    
+    
+    static var URL_API = "http://vocsapi.lebarillier.fr/rest"
+    
     var currentUserId : Int? {
         get {
             return loadUserId()
@@ -19,14 +26,15 @@ class Auth {
         }
     }
     
-    func registerUser(firstname: String, surname : String, email: String, password : String,completion : @escaping (Bool) -> Void) {
+    func registerUser(firstname: String, surname : String, email: String, password : String, role : String, completion : @escaping (Bool) -> Void) {
         let parameters: [String: Any] = [
             "firstname" : firstname,
             "surname" : surname,
             "email" : email,
-            "password" : password
+            "password" : password,
+            "roles" : [role]
         ]
-        Alamofire.request("http://vocs.lebarillier.fr/rest/users", method: .post, parameters: parameters).responseJSON { (response) in
+        Alamofire.request("\(Auth.URL_API)/users", method: .post, parameters: parameters).responseJSON { (response) in
             guard let json = response.result.value as? [String : Any], let id = json["id"] as? Int  else {
                 completion(false)
                 return
@@ -41,7 +49,7 @@ class Auth {
             "email" : email,
             "password" : password
         ]
-        Alamofire.request("http://vocs.lebarillier.fr/rest/users/authentification", method: .post, parameters: parameters).responseJSON { (response) in
+        Alamofire.request("\(Auth.URL_API)/users/authentification", method: .post, parameters: parameters).responseJSON { (response) in
             guard let json = response.result.value as? [String : Any] else {
                 completion(nil)
                 return
@@ -58,7 +66,10 @@ class Auth {
     
     func loadUserConnected(completion : @escaping (User?) -> Void) {
         if (userIsConnected()) {
-            guard let userId = loadUserId() else {return}
+            guard let userId = loadUserId() else {
+                completion(nil)
+                return
+            }
             User.loadUser(userId: userId, completion: { (user) in
                 completion(user)
             })

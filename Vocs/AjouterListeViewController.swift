@@ -26,11 +26,11 @@ class AjouterListeViewController: UIViewController {
         self.navigationItem.title = "Mes listes"
     }
 
-    func handleRevenir() {
+    @objc func handleRevenir() {
         dismiss(animated: true, completion: nil)
     }
     
-    func handleAjouter() {
+    @objc func handleAjouter() {
         if let liste = textFieldNomListe.text {
             if !(liste.isEmpty){
                 delegateAjouter.envoyerListe(texte : liste)

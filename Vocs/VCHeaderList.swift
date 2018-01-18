@@ -44,7 +44,7 @@ class VCHeaderListe : UIView {
     
     
     func updateSize() {
-        let numberOfCharacters = (self.labelListe.text?.characters.count)! * 10
+        let numberOfCharacters = (self.labelListe.text?.count)! * 16
         widthConstraint?.isActive = false
         widthConstraint?.constant = CGFloat(numberOfCharacters)
         widthConstraint?.isActive = true
@@ -66,7 +66,7 @@ class VCHeaderListe : UIView {
         
         labelListe.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         labelListe.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-        let numberOfCharacters = (self.labelListe.text?.characters.count)! * 11
+        let numberOfCharacters = (self.labelListe.text?.count)! * 16
         widthConstraint = labelListe.widthAnchor.constraint(equalToConstant : CGFloat(numberOfCharacters) )
         widthConstraint?.isActive = true
         labelListe.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true

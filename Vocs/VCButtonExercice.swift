@@ -16,7 +16,7 @@ class VCButtonExercice: UIButton {
         self.setTitle(title, for: .normal)
         self.backgroundColor = color
         self.layer.cornerRadius = 30
-        self.setAttributedTitle(NSAttributedString(string: title, attributes: [NSFontAttributeName : UIFont(name: "HelveticaNeue-Medium",size : 20 ) as Any, NSForegroundColorAttributeName : UIColor.white as Any]), for: .normal)
+        self.setAttributedTitle(NSAttributedString(string: title, attributes: [NSAttributedStringKey.font : UIFont(name: "HelveticaNeue-Medium",size : 20 ) as Any, NSAttributedStringKey.foregroundColor : UIColor.white as Any]), for: .normal)
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: -1, height: 1)
         self.layer.shadowRadius = 1

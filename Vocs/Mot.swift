@@ -9,13 +9,26 @@
 import Foundation
 import SQLite
 import Alamofire
+import AVFoundation
 
 class Mot  {
     var content : String?
     var trads : [Mot]?
     var lang : String?
+    var id : Int?
     
     init(content : String, trads: [Mot], lang : String) {
+        self.content = content
+        self.trads = trads
+        self.lang = lang
+    }
+    
+    init(id : Int ) {
+        self.id = id
+    }
+    
+    init(id : Int, content : String, trads: [Mot], lang : String) {
+        self.id = id
         self.content = content
         self.trads = trads
         self.lang = lang

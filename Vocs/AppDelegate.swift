@@ -8,6 +8,8 @@
 
 import SQLite
 import UIKit
+import Foundation
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarAppearace.isTranslucent = false
         navigationBarAppearace.tintColor = .white
         navigationBarAppearace.barTintColor = UIColor(r: 40, g: 125, b: 192)
-        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white, NSFontAttributeName : UIFont(name: "HelveticaNeue", size: 20) as Any]
+        navigationBarAppearace.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white, NSAttributedStringKey.font : UIFont(name: "HelveticaNeue", size: 20) as Any]
         //GENERAL SETUPS
         //Mettre   -->   View controller-based status bar appearance      a   NO
         UIApplication.shared.statusBarStyle = .lightContent
@@ -34,6 +36,107 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         findIfSqliteDBExists()
         window?.rootViewController = SplashViewController()
         return true
+    }
+    
+    func scriptPourAjouterLesMots() {
+        let donees = """
+        NAME    < identificateur
+        (to) nest    < (s’)insérer (s’emboiter)
+        network    < réseau
+        newsletter<    bulletin d'informations
+        niche (= gap)    < créneau commercial
+        node<    noeud
+        noise<    bruit
+        notebook    <ordinateur taille mini
+        nought (GB)    <zéro
+        (to) number<    numéroter
+        OA (OFFICE AUTOMATION)<    bureautique
+        (oblique) stroke<    barre oblique
+        obsolete    < obsolète
+        outdated < dépassé
+        OCR (Optical Character Recognition)<    reconnaissance optique de caractères
+        odd (number)    <nombre impair
+        off    <éteint
+        off-line    <non connecté
+        (to) offset  < ( compenser ) décaler
+        offset<    ( compensation ) décalage
+        on    < allumé
+        OOO (Out Of Order)    <hors service (HS)
+        OOP (Object-Oriented Programming)<    Programmation Orientée Objet (POO)
+        (to) operate    <(faire) fonctionner
+        operating instructions    <mode d’emploi
+        optical fiber    <fibre optique
+        (to) order < commander
+         an order     < commande   (→ achats)
+        OS (Operating System) < système d'exploitation
+        out of    <  en rupture de
+        out of adjustment    <  déréglé
+        outlet    < point de vente
+        outlet <  point de vente
+        outline    <contour (→ image)
+        outline < plan
+        outlook    <perspective(s) (d'avenir)
+        (to) outperform <    dépasser ( être meilleur )
+        (to) output     <sortir
+         an output < sortie
+        (to) overflow    <déborder
+        an overflow <  dépassement (→ capacité)
+        to overlap    < se superposer
+        an overlap < superposition
+        (to) overload     <surcharger
+        an overload < surcharge
+        (to) overrun < dépasser
+         an overrun    < dépassement
+        (to work) overtime    < (faire des) heures  suplémentaires
+        (to) overtype <    taper par-dessus
+        (to) overwrite < écraser
+        ongoing (adj.)<    en cours
+        PACE<    cadence
+        (to) pack    <comprimer
+        (software) package<    logiciel
+        packaging    <conditionnement
+        (to) paint<    colorier
+        (to) pan    <faire un panoramique
+        panel    <panneau
+        parity (check)<    (contrôle de) parité
+        parser    <programme d'analyse
+        parsing    <analyse grammaticale
+        password    <mot de passe
+        (to) paste <    coller
+        (to) patch < corriger
+        a patch <  correctif
+        (access) path    <chemin (d'accès)
+        pattern    < modèle
+        (to) perform<    effectuer
+        peripheral    <périphérique (n.)
+        (to) phase out<    supprimer petit à petit
+        phrase<    expression
+        pie chart    <camembert (graphique)
+        (to) pinpoint    <identifier
+        pipe<    tuyau
+        piracy<    piratage
+        pixel (= picture element)<    pixel
+        """
+        
+        let mots = donees.components(separatedBy: "\n")
+        for mot in mots {
+            var motData = mot.components(separatedBy: "<")
+            motData[0] = motData[0].trimmingCharacters(in: .whitespacesAndNewlines)
+            motData[1] = motData[1].trimmingCharacters(in: .whitespacesAndNewlines)
+            let parameters = [
+                "word" : [
+                    "content" : motData[1],
+                    "language" : "FR"
+                ],
+                "trad" : [
+                    "content" : motData[0],
+                    "language" : "EN"
+                ]
+            ]
+            Alamofire.request("https://vocs.lebarillier.fr/rest/users/48/lists/89/wordTrad", method: .post, parameters : parameters).responseJSON(completionHandler: { (reponse) in
+                print(reponse)
+            })
+        }
     }
     
     

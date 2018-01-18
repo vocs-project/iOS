@@ -13,8 +13,9 @@ class AjouterMotViewController: UIViewController {
     var delegateMot : AjouterUnMotDelegate!
     
     let labelAjouter = VCTitreLabel(text : "Ajouter un mot")
-    let textFieldMot = VCTextFieldLigneBas(placeholder: "Anglais",alignement : .left)
-    let textFieldTraductionMot = VCTextFieldLigneBas(placeholder: "Français",alignement : .left)
+    let textFieldMot = VCTextFieldLigneBas(placeholder: "Français",alignement : .left)
+    let textFieldTraductionMot = VCTextFieldLigneBas(placeholder: "Angais",alignement : .left)
+    let buttonAdd = VCButtonExercice("Ajouter", color: UIColor(rgb: 0x1ABC9C))
     var liste : List?
     
     override func viewDidLoad() {
@@ -25,10 +26,10 @@ class AjouterMotViewController: UIViewController {
         setupViews()
     }
     
-    func handleAjouter() {
+    @objc func handleAjouter() {
         if let mot = textFieldMot.text, let traduction = textFieldTraductionMot.text {
             if (!(mot.isEmpty || traduction.isEmpty)){
-                delegateMot.envoyerMot(french: mot, english: traduction)
+                delegateMot.envoyerMot(french: mot.capitalizingFirstLetter(), english: traduction.capitalizingFirstLetter())
             }
         }
         dismiss(animated: true, completion: nil)
@@ -54,9 +55,18 @@ class AjouterMotViewController: UIViewController {
         textFieldTraductionMot.widthAnchor.constraint(equalTo: self.view.widthAnchor,multiplier : 9 / 10).isActive = true
         textFieldTraductionMot.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         
+        self.buttonAdd.layer.cornerRadius = 25
+        
+        self.view.addSubview(buttonAdd)
+        buttonAdd.topAnchor.constraint(equalTo: textFieldTraductionMot.bottomAnchor,constant : 40).isActive = true
+        buttonAdd.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        buttonAdd.widthAnchor.constraint(equalTo: self.view.widthAnchor,multiplier : 9 / 10).isActive = true
+        buttonAdd.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        buttonAdd.addTarget(self, action: #selector(handleAjouter), for: .touchUpInside)
+        
     }
     
-    func handleRevenir() {
+    @objc func handleRevenir() {
         dismiss(animated: true, completion: nil)
     }
 

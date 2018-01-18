@@ -8,23 +8,32 @@
 
 import UIKit
 import SQLite
-
+import AVFoundation
 class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, AjouterUnMotDelegate {
 
     
-    var mots : [ListMot] = [] {
+    var mots : [ListMot] = []
+    let reuseIdentifier = "motCell"
+    let reuseIdentifierHeader = "motCellHeader"
+    var list : List?
+    var canShare = false {
         didSet {
-            self.motsTableView.reloadData()
+            self.setupTopBar()
         }
     }
-    let reuseIdentifier = "motCell"
-    var list : List?
+    
+    var enableEditing = false {
+        didSet {
+            self.setupTopBar()
+        }
+    }
     
     lazy var motsTableView : UITableView = {
         var tv = UITableView()
         tv.delegate = self
         tv.dataSource = self
         tv.backgroundColor = .clear
+        tv.showsVerticalScrollIndicator = false
         tv.separatorStyle = .none
         tv.translatesAutoresizingMaskIntoConstraints = false
         return tv
@@ -32,7 +41,21 @@ class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDat
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Ajouter", style: .plain, target: self, action: #selector(handleAjouter)), animated: true)
+        setupTopBar()
+    }
+    
+    //Permet de changer les options de la top bar
+    func setupTopBar() {
+        if enableEditing && canShare {
+            var rightBarItems =  [UIBarButtonItem(image: #imageLiteral(resourceName: "AjouterClass"), style: .plain, target: self, action: #selector(handleAjouter)),UIBarButtonItem(image : #imageLiteral(resourceName: "share"),style: .plain, target: self, action: #selector(handleShare))]
+            rightBarItems[0].imageInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 8)
+            rightBarItems[1].imageInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: -4)
+            self.navigationItem.setRightBarButtonItems(rightBarItems, animated: true)
+        } else if (enableEditing && !canShare)  {
+            self.navigationItem.setRightBarButton(UIBarButtonItem(image: #imageLiteral(resourceName: "AjouterClass"), style: .plain, target: self, action: #selector(handleAjouter)), animated: true)
+        } else {
+            self.navigationItem.rightBarButtonItem = nil
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,23 +66,40 @@ class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         self.navigationItem.setLeftBarButton(UIBarButtonItem(title: "Revenir", style: .plain, target: self, action: #selector(handleRevenir)), animated: true)
         self.motsTableView.register(VCMotCell.self, forCellReuseIdentifier: reuseIdentifier)
+        self.motsTableView.register(VCHeaderMotCell.self, forCellReuseIdentifier: reuseIdentifierHeader)
         self.view.backgroundColor = .white
         loadWords()
         setupViews()
     }
     
+    //charger les mots de la liste
+    let loading = VCLoadingController()
     func loadWords() {
-        guard let idList =  self.list?.id_list, let userId = Auth().loadUserId() else {return}
-        List.loadWords(fromUserId: userId,fromListId: idList, completion: { (mots) in
+        guard let idList =  self.list?.id_list else {return}
+        self.present(loading, animated: true) {
+            List.loadWords(fromListId: idList, completion: { (mots) in
+                self.mots = mots
+                self.motsTableView.reloadData()
+                self.loading.dismiss(animated: true, completion: nil)
+            })
+        }
+    }
+    
+    func loadWordsWithoutLoading(){
+        guard let idList =  self.list?.id_list else {return}
+        List.loadWords(fromListId: idList, completion: { (mots) in
             self.mots = mots
+            self.motsTableView.reloadData()
         })
     }
     
-    func handleTrain() {
-        
+    @objc func handleShare() {
+        let controller = VCRechercherProfController()
+        controller.list = self.list
+        self.present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
     
-    func handleAjouter() {
+    @objc func handleAjouter() {
         let controller = AjouterMotViewController()
         controller.delegateMot = self
         controller.liste = list
@@ -71,26 +111,19 @@ class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDat
     //Ajouter un nouveau mot dans le table view
     func addNewWordToTableView(listMot : ListMot) {
         self.mots.append(listMot)
-        self.motsTableView.reloadData()
-//        let indexPath = IndexPath(row: self.mots.count, section: 0)
-//        _ = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(insertRow), userInfo: indexPath, repeats: false)
+        let indexPath = IndexPath(row: self.mots.count - 1, section: 0)
+        _ = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(insertRow), userInfo: indexPath, repeats: false)
     }
     
     func envoyerMot(french: String, english: String) {
         guard let currentList = self.list else {return}
-        currentList.addNewWord(french: french, english: english) { (added) in
+        currentList.addNewWord(french: french.capitalizingFirstLetter(), english: english.capitalizingFirstLetter()) { (added) in
             if (added) {
-                self.addNewWordToTableView(listMot: ListMot(word: Mot(content: french, lang: "FR"), trad: Mot(content: english, lang: "EN")))
+                self.loadWordsWithoutLoading()
             } else {
                 self.presentError(title: "Problème de connexion", message: "Le mot n'a pas été ajouté suite à un problème de connexion")
             }
         }
-    }
-    
-    func deleteMot(indexPath : IndexPath) {
-        self.presentError(title: "Non disponible", message: "Cette fonction n'est pas encore disponible")
-//        Mot.deleteWord(word: mots[indexPath.row])
-//        mots.remove(at: indexPath.row)
     }
     
     func setupViews(){
@@ -102,44 +135,72 @@ class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDat
         motsTableView.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
     }
     
-    func handleRevenir() {
+    @objc func handleRevenir() {
         self.navigationController?.popViewController(animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.mots.count
+        return self.mots.count + 1
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 45
+        return indexPath.row == 0  ? 80 : 45
     }
     
-    func insertRow(timer : Timer) {
+    @objc func insertRow(timer : Timer) {
         motsTableView.insertRows(at: [timer.userInfo as! IndexPath], with: .automatic)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:VCMotCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier)! as! VCMotCell
-        var text = "Erreur chargement"
-        let listMot = self.mots[indexPath.row]
-        guard let word = listMot.word?.content, let trad = listMot.trad?.content else {
+        if (indexPath.row == 0) {
+            let cell:VCHeaderMotCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierHeader)! as! VCHeaderMotCell
+            return cell
+        } else {
+            let cell:VCMotCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier)! as! VCMotCell
+            var text = "Erreur chargement"
+            let listMot = self.mots[indexPath.row - 1]
+            guard let word = listMot.word?.content, let trad = listMot.trad?.content else {
+                cell.labelListe.text = text
+                return cell
+            }
+            text = "\(word.capitalizingFirstLetter()) - \(trad.capitalizingFirstLetter())"
             cell.labelListe.text = text
             return cell
         }
-        text = "\(word) - \(trad)"
-        cell.labelListe.text = text
-        return cell
     }
     
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "Supprimer"
+        if enableEditing  && indexPath.row > 0 {
+            return "Supprimer"
+        } else {
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row > 0 {
+            let listWord = self.mots[indexPath.row - 1]
+            guard let mot = listWord.trad else {
+                return
+            }
+            PrononcationMots.loadInstance().prononcer(mot: mot)
+        }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.delete {
-//            deleteMot(indexPath: indexPath)
-//            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
-            self.presentError(title: "Non disponible", message: "Cette fonction n'est pas encore disponible")
+        if enableEditing && indexPath.row > 0 {
+            if editingStyle == UITableViewCellEditingStyle.delete {
+                let listWord = self.mots.remove(at: indexPath.row - 1)
+                tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+                self.list?.deleteWordFromList(listMot : listWord , completion: { (deleted,listWord) in
+                    if !deleted {
+                        self.presentError(title: "Problème de connexion", message: "Le mot n'a pas été supprimé suite à un problème de connexion")
+                        self.mots.append(listWord)
+                        let indexPath = IndexPath(row: self.mots.count - 1, section: 0)
+                        self.motsTableView.insertRows(at: [indexPath], with: .automatic)
+                    }
+                })
+            }
         }
     }
 }

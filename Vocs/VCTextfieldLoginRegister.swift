@@ -17,7 +17,7 @@ class VCTextfieldLoginRegister : UITextField {
     }
     
     func checkIfNotEmpty() -> Bool {
-        guard let count = self.text?.characters.count else {return false}
+        guard let count = self.text?.count else {return false}
         if count > 0 {
             return true
         } else {

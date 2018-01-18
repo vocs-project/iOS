@@ -9,16 +9,13 @@
 import UIKit
 import SQLite
 
-class ListesViewController: UIViewController, UITableViewDataSource,UITableViewDelegate, AjouterUneListeDelegate {
+class ListesViewController: UIViewController, UITableViewDataSource,UITableViewDelegate, AjouterUneListeDelegate , VCUserChangeClass {
     
     let reuseIdentifier = "listeCell"
     let reuseIdentifierHeader = "headerCell"
     
-    var user : User? {
-        didSet {
-            self.chargerLesListes()
-        }
-    }
+    var user : User?
+    var group: Group?
     
     var lists : [List] = []
     var listsClass : [List] = []
@@ -37,13 +34,11 @@ class ListesViewController: UIViewController, UITableViewDataSource,UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Mes listes"
-        chargerLesListes()
         listesTableView.register(VCListeCell.self, forCellReuseIdentifier: reuseIdentifier)
         listesTableView.register(VCHeaderListeWithButtonCell.self, forHeaderFooterViewReuseIdentifier: reuseIdentifierHeader)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "refresh"), style: .plain, target: self, action: #selector(chargerLesListes))
         setupViews()
-        Auth().loadUserConnected { (user) in
-            self.user = user
-        }
+        changerLesListesSansLoading()
     }
     
     //Permet de recevoir une liste grace au delegate
@@ -63,19 +58,92 @@ class ListesViewController: UIViewController, UITableViewDataSource,UITableViewD
         }
     }
     
+    func userChangedClass() {
+        self.changerLesListesSansLoading()
+    }
+    
+    func changerLesListesSansLoading() {
+        Auth().loadUserConnected { (user) in
+            self.user = user
+            user?.loadClasse(completion: { (group) in
+                guard let id = user?.id else {return}
+                List.loadLists(forUserId: id, completion: { (lists) in
+                    if (lists.count == 0){
+                        self.messageVide()
+                    }
+                    self.lists = lists
+                    self.checkVide()
+                    guard let classeId = group?.id else {return}
+                    Group.loadGroup(idClasse: classeId, completion: { (group) in
+                        if group == nil {
+                            self.group = nil
+                            self.listesTableView.reloadData()
+                            self.checkVide()
+                        } else {
+                            self.group = group
+                            if group!.lists != nil {
+                                self.listsClass = group!.lists!
+                            }
+                        }
+                        self.listesTableView.reloadData()
+                        self.checkVide()
+                    })
+                })
+            })
+        }
+    }
+    
     //Charge les listes depuis l'API
-    func chargerLesListes() {
-        guard let user = user, let userId = user.id else {return}
+    @objc func chargerLesListes() {
+        guard let user = user else {return}
         guard let userLists = user.lists else {
-            List.loadLists(forUserId: userId, completion: { (lists) in
-                if (lists.count == 0){
-                    self.messageVide()
-                }
-                self.lists = lists
+            let loading = VCLoadingController()
+            self.present(loading, animated: true, completion: {
+                self.user = user
+                user.loadClasse(completion: { (group) in
+                    guard let id = user.id else {
+                        loading.dismiss(animated: false, completion: nil)
+                        return
+                    }
+                    List.loadLists(forUserId: id, completion: { (lists) in
+                        if (lists.count == 0){
+                            self.messageVide()
+                        }
+                        self.lists = lists
+                        self.checkVide()
+                        guard let classeId = group?.id else {
+                            loading.dismiss(animated: false, completion: nil)
+                            self.listesTableView.reloadData()
+                            return
+                        }
+                        Group.loadGroup(idClasse: classeId, completion: { (group) in
+                            if group == nil {
+                                self.group = nil
+                                self.checkVide()
+                            } else {
+                                self.group = group
+                                if group!.lists != nil {
+                                    self.listsClass = group!.lists!
+                                }
+                            }
+                            self.listesTableView.reloadData()
+                            self.checkVide()
+                            loading.dismiss(animated: false, completion: nil)
+                        })
+                    })
+                })
             })
             return
         }
         self.lists = userLists
+    }
+    
+    func checkVide() {
+        if (self.lists.isEmpty && self.listsClass.isEmpty){
+            messageVide()
+        } else {
+            labelIndispobible.removeFromSuperview()
+        }
     }
     
     func messageVide() {
@@ -86,7 +154,7 @@ class ListesViewController: UIViewController, UITableViewDataSource,UITableViewD
         labelIndispobible.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
-    func handleAjouter() {
+    @objc func handleAjouter() {
         let controller = AjouterListeViewController()
         controller.delegateAjouter = self
         let navController = UINavigationController(rootViewController: controller)
@@ -116,6 +184,8 @@ class ListesViewController: UIViewController, UITableViewDataSource,UITableViewD
         let cell:VCListeCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier)! as! VCListeCell
         if (indexPath.section == 0) {
             cell.setText(text: lists[indexPath.row].name!)
+        } else {
+            cell.setText(text: listsClass[indexPath.row].name!)
         }
         return cell
         
@@ -136,28 +206,44 @@ class ListesViewController: UIViewController, UITableViewDataSource,UITableViewD
         if section == 0 {
             headerCell.textHeader = "Personnelles"
             headerCell.buttonAjouter.addTarget(self, action: #selector(handleAjouter), for: .touchUpInside)
+            headerCell.buttonAjouter.layer.opacity = 1
+            headerCell.buttonAjouter.isEnabled = true
         } else {
-            headerCell.textHeader = "Classes"
-            headerCell.buttonAjouter.removeFromSuperview()
+            headerCell.textHeader = " Classe "
+            headerCell.buttonAjouter.layer.opacity = 0
+            headerCell.buttonAjouter.isEnabled = false
         }
         return headerCell
     }
     
     
-    func insertRow(timer : Timer) {
+    @objc func insertRow(timer : Timer) {
         listesTableView.insertRows(at: [timer.userInfo as! IndexPath], with: .automatic)
+        self.labelIndispobible.removeFromSuperview()
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let controller = MotsViewController()
-        controller.navigationItem.title = lists[indexPath.row].name!
-        controller.list = lists[indexPath.row]
+        if indexPath.section == 0 {
+            controller.navigationItem.title = lists[indexPath.row].name!
+            controller.enableEditing = true
+            controller.list = lists[indexPath.row]
+        } else {
+            controller.navigationItem.title = listsClass[indexPath.row].name!
+            controller.list = listsClass[indexPath.row]
+            controller.enableEditing = false
+            controller.navigationItem.rightBarButtonItem = nil
+        }
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "Supprimer"
+        if indexPath.section == 1 {
+            return nil
+        } else {
+            return "Supprimer"
+        }
     }
     
     //permet de supprimer une liste quand on glisse vers la gauche
@@ -167,16 +253,15 @@ class ListesViewController: UIViewController, UITableViewDataSource,UITableViewD
             print("Supprimé")
         }
         lists.remove(at: indexPath.row)
-        if (lists.count == 0){
+        if (lists.count == 0 && listsClass.count == 0){
             messageVide()
         }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.delete {
+        if editingStyle == UITableViewCellEditingStyle.delete && indexPath.section == 0 {
             deleteList(indexPath: indexPath)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            
         }
     }
 }

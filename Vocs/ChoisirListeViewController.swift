@@ -12,6 +12,7 @@ import SQLite
 class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
     
     let reuseIdentifier = "listeCell"
+    let reuseIdentifierHeader = "listCellheader"
     var user : User? {
         didSet {
             self.chargerLesListes()
@@ -24,10 +25,16 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
             self.listesTableView.reloadData()
         }
     }
+    var listsClass : [List] = [] {
+        didSet {
+            self.checkVide()
+            self.listesTableView.reloadData()
+        }
+    }
     var dejaCharge = false
     var gameMode : VCGameMode?
     
-    let headerTableView = VCHeaderListe(text: "Choisir une liste")
+//    let headerTableView = VCHeaderListe(text: "Choisir une liste")
     var labelIndispobible = VCLabelMenu(text: "Vous n'avez aucune liste",size: 20)
     
     lazy var listesTableView : UITableView = {
@@ -51,6 +58,7 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
         self.view.backgroundColor = .white
         loadTitle()
         chargerLesListes()
+        listesTableView.register(VCHeaderListeWithButtonCell.self, forHeaderFooterViewReuseIdentifier: reuseIdentifierHeader)
         listesTableView.register(VCListeCell.self, forCellReuseIdentifier: reuseIdentifier)
         setupViews()
         checkVide()
@@ -64,12 +72,14 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
                 title = "Traduction"
             case .qcm:
                 title = "QCM"
+            case .matching:
+                title = "Matching"
         }
         self.navigationItem.title = title
     }
     
     func checkVide() {
-        if (self.lists.isEmpty){
+        if (self.lists.isEmpty && self.listsClass.isEmpty){
             messageVide()
         } else {
             labelIndispobible.removeFromSuperview()
@@ -79,36 +89,48 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
     //Charge les listes depuis l'API
     func chargerLesListes() {
         guard let user = user, let userId = user.id else {return}
-        List.loadLists(forUserId: userId, completion: { (lists) in
-            self.lists = lists
-            self.loadWordsForLists()
-        })
-    }
-    
-    func loadWordsForLists() {
-        guard let user = user, let userId = user.id else {return}
-        for list in lists {
-            if let idList = list.id_list {
-                List.loadWords(fromUserId: userId,fromListId: idList, completion: { (mots) in
-                    list.words = mots
+        guard let userLists = user.lists else {
+            let loading = VCLoadingController()
+            self.present(loading, animated: true, completion: {
+                List.loadLists(forUserId: userId, completion: { (lists) in
+                    if (lists.count == 0){
+                        self.messageVide()
+                    }
+                    self.lists = lists
                 })
-            }
+                user.loadClasse(completion: { (group) in
+                    guard let idClasse = group?.id else {
+                        loading.dismiss(animated: true, completion: nil)
+                        return
+                    }
+                    Group.loadGroup(idClasse: idClasse, completion: { (group) in
+                        if group != nil {
+                            if group!.lists != nil {
+                                self.listsClass = group!.lists!
+                                self.checkVide()
+                            }
+                        }
+                        loading.dismiss(animated: true, completion: nil)
+                    })
+                })
+            })
+            return
         }
+        self.lists = userLists
     }
-    
     func setupViews() {
         
-        self.view.addSubview(headerTableView)
-        
-        headerTableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant : 10).isActive = true
-        headerTableView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        headerTableView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        headerTableView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 9/10).isActive = true
+//        self.view.addSubview(headerTableView)
+//
+//        headerTableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant : 10).isActive = true
+//        headerTableView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+//        headerTableView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+//        headerTableView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 9/10).isActive = true
         
         
         self.view.addSubview(listesTableView)
         
-        listesTableView.topAnchor.constraint(equalTo: headerTableView.bottomAnchor, constant : 10).isActive = true
+        listesTableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant : 10).isActive = true
         listesTableView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         listesTableView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 9/10).isActive = true
         listesTableView.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
@@ -122,9 +144,26 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
         labelIndispobible.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
+    func listeEstVide(indexPath : IndexPath) -> Bool {
+        
+        //on est dans les listes personnelles
+        if indexPath.section == 0 {
+            if lists[indexPath.row].estVide() {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            if listsClass[indexPath.row].estVide() {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.lists.count
+        return section == 0 ? self.lists.count : self.listsClass.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -132,65 +171,80 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell:VCListeCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier)! as! VCListeCell
-        cell.setText(text: lists[indexPath.row].name!)
-        
+        if (indexPath.section == 0) {
+            cell.setText(text: lists[indexPath.row].name!)
+        } else {
+            cell.setText(text: listsClass[indexPath.row].name!)
+        }
         return cell
         
     }
     
-    func listeEstVide(indexPath : IndexPath) -> Bool {
-        if lists[indexPath.row].estVide() {
-            return true
-        } else {
-            return false
-        }
+    //Deux sections 1 => Personnelles et 2 => Classes
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
     
-    //Il faut que le nombre de mots soit superieur a 4 pour faire un qcm
-    func verifierNombreMotsPourQCM(indexPath : IndexPath) -> Bool {
-        guard let words = lists[indexPath.row].words else {
-            return false
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 55
+    }
+    
+    //il n'y a que deux types de listes : Personnelles ou Classes
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseIdentifierHeader) as! VCHeaderListeWithButtonCell
+        if section == 0 {
+            headerCell.textHeader = "Personnelles"
+        } else {
+            headerCell.textHeader = " Classe "
         }
-        return words.count > 4 ? true : false
+        headerCell.buttonAjouter.layer.opacity = 0
+        headerCell.buttonAjouter.isEnabled = false
+        return headerCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (gameMode == .qcm) {
-            if !(verifierNombreMotsPourQCM(indexPath: indexPath)) {
-                let alertController = UIAlertController(title: "Problème de liste", message:
-                    "\(lists[indexPath.row].name!) doit contenir au moins 4 mots pour faire le QCM", preferredStyle: UIAlertControllerStyle.alert)
-                let cancelAction = UIAlertAction(title: "Retour", style: UIAlertActionStyle.cancel)
-                alertController.addAction(cancelAction)
-                self.present(alertController, animated: true, completion: nil)
-                return
-            }
+        var gameController : VCGameViewController!
+        guard let gameMode = gameMode else {return}
+        switch gameMode {
+            case .traduction :
+                gameController = VCTraductionViewController()
+            case .qcm :
+                gameController = VCQCMViewController()
+        case .matching :
+                gameController = VCMatchingViewController()
         }
-        
-        if (!listeEstVide(indexPath: indexPath)){
-            var controller : VCGameViewController!
-            guard let gameMode = gameMode else {return}
-            switch gameMode {
-                case .traduction :
-                    controller = TraductionViewController()
-                case .qcm :
-                    controller = VCQCMViewController()
+        gameController.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+        let navController = UINavigationController(rootViewController: gameController)
+        //liste de classes => Il faut charger les mots
+        if indexPath.section != 0 {
+            let loading = VCLoadingController()
+            guard let idList =  self.listsClass[indexPath.row].id_list else {return}
+            self.present(loading, animated: true) {
+                List.loadWords(fromListId: idList, completion: { (mots) in
+                    gameController.mots = mots
+                    loading.dismiss(animated: true, completion: nil)
+                    if mots.count == 0 {
+                        self.presentError(title: "Problème de liste", message: "\(self.listsClass[indexPath.row].name!) est vide")
+                    } else if gameMode == .qcm && mots.count < 4 {
+                        self.presentError(title: "Problème de liste", message: "\(self.listsClass[indexPath.row].name!) doit comporter au moins 4 mots pour faire le QCM")
+                    } else {
+                        self.present(navController, animated: true, completion: nil)
+                    }
+                })
             }
-            if lists[indexPath.row].words != nil {
-                controller.mots =  lists[indexPath.row].words!
+        } else { //listes personnelles les mots sont déjà chargés
+            if lists[indexPath.row].words?.count == 0 {
+                self.presentError(title: "Problème de liste", message: "\(lists[indexPath.row].name!) est vide")
+            } else if gameMode == .qcm && (lists[indexPath.row].words?.count)! < 4 {
+                self.presentError(title: "Problème de liste", message: "\(self.lists[indexPath.row].name!) doit comporter au moins 4 mots pour faire le QCM")
+            } else {
+                if lists[indexPath.row].words != nil {
+                    gameController.mots =  lists[indexPath.row].words!
+                }
+                
+                present(navController, animated: true, completion: nil)
             }
-            controller.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
-            let navController = UINavigationController(rootViewController: controller)
-            present(navController, animated: true, completion: nil)
-        } else {
-            let alertController = UIAlertController(title: "Problème de liste", message:
-                "\(lists[indexPath.row].name!) est vide", preferredStyle: UIAlertControllerStyle.alert)
-            let cancelAction = UIAlertAction(title: "Retour", style: UIAlertActionStyle.cancel) {
-                UIAlertAction in
-            }
-            alertController.addAction(cancelAction)
-            self.present(alertController, animated: true, completion: nil)
         }
     }
 }
