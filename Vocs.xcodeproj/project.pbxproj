@@ -59,6 +59,7 @@
 		6A5D46CA1EC8F0D300854EA1 /* AjouterMotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5D46C91EC8F0D300854EA1 /* AjouterMotViewController.swift */; };
 		6A5D46CD1EC8F43900854EA1 /* Protocoles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5D46CC1EC8F43900854EA1 /* Protocoles.swift */; };
 		6A6060701FAA2D9B0059B1B7 /* VCManageStudentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A60606F1FAA2D9B0059B1B7 /* VCManageStudentsController.swift */; };
+		6A60B2442012401F0053DD3D /* VCTimeAttackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A60B2432012401F0053DD3D /* VCTimeAttackController.swift */; };
 		6A6F1C891ED77A3C0098D6EE /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F1C881ED77A3C0098D6EE /* List.swift */; };
 		6A76DA771EF97CCC00E151AA /* VCConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A76DA751EF97CCC00E151AA /* VCConnectionViewController.swift */; };
 		6A774FC71F77E81F00A19C7B /* spinner.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A774FC61F77E81C00A19C7B /* spinner.json */; };
@@ -105,7 +106,6 @@
 		6AEB685D1FA66D6700920E18 /* VCHeaderNoClasseCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEB685C1FA66D6700920E18 /* VCHeaderNoClasseCollectionReusableView.swift */; };
 		6AF4918C200A556D00D6489E /* Parametre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4918B200A556D00D6489E /* Parametre.swift */; };
 		6AF4918E200A6FCB00D6489E /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AF4918D200A6FCB00D6489E /* Storyboard.storyboard */; };
-		6AF49190200A708700D6489E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4918F200A708700D6489E /* ViewController.swift */; };
 		6AFF2BF41FA3541C003E397F /* VCNewCassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFF2BF31FA3541C003E397F /* VCNewCassController.swift */; };
 		6AFF2BFD1FA3C2A8003E397F /* VCLoadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFF2BFC1FA3C2A8003E397F /* VCLoadingController.swift */; };
 		E3C390AF04A1589C045CFC3B /* Pods_Vocs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44FA4FAA1318AAB86B1747FE /* Pods_Vocs.framework */; };
@@ -169,6 +169,7 @@
 		6A5D46C91EC8F0D300854EA1 /* AjouterMotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AjouterMotViewController.swift; sourceTree = "<group>"; };
 		6A5D46CC1EC8F43900854EA1 /* Protocoles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocoles.swift; sourceTree = "<group>"; };
 		6A60606F1FAA2D9B0059B1B7 /* VCManageStudentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCManageStudentsController.swift; sourceTree = "<group>"; };
+		6A60B2432012401F0053DD3D /* VCTimeAttackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCTimeAttackController.swift; sourceTree = "<group>"; };
 		6A6F1C881ED77A3C0098D6EE /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		6A76DA751EF97CCC00E151AA /* VCConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCConnectionViewController.swift; sourceTree = "<group>"; };
 		6A774FC61F77E81C00A19C7B /* spinner.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = spinner.json; sourceTree = "<group>"; };
@@ -215,7 +216,6 @@
 		6AEB685C1FA66D6700920E18 /* VCHeaderNoClasseCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCHeaderNoClasseCollectionReusableView.swift; sourceTree = "<group>"; };
 		6AF4918B200A556D00D6489E /* Parametre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parametre.swift; sourceTree = "<group>"; };
 		6AF4918D200A6FCB00D6489E /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
-		6AF4918F200A708700D6489E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6AFF2BF31FA3541C003E397F /* VCNewCassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCNewCassController.swift; sourceTree = "<group>"; };
 		6AFF2BFC1FA3C2A8003E397F /* VCLoadingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCLoadingController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -268,6 +268,7 @@
 				6A5D46C71EC8C28A00854EA1 /* VCScoreViewController.swift */,
 				6A466AA91F72D1B800AB6FA8 /* VCGameViewController.swift */,
 				6A07BB1D1FB7C024008BD38C /* VCMatchingViewController.swift */,
+				6A60B2432012401F0053DD3D /* VCTimeAttackController.swift */,
 			);
 			name = Jeux;
 			sourceTree = "<group>";
@@ -427,7 +428,6 @@
 				6A59D76C1EBB701400E5D1BA /* Assets.xcassets */,
 				6A59D7711EBB701400E5D1BA /* Info.plist */,
 				6AF4918D200A6FCB00D6489E /* Storyboard.storyboard */,
-				6AF4918F200A708700D6489E /* ViewController.swift */,
 			);
 			path = Vocs;
 			sourceTree = "<group>";
@@ -742,7 +742,6 @@
 				6ACF9D891F7D353E0078490B /* Auth.swift in Sources */,
 				6A333DB51FA89E83003A1FFC /* VCTeacherClasseController.swift in Sources */,
 				6ACF9D871F7D34E40078490B /* User.swift in Sources */,
-				6AF49190200A708700D6489E /* ViewController.swift in Sources */,
 				6A2733591EC74BA000E4830E /* ExercicesViewController.swift in Sources */,
 				6A466AAA1F72D1B900AB6FA8 /* VCGameViewController.swift in Sources */,
 				6A44E7151F8662F2003C449C /* ListMot.swift in Sources */,
@@ -759,6 +758,7 @@
 				6ACFE2421FC599EE002F4721 /* VCChangeProfilController.swift in Sources */,
 				6AD3021E1FAB73F700A0D682 /* School.swift in Sources */,
 				6A27336C1EC7821E00E4830E /* VCTextFieldLigneBas.swift in Sources */,
+				6A60B2442012401F0053DD3D /* VCTimeAttackController.swift in Sources */,
 				6A76DA771EF97CCC00E151AA /* VCConnectionViewController.swift in Sources */,
 				6AD2BB691F62A834008BFB3D /* VCHeaderWithBarCollectionViewCell.swift in Sources */,
 				6AD302201FABD3DB00A0D682 /* Demand.swift in Sources */,
