@@ -74,6 +74,7 @@
 		6AAA31151FD89BA400C6BA2D /* DemandList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA31141FD89BA400C6BA2D /* DemandList.swift */; };
 		6AAA31171FD89BB600C6BA2D /* DemandWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA31161FD89BB600C6BA2D /* DemandWord.swift */; };
 		6AC57BFC1FBC86640005CD97 /* VCRechercherProf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC57BFB1FBC86640005CD97 /* VCRechercherProf.swift */; };
+		6AC6FD562011535B007E06B8 /* Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC6FD552011535B007E06B8 /* Enumerations.swift */; };
 		6ACEB5201F6D26A400A2236D /* VCViewConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACEB51F1F6D26A400A2236D /* VCViewConnection.swift */; };
 		6ACEB5241F6D2BD100A2236D /* VCRegisterInformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACEB5231F6D2BD100A2236D /* VCRegisterInformations.swift */; };
 		6ACEB5281F6D7F8D00A2236D /* VCLabelTitleConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACEB5271F6D7F8D00A2236D /* VCLabelTitleConnection.swift */; };
@@ -183,6 +184,7 @@
 		6AAA31141FD89BA400C6BA2D /* DemandList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemandList.swift; sourceTree = "<group>"; };
 		6AAA31161FD89BB600C6BA2D /* DemandWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemandWord.swift; sourceTree = "<group>"; };
 		6AC57BFB1FBC86640005CD97 /* VCRechercherProf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCRechercherProf.swift; sourceTree = "<group>"; };
+		6AC6FD552011535B007E06B8 /* Enumerations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumerations.swift; sourceTree = "<group>"; };
 		6ACEB51F1F6D26A400A2236D /* VCViewConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCViewConnection.swift; sourceTree = "<group>"; };
 		6ACEB5231F6D2BD100A2236D /* VCRegisterInformations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCRegisterInformations.swift; sourceTree = "<group>"; };
 		6ACEB5271F6D7F8D00A2236D /* VCLabelTitleConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCLabelTitleConnection.swift; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 		6A59D7771EBB70C700E5D1BA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6AC6FD542011534A007E06B8 /* Enums */,
 				6AF4918A200A556000D6489E /* Utils */,
 				6AF49189200A4DA800D6489E /* Classes */,
 				6A5D46CB1EC8F42900854EA1 /* Protocoles */,
@@ -486,6 +489,14 @@
 				6A5D46CC1EC8F43900854EA1 /* Protocoles.swift */,
 			);
 			name = Protocoles;
+			sourceTree = "<group>";
+		};
+		6AC6FD542011534A007E06B8 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				6AC6FD552011535B007E06B8 /* Enumerations.swift */,
+			);
+			name = Enums;
 			sourceTree = "<group>";
 		};
 		6AD2BB5D1F62A600008BFB3D /* Headers */ = {
@@ -744,6 +755,7 @@
 				6A466AA81F72C46500AB6FA8 /* VCRowQCM.swift in Sources */,
 				6AFF2BFD1FA3C2A8003E397F /* VCLoadingController.swift in Sources */,
 				6ACEB5281F6D7F8D00A2236D /* VCLabelTitleConnection.swift in Sources */,
+				6AC6FD562011535B007E06B8 /* Enumerations.swift in Sources */,
 				6ACFE2421FC599EE002F4721 /* VCChangeProfilController.swift in Sources */,
 				6AD3021E1FAB73F700A0D682 /* School.swift in Sources */,
 				6A27336C1EC7821E00E4830E /* VCTextFieldLigneBas.swift in Sources */,
