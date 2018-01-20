@@ -9,7 +9,7 @@
 import UIKit
 import SQLite
 
-class VCTraductionViewController: VCGameViewController {
+class VCTraductionViewController: VCGameViewController, VDelegateReload {
 
     var textField = VCTextFieldLigneBas(placeholder :"",alignement : .center)
     var validateButton = VCButtonValidate()
@@ -45,6 +45,11 @@ class VCTraductionViewController: VCGameViewController {
         textField.becomeFirstResponder()
     }
     
+    //Called when the user dismiss the alertInformation controller
+    func reloadData() {
+        loadWordOnScreen()
+    }
+    
     @objc func handleRevenir () {
         alertInformation.dismiss(animated: false, completion: nil)
     }
@@ -53,36 +58,39 @@ class VCTraductionViewController: VCGameViewController {
         guard let text = self.textField.text else {
             return
         }
-        if !text.isEmpty {
-            self.verifierTraduction(wordTrad: mots[motActuelIndex], word: text, completion: { (estTraductionAttendue, estSynonyme, tradAttendu) in
-                if (estTraductionAttendue || estSynonyme) {
-                    textField.textColor = UIColor(rgb: 0x1ABC9C)
-                    nbrReussi += 1;
-                    if (estSynonyme && tradAttendu != nil) {
-                        alertInformation.buttonBottom.addTarget(self, action: #selector(handleRevenir), for: .touchUpInside)
-                        alertInformation.buttonTop.isHidden = true
-                        alertInformation.buttonTop.isUserInteractionEnabled = false
-                        alertInformation.titleText = "\(text) est correct"
-                        alertInformation.contentText = "Mais le mot\nattendu était\n\(tradAttendu!)"
-                        self.present(alertInformation, animated: false, completion: nil)
-                    }
+        self.verifierTraduction(wordTrad: mots[motActuelIndex], word: text, completion: { (estTraductionAttendue, estSynonyme, tradAttendu) in
+            if (estTraductionAttendue || estSynonyme) {
+                textField.textColor = UIColor(rgb: 0x1ABC9C)
+                nbrReussi += 1;
+                mots[motActuelIndex].userSucceed()
+                if (estSynonyme && tradAttendu != nil) {
+                    alertInformation.buttonBottom.addTarget(self, action: #selector(handleRevenir), for: .touchUpInside)
+                    alertInformation.buttonTop.isHidden = true
+                    alertInformation.buttonTop.isUserInteractionEnabled = false
+                    alertInformation.titleText = "\(text) est correct"
+                    alertInformation.delegate = self
+                    alertInformation.contentText = "Mais le mot\nattendu était\n\(tradAttendu!)"
+                    self.present(alertInformation, animated: false, completion: nil)
                 } else {
-                    //Information sur la bonne traduction du mot
-                    if (mots[motActuelIndex].word?.content != nil && mots[motActuelIndex].trad?.content != nil) {
-                        alertInformation.buttonBottom.addTarget(self, action: #selector(handleRevenir), for: .touchUpInside)
-                        alertInformation.wordIncorrect = text.capitalizingFirstLetter()
-                        alertInformation.isWordToTranslateFrench = super.isFrenchToEnglish
-                        alertInformation.word = mots[motActuelIndex]
-                        self.present(alertInformation, animated: false, completion: nil)
-                    }
-                    textField.textColor = UIColor(rgb: 0xD83333)
+                    _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(loadWordOnScreen), userInfo: nil, repeats: false)
                 }
-                compteur += 1;
-                _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(loadWordOnScreen), userInfo: nil, repeats: false)
-                textField.isEnabled = false
-                validateButton.isEnabled = false
-            })
-        }
+            } else {
+                //Information sur la bonne traduction du mot
+                mots[motActuelIndex].userFailed()
+                if (mots[motActuelIndex].word?.content != nil && mots[motActuelIndex].trad?.content != nil) {
+                    alertInformation.buttonBottom.addTarget(self, action: #selector(handleRevenir), for: .touchUpInside)
+                    alertInformation.wordIncorrect = text.capitalizingFirstLetter()
+                    alertInformation.isWordToTranslateFrench = super.isFrenchToEnglish
+                    alertInformation.word = mots[motActuelIndex]
+                    alertInformation.delegate = self
+                    self.present(alertInformation, animated: false, completion: nil)
+                }
+                textField.textColor = UIColor(rgb: 0xD83333)
+            }
+            compteur += 1;
+            textField.isEnabled = false
+            validateButton.isEnabled = false
+        })
     }
     
     @objc func loadWordOnScreen(){
@@ -103,6 +111,7 @@ class VCTraductionViewController: VCGameViewController {
         self.textField.text = ""
         textField.isEnabled = true
         validateButton.isEnabled = true
+        textField.becomeFirstResponder()
     }
     
     

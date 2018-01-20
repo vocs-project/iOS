@@ -217,11 +217,16 @@ class Group {
             "lists" : listIds
         ]
         Alamofire.request("\(Auth.URL_API)/classes/\(classeId)",method: .patch, parameters : parameters).responseJSON { (response) in
-            guard let _ = response.result.value as? [String : Any] else {
+            guard let json = response.result.value as? [String : Any] else {
                 completion(false)
                 return
             }
-            completion(true)
+            guard let error = json["error"] as? [String : Any] else {
+                completion(true)
+                return
+            }
+            print(error)
+            completion(false)
         }
         
     }

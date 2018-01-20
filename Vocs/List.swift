@@ -22,6 +22,12 @@ class List {
         self.name = name
     }
     
+    
+    init(name : String,words : [ListMot]) {
+        self.name = name
+        self.words = words
+    }
+    
     init(id_list: Int,name : String,words : [ListMot]) {
         self.id_list = id_list
         self.name = name
@@ -33,6 +39,50 @@ class List {
             return self.words!.count > 0 ? false : true
         } else {
             return true
+        }
+    }
+    
+    //Permet d'obtenir le ratio du nombre de mots de niveau précisé en parametre
+    func getRatioColor(levelColor : VCColorWord) -> CGFloat {
+        if words != nil  {
+            var i  = 0
+            for word in words! {
+                if word.getLevelColor() == levelColor {
+                    i += 1
+                }
+            }
+            var ratio = CGFloat(0)
+            if words!.count > 0 {
+                ratio = CGFloat(CGFloat(i) / CGFloat(words!.count))
+            } else {
+                ratio = 0
+            }
+            return ratio
+        } else {
+            return 0
+        }
+    }
+    
+    //Permet d'obtenir la hard liste de l'utilisateur courant
+    static func loadCurrentHardList( completion : @escaping (List?) -> Void) {
+        guard let uid = Auth().currentUserId else {
+            completion(nil)
+            return
+        }
+        Alamofire.request("\(Auth.URL_API)/users/\(uid)/hardlist", method : .get).responseJSON { (response) in
+            guard let json = response.result.value as? [String : Any] else {
+                return
+            }
+            guard let name = json["name"] as? String else {
+                completion(nil)
+                return
+            }
+            guard let wordsList = json["wordTrads"] as? [[String : Any]] else {
+                completion(nil)
+                return
+            }
+            let wordsOfList : [ListMot] = extractList(wordsList: wordsList)
+            completion(List(name: name, words: wordsOfList))
         }
     }
     
@@ -85,6 +135,54 @@ class List {
         }
     }
     
+    static func extractList(wordsList : [[String : Any]]) -> [ListMot] {
+        var wordsOfList : [ListMot] = []
+        for wordList in wordsList {
+            //Chargement du mot et de sa traduction
+            guard let word = wordList["word"] as? [String : Any], let trad = wordList["trad"] as? [String : Any], let idMot = wordList["id"] as? Int, let stats = wordList["stat"] as? [String : Int] else {
+                return wordsOfList
+            }
+            //Chargement des informations du mot
+            guard let contentWord = word["content"] as? String, let langWordArray = word["language"] as? [String : String], let langWord = langWordArray["code"] , let tradsOfWord = word["trads"] as? [[String : Any]] else {
+                return wordsOfList
+            }
+            //Chargement des informations sur la traduction
+            guard let contentTrad = trad["content"] as? String, let langTradArray = trad["language"] as? [String : String], let langTrad = langTradArray["code"], let tradsOfTrad = trad["trads"] as? [[String : Any]] else {
+                return wordsOfList
+            }
+            //Extraction des traductions de la trad
+            var tradsForWord : [Mot] = []
+            for trad in tradsOfWord {
+                guard let content = trad["content"] as? String, let lang = trad["language"] as? [String: String], let code = lang["code"] else {
+                    return wordsOfList
+                }
+                tradsForWord.append(Mot(content: content, lang: code))
+            }
+            //Extraction des traduction de la trad
+            var tradsForTrad : [Mot] = []
+            for trad in tradsOfTrad {
+                guard let content = trad["content"] as? String , let lang = trad["language"] as? [String: String], let code = lang["code"]  else {
+                    return wordsOfList
+                }
+                tradsForTrad.append(Mot(content: content, lang: code))
+            }
+            
+            guard let level = stats["level"], let idStat = stats["id"], let goodRepetition = stats["goodRepetition"], let badRepetition = stats["badRepetition"] else {
+                return wordsOfList
+            }
+            
+            //Ajoute a la liste
+            let finalWord = Mot(content: contentWord, trads: tradsForWord, lang: langWord)
+            let finalTrad = Mot(content: contentTrad, trads: tradsForTrad,lang: langTrad)
+            if langWord == "FR" {
+                wordsOfList.append(ListMot(id: idMot,word: finalWord, trad: finalTrad,statIdWord : idStat,level : level, goodRepetitions : goodRepetition, badRepetitions : badRepetition))
+            } else {
+                wordsOfList.append(ListMot(id: idMot,word: finalTrad, trad: finalWord,statIdWord : idStat,level : level, goodRepetitions : goodRepetition, badRepetitions : badRepetition))
+            }
+        }
+        return wordsOfList
+    }
+    
     //Chargement des mots d'une liste donné en parametre
     static func loadWords(fromListId idList : Int, completion : @escaping ([ListMot]) -> Void) {
         Alamofire.request("\(Auth.URL_API)/lists/\(idList)", method: .get).responseJSON { (response) in
@@ -96,51 +194,22 @@ class List {
                 completion([])
                 return
             }
-            var wordsOfList : [ListMot] = []
-            for wordList in wordsList {
-                //Chargement du mot et de sa traduction
-                guard let word = wordList["word"] as? [String : Any], let trad = wordList["trad"] as? [String : Any], let idMot = wordList["id"] as? Int else {
-                    completion(wordsOfList)
-                    return
-                }
-                //Chargement des informations du mot
-                guard let contentWord = word["content"] as? String, let langWordArray = word["language"] as? [String : String], let langWord = langWordArray["code"] , let tradsOfWord = word["trads"] as? [[String : Any]] else {
-                    completion(wordsOfList)
-                    return
-                }
-                //Chargement des informations sur la traduction
-                guard let contentTrad = trad["content"] as? String, let langTradArray = trad["language"] as? [String : String], let langTrad = langTradArray["code"], let tradsOfTrad = trad["trads"] as? [[String : Any]] else {
-                    completion(wordsOfList)
-                    return
-                }
-                //Extraction des traductions de la trad
-                var tradsForWord : [Mot] = []
-                for trad in tradsOfWord {
-                    guard let content = trad["content"] as? String, let lang = trad["language"] as? [String: String], let code = lang["code"] else {
-                        completion(wordsOfList)
-                        return
-                    }
-                    tradsForWord.append(Mot(content: content, lang: code))
-                }
-                //Extraction des traduction de la trad
-                var tradsForTrad : [Mot] = []
-                for trad in tradsOfTrad {
-                    guard let content = trad["content"] as? String , let lang = trad["language"] as? [String: String], let code = lang["code"]  else {
-                        completion(wordsOfList)
-                        return
-                    }
-                    tradsForTrad.append(Mot(content: content, lang: code))
-                }
-                //Ajoute a la liste
-                let finalWord = Mot(content: contentWord, trads: tradsForWord, lang: langWord)
-                let finalTrad = Mot(content: contentTrad, trads: tradsForTrad,lang: langTrad)
-                if langWord == "FR" {
-                    wordsOfList.append(ListMot(id: idMot,word: finalWord, trad: finalTrad))
-                } else {
-                    wordsOfList.append(ListMot(id: idMot,word: finalTrad, trad: finalWord))
-                }
+            completion(extractList(wordsList: wordsList))
+        }
+    }
+    
+    //Chargement des mots d'une liste donné en parametre
+    static func loadWords(fromListId idList : Int,userId : Int, completion : @escaping ([ListMot]) -> Void) {
+        Alamofire.request("\(Auth.URL_API)/users/\(userId)/lists/\(idList)", method: .get).responseJSON { (response) in
+            guard let json = response.result.value as? [String : Any] else {
+                completion([])
+                return
             }
-            completion(wordsOfList)
+            guard let wordsList = json["wordTrads"] as? [[String : Any]] else {
+                completion([])
+                return
+            }
+            completion(extractList(wordsList: wordsList))
         }
     }
     
@@ -157,50 +226,7 @@ class List {
                     completion(lists)
                     return
                 }
-                var wordsOfList : [ListMot] = []
-                for wordList in wordsList {
-                    //Chargement du mot et de sa traduction
-                    guard let word = wordList["word"] as? [String : Any], let trad = wordList["trad"] as? [String : Any], let idMot = wordList["id"] as? Int else {
-                        completion(lists)
-                        return
-                    }
-                    //Chargement des informations du mot
-                    guard let contentWord = word["content"] as? String, let langWordArray = word["language"] as? [String : String], let langWord = langWordArray["code"] , let tradsOfWord = word["trads"] as? [[String : Any]] else {
-                        completion(lists)
-                        return
-                    }
-                    //Chargement des informations sur la traduction
-                    guard let contentTrad = trad["content"] as? String, let langTradArray = trad["language"] as? [String : String], let langTrad = langTradArray["code"], let tradsOfTrad = trad["trads"] as? [[String : Any]] else {
-                        completion(lists)
-                        return
-                    }
-                    //Extraction des traductions de la trad
-                    var tradsForWord : [Mot] = []
-                    for trad in tradsOfWord {
-                        guard let content = trad["content"] as? String, let lang = trad["language"] as? [String: String], let code = lang["code"] else {
-                            completion(lists)
-                            return
-                        }
-                        tradsForWord.append(Mot(content: content, lang: code))
-                    }
-                    //Extraction des traduction de la trad
-                    var tradsForTrad : [Mot] = []
-                    for trad in tradsOfTrad {
-                        guard let content = trad["content"] as? String , let lang = trad["language"] as? [String: String], let code = lang["code"]  else {
-                            completion(lists)
-                            return
-                        }
-                        tradsForTrad.append(Mot(content: content, lang: code))
-                    }
-                    //Ajoute a la liste
-                    let finalWord = Mot(content: contentWord, trads: tradsForWord, lang: langWord)
-                    let finalTrad = Mot(content: contentTrad, trads: tradsForTrad,lang: langTrad)
-                    if langWord == "FR" {
-                        wordsOfList.append(ListMot(id: idMot,word: finalWord, trad: finalTrad))
-                    } else {
-                        wordsOfList.append(ListMot(id: idMot,word: finalTrad, trad: finalWord))
-                    }
-                }
+                let wordsOfList : [ListMot] = extractList(wordsList: wordsList)
                 lists.append(List(id_list: id, name: name, words: wordsOfList))
             }
             completion(lists)

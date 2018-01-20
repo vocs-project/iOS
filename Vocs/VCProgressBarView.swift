@@ -40,7 +40,9 @@ class VCProgressBarView : UIView {
         let widthGreen  = progressBarFrame * ratioGreen
         let widthOrange = progressBarFrame * ratioOrange
         let widthRed    = progressBarFrame * ratioRed
-        self.removeSubviews()
+        greenView.removeFromSuperview()
+        orangeView.removeFromSuperview()
+        redView.removeFromSuperview()
         self.addSubviews([greenView,orangeView,redView])
         
         self.greenView.heightAnchor.constraint(equalToConstant: self.frame.height).isActive = true

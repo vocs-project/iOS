@@ -19,6 +19,7 @@ class ListesViewController: UIViewController, UITableViewDataSource,UITableViewD
     
     var lists : [List] = []
     var listsClass : [List] = []
+    var hardList : List?
     var labelIndispobible = VCLabelMenu(text: "Vous n'avez aucune liste",size: 20)
     
     lazy var listesTableView : UITableView = {
@@ -72,6 +73,9 @@ class ListesViewController: UIViewController, UITableViewDataSource,UITableViewD
                         self.messageVide()
                     }
                     self.lists = lists
+                    List.loadCurrentHardList(completion: { (hardList) in
+                        self.hardList = hardList
+                    })
                     self.checkVide()
                     guard let classeId = group?.id else {return}
                     Group.loadGroup(idClasse: classeId, completion: { (group) in
@@ -110,6 +114,9 @@ class ListesViewController: UIViewController, UITableViewDataSource,UITableViewD
                             self.messageVide()
                         }
                         self.lists = lists
+                        List.loadCurrentHardList(completion: { (hardList) in
+                            self.hardList = hardList
+                        })
                         self.checkVide()
                         guard let classeId = group?.id else {
                             loading.dismiss(animated: false, completion: nil)
@@ -173,7 +180,13 @@ class ListesViewController: UIViewController, UITableViewDataSource,UITableViewD
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? self.lists.count : self.listsClass.count
+        if section == 0 {
+            return self.lists.count
+        } else if section == 1 {
+            return self.listsClass.count
+        } else {
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -184,16 +197,17 @@ class ListesViewController: UIViewController, UITableViewDataSource,UITableViewD
         let cell:VCListeCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier)! as! VCListeCell
         if (indexPath.section == 0) {
             cell.setText(text: lists[indexPath.row].name!)
-        } else {
+        } else if indexPath.section == 1 {
             cell.setText(text: listsClass[indexPath.row].name!)
+        } else {
+            cell.setText(text: "Consulter ma hard liste")
         }
         return cell
-        
     }
     
     //Deux sections 1 => Personnelles et 2 => Classes
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -208,8 +222,12 @@ class ListesViewController: UIViewController, UITableViewDataSource,UITableViewD
             headerCell.buttonAjouter.addTarget(self, action: #selector(handleAjouter), for: .touchUpInside)
             headerCell.buttonAjouter.layer.opacity = 1
             headerCell.buttonAjouter.isEnabled = true
-        } else {
+        } else if section == 1 {
             headerCell.textHeader = " Classe "
+            headerCell.buttonAjouter.layer.opacity = 0
+            headerCell.buttonAjouter.isEnabled = false
+        } else {
+            headerCell.textHeader = "Ma hard liste"
             headerCell.buttonAjouter.layer.opacity = 0
             headerCell.buttonAjouter.isEnabled = false
         }
@@ -229,9 +247,15 @@ class ListesViewController: UIViewController, UITableViewDataSource,UITableViewD
             controller.navigationItem.title = lists[indexPath.row].name!
             controller.enableEditing = true
             controller.list = lists[indexPath.row]
-        } else {
+        } else if indexPath.section == 1 {
             controller.navigationItem.title = listsClass[indexPath.row].name!
             controller.list = listsClass[indexPath.row]
+            controller.mustLoadWords = true
+            controller.enableEditing = false
+            controller.navigationItem.rightBarButtonItem = nil
+        } else {
+            controller.navigationItem.title = "Hard liste"
+            controller.list = self.hardList
             controller.enableEditing = false
             controller.navigationItem.rightBarButtonItem = nil
         }
@@ -239,10 +263,10 @@ class ListesViewController: UIViewController, UITableViewDataSource,UITableViewD
     }
     
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        if indexPath.section == 1 {
-            return nil
-        } else {
+        if indexPath.section == 0 {
             return "Supprimer"
+        } else {
+            return nil
         }
     }
     

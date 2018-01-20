@@ -103,12 +103,3 @@ class VCMotCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-enum VCColorWord {
-    
-    case red
-    case green
-    case orange
-    
-    
-}

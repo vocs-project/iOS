@@ -25,6 +25,12 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
             self.listesTableView.reloadData()
         }
     }
+    var hardList : List? {
+        didSet {
+            self.checkVide()
+            self.listesTableView.reloadData()
+        }
+    }
     var listsClass : [List] = [] {
         didSet {
             self.checkVide()
@@ -74,6 +80,8 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
                 title = "QCM"
             case .matching:
                 title = "Matching"
+            case .timeAttack:
+                title = "Time attack"
         }
         self.navigationItem.title = title
     }
@@ -98,6 +106,9 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
                     }
                     self.lists = lists
                 })
+                List.loadCurrentHardList(completion: { (hardList) in
+                    self.hardList = hardList
+                })
                 user.loadClasse(completion: { (group) in
                     guard let idClasse = group?.id else {
                         loading.dismiss(animated: true, completion: nil)
@@ -119,15 +130,6 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
         self.lists = userLists
     }
     func setupViews() {
-        
-//        self.view.addSubview(headerTableView)
-//
-//        headerTableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant : 10).isActive = true
-//        headerTableView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-//        headerTableView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-//        headerTableView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 9/10).isActive = true
-        
-        
         self.view.addSubview(listesTableView)
         
         listesTableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant : 10).isActive = true
@@ -153,17 +155,29 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
             } else {
                 return false
             }
-        } else {
+        } else if indexPath.section == 1 {
             if listsClass[indexPath.row].estVide() {
                 return true
             } else {
                 return false
             }
+        } else {
+            if hardList != nil {
+                return hardList!.estVide()
+            } else {
+                return true
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? self.lists.count : self.listsClass.count
+        if section == 0 {
+            return self.lists.count
+        } else if section == 1 {
+            return self.listsClass.count
+        } else {
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -174,16 +188,18 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
         let cell:VCListeCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier)! as! VCListeCell
         if (indexPath.section == 0) {
             cell.setText(text: lists[indexPath.row].name!)
-        } else {
+        } else if indexPath.section == 1 {
             cell.setText(text: listsClass[indexPath.row].name!)
+        } else {
+            cell.setText(text: "Utiliser ma hard liste")
         }
         return cell
         
     }
     
-    //Deux sections 1 => Personnelles et 2 => Classes
+    //Deux sections 1 => Personnelles et 2 => Classes et 3 => Hard liste
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -195,8 +211,10 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
         let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseIdentifierHeader) as! VCHeaderListeWithButtonCell
         if section == 0 {
             headerCell.textHeader = "Personnelles"
-        } else {
+        } else if section == 1 {
             headerCell.textHeader = " Classe "
+        } else {
+            headerCell.textHeader = "Ma hard liste"
         }
         headerCell.buttonAjouter.layer.opacity = 0
         headerCell.buttonAjouter.isEnabled = false
@@ -211,17 +229,19 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
                 gameController = VCTraductionViewController()
             case .qcm :
                 gameController = VCQCMViewController()
-        case .matching :
+            case .matching :
                 gameController = VCMatchingViewController()
+            case .timeAttack :
+                gameController = VCTimeAttackController()
         }
         gameController.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         let navController = UINavigationController(rootViewController: gameController)
         //liste de classes => Il faut charger les mots
-        if indexPath.section != 0 {
+        if indexPath.section == 1 {
             let loading = VCLoadingController()
-            guard let idList =  self.listsClass[indexPath.row].id_list else {return}
+            guard let idList =  self.listsClass[indexPath.row].id_list, let uid = Auth().currentUserId else {return}
             self.present(loading, animated: true) {
-                List.loadWords(fromListId: idList, completion: { (mots) in
+                List.loadWords(fromListId: idList,userId : uid, completion: { (mots) in
                     gameController.mots = mots
                     loading.dismiss(animated: true, completion: nil)
                     if mots.count == 0 {
@@ -233,7 +253,7 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
                     }
                 })
             }
-        } else { //listes personnelles les mots sont déjà chargés
+        } else if indexPath.section == 0 { //listes personnelles les mots sont déjà chargés
             if lists[indexPath.row].words?.count == 0 {
                 self.presentError(title: "Problème de liste", message: "\(lists[indexPath.row].name!) est vide")
             } else if gameMode == .qcm && (lists[indexPath.row].words?.count)! < 4 {
@@ -243,6 +263,17 @@ class ChoisirListeViewController: UIViewController, UITableViewDataSource,UITabl
                     gameController.mots =  lists[indexPath.row].words!
                 }
                 
+                present(navController, animated: true, completion: nil)
+            }
+        } else {
+            if hardList?.words?.count == 0 {
+                self.presentError(title: "Problème de liste", message: "Votre hard liste est vide")
+            } else if gameMode == .qcm && (hardList?.words?.count)! < 4 {
+                self.presentError(title: "Problème de liste", message: "Votre hard liste doit comporter au moins 4 mots pour faire le QCM")
+            } else {
+                if hardList?.words != nil {
+                    gameController.mots =  hardList!.words!
+                }
                 present(navController, animated: true, completion: nil)
             }
         }

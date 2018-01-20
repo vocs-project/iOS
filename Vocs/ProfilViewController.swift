@@ -125,7 +125,26 @@ class ProfilViewController: UICollectionViewController , VDelegateReload {
         controller.accountInformationType = self.accoutInformations[indexPath.row]
         controller.currentUser = currentUser
         controller.delegate = self
-        self.navigationController?.pushViewController(controller)
+        let alert = UIAlertController(title: "Verifier votre identité", message: "Pour modifier votre profil, vous devez saisir votre mot de passe", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
+        alert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "Mot de passe"
+            textField.isSecureTextEntry = true
+        })
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            if let password = alert.textFields?.first?.text {
+                if self.currentUser?.email != nil {
+                    Auth().loginUser(email: self.currentUser!.email!, password: password, completion: { (user) in
+                        if user != nil {
+                            self.navigationController?.pushViewController(controller)
+                        } else {
+                            self.present(alert, animated: true)
+                        }
+                    })
+                }
+            }
+        }))
+        self.present(alert, animated: true)
     }
     
     @objc func changeLangue() {
@@ -151,7 +170,6 @@ class ProfilViewController: UICollectionViewController , VDelegateReload {
             cell.imageEdit.isHidden = false
             break
         case .city:
-            //                cell.label.text = self.currentUser.city
             cell.label.text = "TO DO Ville"
             cell.imageEdit.isUserInteractionEnabled = true
             cell.imageEdit.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleEdit(_:))))
@@ -211,7 +229,6 @@ class ProfilViewController: UICollectionViewController , VDelegateReload {
 enum VCProfilCategory {
     case email
     case city
-//    case school
     case name
     case firstname
     case password

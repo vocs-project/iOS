@@ -61,12 +61,8 @@ class DemandList : Demand {
             }
             //On créé la liste
             List.addList(withName: listName, forUser: userId, mots: motsIds, completion: { (idList) in
-                self.deleteDemand(completion: { (idList) in
-                    if idList == nil {
-                        completion(false)
-                    } else {
-                        completion(true)
-                    }
+                self.deleteDemand(completion: { (deleted) in
+                    completion(deleted)
                 })
             })
         }

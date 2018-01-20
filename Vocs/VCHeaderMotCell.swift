@@ -33,20 +33,20 @@ class VCHeaderMotCell : UITableViewCell {
     }
     
     fileprivate func setupViews() {
+        self.removeSubviews()
         self.addSubviews([labelListe,progressBar])
         
         NSLayoutConstraint.activate([
             labelListe.widthAnchor.constraint(equalTo: self.widthAnchor),
-            labelListe.heightAnchor.constraint(equalTo: self.widthAnchor,multiplier : 2/3),
+            labelListe.heightAnchor.constraint(equalTo: self.heightAnchor,multiplier : 2/3),
             labelListe.centerYAnchor.constraint(equalTo: self.centerYAnchor,constant : -20),
             labelListe.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             
             progressBar.widthAnchor.constraint(equalTo: self.widthAnchor),
-            progressBar.heightAnchor.constraint(equalTo: self.widthAnchor,multiplier : 1/3),
+            progressBar.heightAnchor.constraint(equalTo: self.heightAnchor,multiplier : 1/3),
             progressBar.centerYAnchor.constraint(equalTo: self.centerYAnchor,constant : 20),
             progressBar.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
-        changeProgressBar(ratioGreen: 0, ratioOrange: 2/3, ratioRed: 1/3)
     }
     
     //Permet de changer les ratios des couleurs de la barre

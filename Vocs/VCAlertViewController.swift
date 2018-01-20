@@ -21,6 +21,8 @@ public class VCAlertViewController : UIViewController {
         return view
     }()
     
+    var delegate : VDelegateReload?
+    
     var titleText : String? {
         didSet {
             titleLabel.text = self.titleText
@@ -208,6 +210,7 @@ public class VCAlertViewController : UIViewController {
     }
     
     @objc func handleDismiss() {
+        delegate?.reloadData()
         self.dismiss(animated: false, completion: nil)
     }
     

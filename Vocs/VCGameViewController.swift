@@ -148,7 +148,7 @@ class VCGameViewController: UIViewController {
     @objc func finir() {
         let controller = VCScoreViewController()
         controller.myScore.score.text = String(nbrReussi)
-        controller.myScore.maximum.text = String(NBR_MOTS_MAX)
+        controller.myScore.maximum.text = String(compteur)
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -158,4 +158,5 @@ enum VCGameMode {
     case traduction
     case qcm
     case matching
+    case timeAttack
 }

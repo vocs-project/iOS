@@ -16,6 +16,7 @@ class Auth {
     
     
     static var URL_API = "http://vocsapi.lebarillier.fr/rest"
+    static let URL_API_DEV = "http://serveur.lebarillier.fr/API/web/app_dev.php/rest"
     
     var currentUserId : Int? {
         get {

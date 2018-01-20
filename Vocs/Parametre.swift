@@ -16,11 +16,12 @@ class Parametre {
     let defaultLangName = "English (United States)"
     let defaultLangId = "en-US"
     let NBR_MAX_MOTS = 100
+    let TIME_PER_LETTER_TIME_ATTACK = 1
     
     //Cle du parametre du UserDefault
     let KEY_LANG_PRONOUCE_ID = "KEY_LANG_PRONOUCE_ID"
     let KEY_LANG_PRONOUNCE_NAME = "KEY_LANG_PRONOUNCE_NAME"
-    
+
     let KEY_EXERCICE_SIZE = "KEY_EXERCICE_SIZE"
     
     fileprivate init() {

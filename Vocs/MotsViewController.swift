@@ -11,11 +11,14 @@ import SQLite
 import AVFoundation
 class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, AjouterUnMotDelegate {
 
-    
-    var mots : [ListMot] = []
     let reuseIdentifier = "motCell"
     let reuseIdentifierHeader = "motCellHeader"
-    var list : List?
+    var list : List? {
+        didSet {
+            self.motsTableView.reloadData()
+        }
+    }
+    var mustLoadWords : Bool = false
     var canShare = false {
         didSet {
             self.setupTopBar()
@@ -68,27 +71,29 @@ class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDat
         self.motsTableView.register(VCMotCell.self, forCellReuseIdentifier: reuseIdentifier)
         self.motsTableView.register(VCHeaderMotCell.self, forCellReuseIdentifier: reuseIdentifierHeader)
         self.view.backgroundColor = .white
-        loadWords()
+        if self.list?.words == nil {
+            loadWords()
+        }
         setupViews()
     }
     
     //charger les mots de la liste
     let loading = VCLoadingController()
     func loadWords() {
-        guard let idList =  self.list?.id_list else {return}
+        guard let idList =  self.list?.id_list, let uid = Auth().currentUserId else {return}
         self.present(loading, animated: true) {
-            List.loadWords(fromListId: idList, completion: { (mots) in
-                self.mots = mots
-                self.motsTableView.reloadData()
+            List.loadWords(fromListId: idList,userId : uid, completion: { (mots) in
+                self.list?.words = mots
                 self.loading.dismiss(animated: true, completion: nil)
+                self.motsTableView.reloadData()
             })
         }
     }
     
     func loadWordsWithoutLoading(){
-        guard let idList =  self.list?.id_list else {return}
-        List.loadWords(fromListId: idList, completion: { (mots) in
-            self.mots = mots
+        guard let idList =  self.list?.id_list,let uid = Auth().currentUserId  else {return}
+        List.loadWords(fromListId: idList,userId : uid, completion: { (mots) in
+            self.list?.words = mots
             self.motsTableView.reloadData()
         })
     }
@@ -110,9 +115,11 @@ class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDat
     
     //Ajouter un nouveau mot dans le table view
     func addNewWordToTableView(listMot : ListMot) {
-        self.mots.append(listMot)
-        let indexPath = IndexPath(row: self.mots.count - 1, section: 0)
-        _ = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(insertRow), userInfo: indexPath, repeats: false)
+        if self.list?.words != nil {
+            self.list!.words!.append(listMot)
+            let indexPath = IndexPath(row: self.list!.words!.count - 1, section: 0)
+            _ = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(insertRow), userInfo: indexPath, repeats: false)
+        }
     }
     
     func envoyerMot(french: String, english: String) {
@@ -140,7 +147,11 @@ class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.mots.count + 1
+        if self.list?.words != nil {
+            return self.list!.words!.count == 0 ? 0 : self.list!.words!.count + 1
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -154,17 +165,27 @@ class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.row == 0) {
             let cell:VCHeaderMotCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierHeader)! as! VCHeaderMotCell
+            if list != nil {
+                if list!.words != nil {
+                    cell.changeProgressBar(ratioGreen: list!.getRatioColor(levelColor: .green), ratioOrange: list!.getRatioColor(levelColor: .orange), ratioRed: list!.getRatioColor(levelColor: .red))
+                }
+            }
             return cell
         } else {
             let cell:VCMotCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier)! as! VCMotCell
             var text = "Erreur chargement"
-            let listMot = self.mots[indexPath.row - 1]
-            guard let word = listMot.word?.content, let trad = listMot.trad?.content else {
+            if self.list?.words != nil {
+                let listMot = self.list!.words![indexPath.row - 1]
+                guard let word = listMot.word?.content, let trad = listMot.trad?.content else {
+                    cell.labelListe.text = text
+                    return cell
+                }
+                if let color = listMot.getLevelColor() {
+                    cell.setColor(color: color)
+                }
+                text = "\(word.capitalizingFirstLetter()) - \(trad.capitalizingFirstLetter())"
                 cell.labelListe.text = text
-                return cell
             }
-            text = "\(word.capitalizingFirstLetter()) - \(trad.capitalizingFirstLetter())"
-            cell.labelListe.text = text
             return cell
         }
     }
@@ -179,27 +200,31 @@ class MotsViewController: UIViewController , UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row > 0 {
-            let listWord = self.mots[indexPath.row - 1]
-            guard let mot = listWord.trad else {
-                return
+            if self.list?.words != nil {
+                let listWord = self.list!.words![indexPath.row - 1]
+                guard let mot = listWord.trad else {
+                    return
+                }
+                PrononcationMots.loadInstance().prononcer(mot: mot)
             }
-            PrononcationMots.loadInstance().prononcer(mot: mot)
         }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if enableEditing && indexPath.row > 0 {
             if editingStyle == UITableViewCellEditingStyle.delete {
-                let listWord = self.mots.remove(at: indexPath.row - 1)
-                tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
-                self.list?.deleteWordFromList(listMot : listWord , completion: { (deleted,listWord) in
-                    if !deleted {
-                        self.presentError(title: "Problème de connexion", message: "Le mot n'a pas été supprimé suite à un problème de connexion")
-                        self.mots.append(listWord)
-                        let indexPath = IndexPath(row: self.mots.count - 1, section: 0)
-                        self.motsTableView.insertRows(at: [indexPath], with: .automatic)
-                    }
-                })
+                if self.list?.words != nil {
+                    let listWord = self.list!.words!.remove(at: indexPath.row - 1)
+                    tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+                    self.list?.deleteWordFromList(listMot : listWord , completion: { (deleted,listWord) in
+                        if !deleted {
+                            self.presentError(title: "Problème de connexion", message: "Le mot n'a pas été supprimé suite à un problème de connexion")
+                            self.list!.words!.append(listWord)
+                            let indexPath = IndexPath(row: self.list!.words!.count - 1, section: 0)
+                            self.motsTableView.insertRows(at: [indexPath], with: .automatic)
+                        }
+                    })
+                }
             }
         }
     }
