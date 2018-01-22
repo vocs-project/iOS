@@ -74,6 +74,7 @@
 		6AAA31131FD89B9700C6BA2D /* DemandClasse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA31121FD89B9700C6BA2D /* DemandClasse.swift */; };
 		6AAA31151FD89BA400C6BA2D /* DemandList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA31141FD89BA400C6BA2D /* DemandList.swift */; };
 		6AAA31171FD89BB600C6BA2D /* DemandWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA31161FD89BB600C6BA2D /* DemandWord.swift */; };
+		6AB310FE20165984007457C8 /* VCSimpleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB310FD20165984007457C8 /* VCSimpleCell.swift */; };
 		6AC57BFC1FBC86640005CD97 /* VCRechercherProf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC57BFB1FBC86640005CD97 /* VCRechercherProf.swift */; };
 		6AC6FD562011535B007E06B8 /* Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC6FD552011535B007E06B8 /* Enumerations.swift */; };
 		6ACEB5201F6D26A400A2236D /* VCViewConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACEB51F1F6D26A400A2236D /* VCViewConnection.swift */; };
@@ -183,6 +184,7 @@
 		6AAA31121FD89B9700C6BA2D /* DemandClasse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemandClasse.swift; sourceTree = "<group>"; };
 		6AAA31141FD89BA400C6BA2D /* DemandList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemandList.swift; sourceTree = "<group>"; };
 		6AAA31161FD89BB600C6BA2D /* DemandWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemandWord.swift; sourceTree = "<group>"; };
+		6AB310FD20165984007457C8 /* VCSimpleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCSimpleCell.swift; sourceTree = "<group>"; };
 		6AC57BFB1FBC86640005CD97 /* VCRechercherProf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCRechercherProf.swift; sourceTree = "<group>"; };
 		6AC6FD552011535B007E06B8 /* Enumerations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumerations.swift; sourceTree = "<group>"; };
 		6ACEB51F1F6D26A400A2236D /* VCViewConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCViewConnection.swift; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 				6AD2BB591F62A41D008BFB3D /* VCProfilCollectionViewCell.swift */,
 				6AE8E5801FA4A9F0003B988A /* VCMessageCell.swift */,
 				6A41EEAD200F9C8400FB56FF /* VCHeaderMotCell.swift */,
+				6AB310FD20165984007457C8 /* VCSimpleCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -744,6 +747,7 @@
 				6ACEB52A1F6DA06C00A2236D /* City.swift in Sources */,
 				6A6F1C891ED77A3C0098D6EE /* List.swift in Sources */,
 				6A41EEB0200FA70C00FB56FF /* VCProgressBarView.swift in Sources */,
+				6AB310FE20165984007457C8 /* VCSimpleCell.swift in Sources */,
 				6A11DA851FBC9D6700EEBA0C /* VCMatchCard.swift in Sources */,
 				6ACEB5241F6D2BD100A2236D /* VCRegisterInformations.swift in Sources */,
 				6A27336A1EC77F3D00E4830E /* VCTraductionViewController.swift in Sources */,
