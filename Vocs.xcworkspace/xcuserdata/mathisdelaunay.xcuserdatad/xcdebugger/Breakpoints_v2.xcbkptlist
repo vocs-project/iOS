@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vocs/List.swift"
-            timestampString = "538334602.300317"
+            timestampString = "538335406.225621"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "167"
             endingLineNumber = "167"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "deleteWordFromList(listMot:completion:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -38,43 +38,43 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vocs/List.swift"
-            timestampString = "538334602.300433"
+            timestampString = "538335406.225795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "331"
             endingLineNumber = "331"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "deleteList(withId:forUser:completion:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vocs/List.swift"
-            timestampString = "538334602.300499"
+            timestampString = "538335406.2258821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "332"
             endingLineNumber = "332"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "deleteList(withId:forUser:completion:)"
+            landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in static Vocs.List.deleteList(withId: Swift.Int, forUser: Swift.Int, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
                   moduleName = "Vocs"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mathisdelaunay/Documents/Programmation/ApplicationsIOS/Applications%20/Vocs/Vocs/List.swift"
-                  timestampString = "538334602.528723"
+                  timestampString = "538335100.930612"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "332"
@@ -82,14 +82,14 @@
                   offsetFromSymbolStart = "536">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in static Vocs.List.deleteList(withId: Swift.Int, forUser: Swift.Int, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
                   moduleName = "Vocs"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mathisdelaunay/Documents/Programmation/ApplicationsIOS/Applications%20/Vocs/Vocs/List.swift"
-                  timestampString = "538334602.5324709"
+                  timestampString = "538335100.9335231"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "332"
@@ -102,27 +102,27 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vocs/List.swift"
-            timestampString = "538334602.300559"
+            timestampString = "538335406.225963"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "329"
             endingLineNumber = "329"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "deleteList(withId:forUser:completion:)"
+            landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "static Vocs.List.deleteList(withId: Swift.Int, forUser: Swift.Int, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
                   moduleName = "Vocs"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mathisdelaunay/Documents/Programmation/ApplicationsIOS/Applications%20/Vocs/Vocs/List.swift"
-                  timestampString = "538334602.541314"
+                  timestampString = "538335100.942281"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "329"
@@ -130,14 +130,14 @@
                   offsetFromSymbolStart = "33">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in static Vocs.List.deleteList(withId: Swift.Int, forUser: Swift.Int, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
                   moduleName = "Vocs"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mathisdelaunay/Documents/Programmation/ApplicationsIOS/Applications%20/Vocs/Vocs/List.swift"
-                  timestampString = "538334602.544906"
+                  timestampString = "538335100.945576"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "330"
@@ -145,6 +145,70 @@
                   offsetFromSymbolStart = "25">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vocs/List.swift"
+            timestampString = "538335406.226061"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "copierListeClasse(toUser:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Vocs.Group&gt;) -&gt; () in static Vocs.List.copierListeClasse(toUser: Swift.Int, completion: () -&gt; ()) -&gt; ()"
+                  moduleName = "Vocs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mathisdelaunay/Documents/Programmation/ApplicationsIOS/Applications%20/Vocs/Vocs/List.swift"
+                  timestampString = "538335315.944029"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "113"
+                  endingLineNumber = "113"
+                  offsetFromSymbolStart = "1744">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Int&gt;) -&gt; () in closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Vocs.Group&gt;) -&gt; () in static Vocs.List.copierListeClasse(toUser: Swift.Int, completion: () -&gt; ()) -&gt; ()"
+                  moduleName = "Vocs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mathisdelaunay/Documents/Programmation/ApplicationsIOS/Applications%20/Vocs/Vocs/List.swift"
+                  timestampString = "538335315.947237"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "113"
+                  endingLineNumber = "113"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vocs/List.swift"
+            timestampString = "538335406.226184"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "copierListeClasse(toUser:completion:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
